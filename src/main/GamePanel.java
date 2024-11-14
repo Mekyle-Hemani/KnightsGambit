@@ -29,14 +29,14 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * 11;  //Keep these the same as before
     public final int screenHeight = tileSize * 17;
 
-    public GamePanel() throws IOException {
+    public GamePanel() throws IOException, FontFormatException {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.LIGHT_GRAY);
         this.setFocusable(true);
         startup();
     }
 
-    private void startup() throws IOException {
+    private void startup() throws IOException, FontFormatException {
         firstMapGeneration = new FirstMapGeneration(this);
         firstMapGeneration.generateFirstMap();
 
