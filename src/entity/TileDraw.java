@@ -55,7 +55,7 @@ public class TileDraw {
                 //If this specific tile type and asset id combination has not been referenced before...
                 if (!imageCache.containsKey(key)) {
                     //Create the image with the type and asset id
-                    BufferedImage img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/" + type + firstInteger + ".png")));
+                    BufferedImage img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/" + type +"/"+ firstInteger + ".png")));
 
                     //Save that image to the image cache hashmap
                     imageCache.put(key, img);
