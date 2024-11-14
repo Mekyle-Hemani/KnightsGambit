@@ -2,8 +2,11 @@ package entity;
 
 import main.GamePanel;
 
+import java.security.SecureRandom;
+
 public class NextLineGeneration {
     static GamePanel gp;
+    SecureRandom secureRandom = new SecureRandom();
 
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
@@ -13,7 +16,7 @@ public class NextLineGeneration {
         //Repeat the following code for the tile width of the screen
         for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
             //What type of tile is going to be generated
-            int tileType = Random.GenRandInt(2);
+            int tileType = secureRandom.nextInt(3);
             //0 = ground (Walkable)
             //1 = wall (NotWalkable)
             //2 = Stair/Door (Walkable)
@@ -25,10 +28,10 @@ public class NextLineGeneration {
             //Total tile is the assets number + the tile type
             int totalTile = 0;
             switch (tileType) {
-                case 0 -> totalTile = Integer.parseInt(Integer.toString(Random.GenRandInt(4)+1) + 0);
+                case 0 -> totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0);
                 //There are 5 type(s) of ground asset(s). Picking one at random.
 
-                case 1 -> totalTile = Integer.parseInt(Integer.toString((Random.GenRandInt(4)+1)) + 1);
+                case 1 -> totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1);
                 //There are 5 type(s) of wall asset(s). Picking one at random.
 
                 case 2 -> totalTile = Integer.parseInt(Integer.toString(1) + 2);

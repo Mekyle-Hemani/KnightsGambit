@@ -2,8 +2,11 @@ package entity;
 
 import main.GamePanel;
 
+import java.security.SecureRandom;
+
 public class FirstMapGeneration {
     private final GamePanel gp;
+    SecureRandom secureRandom = new SecureRandom();
 
     public FirstMapGeneration(GamePanel gp) {
         this.gp = gp;
@@ -16,7 +19,7 @@ public class FirstMapGeneration {
         for (int i = 0; i < totalTiles; i++) {
 
             //What type of tile is going to be generated
-            int tileType = Random.GenRandInt(2);
+            int tileType = secureRandom.nextInt(3);
 
             //0 = ground (Walkable)
             //1 = wall (NotWalkable)
@@ -29,10 +32,10 @@ public class FirstMapGeneration {
             //Total tile is the assets number + the tile type
             int totalTile = 0;
             switch (tileType) {
-                case 0 -> totalTile = Integer.parseInt(Integer.toString(Random.GenRandInt(4)+1) + 0);
+                case 0 -> totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0);
                 //There are 5 type(s) of ground asset(s). Picking one at random.
 
-                case 1 -> totalTile = Integer.parseInt(Integer.toString((Random.GenRandInt(4)+1)) + 1);
+                case 1 -> totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1);
                 //There are 5 type(s) of wall asset(s). Picking one at random.
 
                 case 2 -> totalTile = Integer.parseInt(Integer.toString(1) + 2);
