@@ -21,7 +21,7 @@ public class Movement implements KeyListener {
     public Movement(GamePanel gp, Player player) {
         this.gp = gp;
         this.player = player;
-        this.nextLineGeneration = new NextLineGeneration(gp);
+        this.nextLineGeneration = new NextLineGeneration(gp); //Makes the NextLineGeneration referencable
     }
 
     @Override
