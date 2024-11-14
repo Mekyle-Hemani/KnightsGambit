@@ -13,36 +13,57 @@ import java.util.Objects;
 public class TileDraw {
     GamePanel gp;
 
-    private BufferedImage drawTile;
-    private Map<String, BufferedImage> imageCache;
+    private BufferedImage drawTile; //This is what image will be drawn at the current moment
+    private Map<String, BufferedImage> imageCache; //This hashmap is being treated like an image cache to help redundant image loading
 
     public TileDraw(GamePanel gamePanel) throws IOException {
         this.gp = gamePanel;
-        imageCache = new HashMap<>();
+        imageCache = new HashMap<>(); //Finalize the hashmap
         initialize();
     }
 
-    private void initialize() throws IOException {
+    private void initialize() {
 
     }
 
     public void draw(Graphics2D g2) throws IOException {
         for (int i = 0; i < (gp.screenHeight / gp.tileSize); i++) {
+            //For each tile on the y axis...
             for (int j = 0; j < (gp.screenWidth / gp.tileSize); j++) {
+                //For each tile on the x axis...
+
+                //Set the current item being drawn to the y axis position times length added to the x axis position in reference to the array
+                //This just helps us treat 2 integers as reference to one item in an array
                 int item = GamePanel.tileLocations.get((i * (gp.screenWidth / gp.tileSize) + j));
+
+                //Have a default tile type in case of the switch statement not catching correct items
                 String type = "ground";
+
+                //This gets the second character. The second character tells us what type of item it is (Ground, Wall, Stairs)
                 switch (Character.getNumericValue(Integer.toString(item).charAt(1))) {
                     case 0 -> type = "ground";
                     case 1 -> type = "wall";
                     case 2 -> type = "stairs";
                 }
 
-                String key = type + Character.getNumericValue(Integer.toString(item).charAt(0));
+                //Since the script has many different assets for single tile types, the first number of the itemLocations array tells us what image was requested to be loaded
+                int firstInteger = Character.getNumericValue(Integer.toString(item).charAt(0));
+
+                //The key is the tile type combined with the asset id
+                String key = type + firstInteger;
+
+                //If this specific tile type and asset id combination has not been referenced before...
                 if (!imageCache.containsKey(key)) {
-                    BufferedImage img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/" + type + Character.getNumericValue(Integer.toString(item).charAt(0)) + ".png")));
+                    //Create the image with the type and asset id
+                    BufferedImage img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/" + type + firstInteger + ".png")));
+
+                    //Save that image to the image cache hashmap
                     imageCache.put(key, img);
                 }
+                //Find the requested image using the key and set the current image to be drawn to the requested one
                 drawTile = imageCache.get(key);
+
+                //Draw the image with a regulated size and given position based off of the i and j variables. (X and Y variables)
                 g2.drawImage(drawTile, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
             }
         }

@@ -38,6 +38,7 @@ public class Player extends Entity{
         posY = (((gp.screenHeight-size)/2)+(size*2)); //Sets the player y to the middle y
     }
 
+    //Draws the image to the given position and size
     public void draw(Graphics2D g2) {
         g2.drawImage(playerImage, posX, posY, gp.tileSize, gp.tileSize, null);
     }
