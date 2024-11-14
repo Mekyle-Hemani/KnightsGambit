@@ -14,7 +14,7 @@ public class Inventory extends Entity {
         isVisible = false; //Make sure the inventory starts off hidden
     }
     private void initialize() {
-
+        //Nothing needs to initialize
     }
 
     public void draw(Graphics2D g2) {
