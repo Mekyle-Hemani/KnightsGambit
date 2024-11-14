@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 
 public class NextLineGeneration {
     static GamePanel gp;
-    SecureRandom secureRandom = new SecureRandom();
+    SecureRandom secureRandom = new SecureRandom(); //Initialize the SecureRandom library for reference
 
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;

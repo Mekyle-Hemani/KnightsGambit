@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 
 public class FirstMapGeneration {
     private final GamePanel gp;
-    SecureRandom secureRandom = new SecureRandom();
+    SecureRandom secureRandom = new SecureRandom(); //Initialize the SecureRandom library for reference
 
     public FirstMapGeneration(GamePanel gp) {
         this.gp = gp;
