@@ -21,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     private FirstMapGeneration firstMapGeneration;
     private Collision collision;
+    private TileDistanceDraw tileDistanceDraw;
 
     private final int originalTileSize = 23;
     private final double scale = 2.0;  //Adjust scale from 3 to 2.0 for 1.5x smaller tiles
@@ -42,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
         inventory = new Inventory(this);
         tileDraw = new TileDraw(this);
         collision = new Collision(this);
+        tileDistanceDraw = new TileDistanceDraw(this);
 
         player = new Player(this);
 
@@ -84,5 +86,6 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         player.draw((Graphics2D) g);
+        tileDistanceDraw.draw((Graphics2D) g);
     }
 }
