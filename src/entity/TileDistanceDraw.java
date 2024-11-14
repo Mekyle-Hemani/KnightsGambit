@@ -30,8 +30,9 @@ public class TileDistanceDraw {
     }
 
     public void draw(Graphics2D g2) {
-        g2.setFont(new Font("Arial", Font.BOLD, 38));
+        g2.setFont(customFont);
         g2.setColor(Color.WHITE);
-        g2.drawString(Integer.toString(gamePanel.spacesCrossed), (gamePanel.getWidth() - (g2.getFontMetrics().stringWidth(Integer.toString(gamePanel.spacesCrossed)))) / 2, gamePanel.tileSize);
+        String distanceText = Integer.toString(gamePanel.spacesCrossed);
+        g2.drawString(distanceText, (gamePanel.getWidth() - g2.getFontMetrics().stringWidth(distanceText)) / 2, gamePanel.tileSize);
     }
 }
