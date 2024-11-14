@@ -96,6 +96,8 @@ public class Movement implements KeyListener {
         //Update the locations of the player
         locationX = (Player.posX / player.size);
         locationY = (Player.posY / player.size);
+
+        gp.spacesCrossed = spacesCrossed;
     }
 
     @Override
