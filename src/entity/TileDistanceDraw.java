@@ -20,7 +20,7 @@ public class TileDistanceDraw {
     }
 
     private void loadCustomFont() throws IOException, FontFormatException {
-        InputStream fontStream = getClass().getResourceAsStream("/assets/font/font.ttf");
+        InputStream fontStream = getClass().getResourceAsStream("/assets/font/scoreFont.ttf");
         if (fontStream != null) {
             customFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.BOLD, 38);
         } else {
