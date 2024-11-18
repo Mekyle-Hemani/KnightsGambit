@@ -62,6 +62,7 @@ public class NextLineGeneration {
 
     public static List<List<Integer>> currentRoomData;
     public static int currentRoomLineIndex;
+    public static List<Integer> previousRoomTopDoorPositions;
 
     public NextLineGeneration(GamePanel gp) {
         this.gp = gp;
@@ -78,24 +79,26 @@ public class NextLineGeneration {
         // Generate the next line
         List<Integer> nextLine;
 
-        if (currentRoomLineIndex > 0) {
+        if (currentRoomLineIndex >= 0) {
             // Get the next line from the current room
-            currentRoomLineIndex--;
             nextLine = currentRoomData.get(currentRoomLineIndex);
+            currentRoomLineIndex--;
         } else {
-            // Generate a new room
-            currentRoomData = generateRoom(width);
+            // Generate a new room with aligned doors
+            int height = secureRandom.nextInt(5) + 5; // Height between 5 and 9
+            currentRoomData = generateRoom(width, height, previousRoomTopDoorPositions);
             currentRoomLineIndex = currentRoomData.size() - 1;
             nextLine = currentRoomData.get(currentRoomLineIndex);
+            currentRoomLineIndex--;
         }
 
         // Add the next line at the beginning of tileLocations
         GamePanel.tileLocations.addAll(0, nextLine);
     }
 
-    private List<List<Integer>> generateRoom(int width) {
-        int height = secureRandom.nextInt(5) + 5; // Height between 5 and 9
+    private List<List<Integer>> generateRoom(int width, int height, List<Integer> bottomDoorPositions) {
         List<List<Integer>> roomData = new ArrayList<>();
+
         for (int y = 0; y < height; y++) {
             List<Integer> line = new ArrayList<>();
             for (int x = 0; x < width; x++) {
@@ -111,15 +114,53 @@ public class NextLineGeneration {
             }
             roomData.add(line);
         }
-        // Add a door/stair on the bottom wall to allow entry from the previous room
-        int doorPositionBottom = secureRandom.nextInt(width - 2) + 1;
-        int doorTile = Integer.parseInt("1" + "2");
-        roomData.get(height - 1).set(doorPositionBottom, doorTile);
 
-        // Add a door/stair on the top wall to allow entry to the next room
-        int doorPositionTop = secureRandom.nextInt(width - 2) + 1;
-        roomData.get(0).set(doorPositionTop, doorTile);
+        // Add doors/stairs on the top and bottom walls
+        addDoorsToRoom(roomData, bottomDoorPositions);
 
         return roomData;
+    }
+
+    private void addDoorsToRoom(List<List<Integer>> roomData, List<Integer> bottomDoorPositions) {
+        int width = roomData.get(0).size();
+        int numDoors = secureRandom.nextInt(2) + 1; // 1 or 2 doors
+
+        List<Integer> topDoorPositions = new ArrayList<>();
+
+        // Generate positions for top doors
+        while (topDoorPositions.size() < numDoors) {
+            int pos = secureRandom.nextInt(width - 2) + 1; // Avoid corners
+            if (!topDoorPositions.contains(pos)) {
+                topDoorPositions.add(pos);
+            }
+        }
+
+        // Place doors on the top wall
+        for (int pos : topDoorPositions) {
+            roomData.get(0).set(pos, Integer.parseInt("1" + "2")); // Door tile
+        }
+
+        // Align bottom doors with previous room's top doors
+        if (bottomDoorPositions != null && !bottomDoorPositions.isEmpty()) {
+            for (int pos : bottomDoorPositions) {
+                roomData.get(roomData.size() - 1).set(pos, Integer.parseInt("1" + "2")); // Door tile
+            }
+        } else {
+            // Generate random positions for bottom doors
+            List<Integer> bottomDoorPositionsNew = new ArrayList<>();
+            while (bottomDoorPositionsNew.size() < numDoors) {
+                int pos = secureRandom.nextInt(width - 2) + 1;
+                if (!bottomDoorPositionsNew.contains(pos)) {
+                    bottomDoorPositionsNew.add(pos);
+                }
+            }
+            // Place doors on the bottom wall
+            for (int pos : bottomDoorPositionsNew) {
+                roomData.get(roomData.size() - 1).set(pos, Integer.parseInt("1" + "2"));
+            }
+        }
+
+        // Save top door positions for the next room
+        previousRoomTopDoorPositions = topDoorPositions;
     }
 }

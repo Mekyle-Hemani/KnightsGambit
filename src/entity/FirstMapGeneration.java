@@ -63,21 +63,27 @@ public class FirstMapGeneration {
     }
 
     public void generateFirstMap() {
-        // Generate the first room
-        List<List<Integer>> room = generateRoom(gp.screenWidth / gp.tileSize, gp.screenHeight / gp.tileSize);
+        // Room dimensions
+        int width = gp.screenWidth / gp.tileSize;
+        int height = gp.screenHeight / gp.tileSize;
+
+        // Generate the first room without bottom door positions
+        List<List<Integer>> room = generateRoom(width, height, null);
 
         // Flatten the room data into tileLocations
         for (List<Integer> line : room) {
             GamePanel.tileLocations.addAll(line);
         }
 
-        // Initialize the room data in NextLineGeneration
+        // Initialize room data in NextLineGeneration
         NextLineGeneration.currentRoomData = room;
-        NextLineGeneration.currentRoomLineIndex = room.size();
+        NextLineGeneration.currentRoomLineIndex = room.size() - 1; // Start from the bottom
+        NextLineGeneration.previousRoomTopDoorPositions = getTopDoorPositions(room);
     }
 
-    private List<List<Integer>> generateRoom(int width, int height) {
+    private List<List<Integer>> generateRoom(int width, int height, List<Integer> bottomDoorPositions) {
         List<List<Integer>> roomData = new ArrayList<>();
+
         for (int y = 0; y < height; y++) {
             List<Integer> line = new ArrayList<>();
             for (int x = 0; x < width; x++) {
@@ -93,11 +99,65 @@ public class FirstMapGeneration {
             }
             roomData.add(line);
         }
-        // Add a door/stair on the top wall to allow entry to the next room
-        int doorPosition = secureRandom.nextInt(width - 2) + 1; // Not on corners
-        int tile = Integer.parseInt("1" + "2"); // Stair/Door tile
-        roomData.get(0).set(doorPosition, tile); // Replace wall with door
+
+        // Add doors/stairs on the top and bottom walls
+        addDoorsToRoom(roomData, bottomDoorPositions);
 
         return roomData;
+    }
+
+    private void addDoorsToRoom(List<List<Integer>> roomData, List<Integer> bottomDoorPositions) {
+        int width = roomData.get(0).size();
+        int numDoors = secureRandom.nextInt(2) + 1; // 1 or 2 doors
+
+        List<Integer> topDoorPositions = new ArrayList<>();
+
+        // Generate positions for top doors
+        while (topDoorPositions.size() < numDoors) {
+            int pos = secureRandom.nextInt(width - 2) + 1; // Avoid corners
+            if (!topDoorPositions.contains(pos)) {
+                topDoorPositions.add(pos);
+            }
+        }
+
+        // Place doors on the top wall
+        for (int pos : topDoorPositions) {
+            roomData.get(0).set(pos, Integer.parseInt("1" + "2")); // Door tile
+        }
+
+        // If bottomDoorPositions are provided, align bottom doors
+        if (bottomDoorPositions != null) {
+            for (int pos : bottomDoorPositions) {
+                roomData.get(roomData.size() - 1).set(pos, Integer.parseInt("1" + "2"));
+            }
+        } else {
+            // Generate random positions for bottom doors
+            List<Integer> bottomDoorPositionsNew = new ArrayList<>();
+            while (bottomDoorPositionsNew.size() < numDoors) {
+                int pos = secureRandom.nextInt(width - 2) + 1;
+                if (!bottomDoorPositionsNew.contains(pos)) {
+                    bottomDoorPositionsNew.add(pos);
+                }
+            }
+            // Place doors on the bottom wall
+            for (int pos : bottomDoorPositionsNew) {
+                roomData.get(roomData.size() - 1).set(pos, Integer.parseInt("1" + "2"));
+            }
+        }
+
+        // Save top door positions for the next room
+        NextLineGeneration.previousRoomTopDoorPositions = topDoorPositions;
+    }
+
+    private List<Integer> getTopDoorPositions(List<List<Integer>> roomData) {
+        List<Integer> topDoorPositions = new ArrayList<>();
+        List<Integer> topLine = roomData.get(0);
+        for (int x = 1; x < topLine.size() - 1; x++) {
+            int tile = topLine.get(x);
+            if (tile % 10 == 2) { // Door tile check
+                topDoorPositions.add(x);
+            }
+        }
+        return topDoorPositions;
     }
 }
