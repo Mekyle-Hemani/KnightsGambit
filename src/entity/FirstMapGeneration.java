@@ -1,4 +1,4 @@
-package entity;
+/*package entity;
 
 import main.GamePanel;
 
@@ -44,5 +44,60 @@ public class FirstMapGeneration {
             GamePanel.tileLocations.add(totalTile);
             //Add each new item to the array that holds all the tiles and their asset id.
         }
+    }
+}*/
+
+package entity;
+
+import main.GamePanel;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
+
+public class FirstMapGeneration {
+    private final GamePanel gp;
+    private SecureRandom secureRandom = new SecureRandom();
+
+    public FirstMapGeneration(GamePanel gp) {
+        this.gp = gp;
+    }
+
+    public void generateFirstMap() {
+        // Generate the first room
+        List<List<Integer>> room = generateRoom(gp.screenWidth / gp.tileSize, gp.screenHeight / gp.tileSize);
+
+        // Flatten the room data into tileLocations
+        for (List<Integer> line : room) {
+            GamePanel.tileLocations.addAll(line);
+        }
+
+        // Initialize the room data in NextLineGeneration
+        NextLineGeneration.currentRoomData = room;
+        NextLineGeneration.currentRoomLineIndex = room.size();
+    }
+
+    private List<List<Integer>> generateRoom(int width, int height) {
+        List<List<Integer>> roomData = new ArrayList<>();
+        for (int y = 0; y < height; y++) {
+            List<Integer> line = new ArrayList<>();
+            for (int x = 0; x < width; x++) {
+                int tile;
+                if (y == 0 || y == height - 1 || x == 0 || x == width - 1) {
+                    // Wall tiles at the edges
+                    tile = Integer.parseInt((secureRandom.nextInt(5) + 1) + "1");
+                } else {
+                    // Ground tiles inside
+                    tile = Integer.parseInt((secureRandom.nextInt(5) + 1) + "0");
+                }
+                line.add(tile);
+            }
+            roomData.add(line);
+        }
+        // Add a door/stair on the top wall to allow entry to the next room
+        int doorPosition = secureRandom.nextInt(width - 2) + 1; // Not on corners
+        int tile = Integer.parseInt("1" + "2"); // Stair/Door tile
+        roomData.get(0).set(doorPosition, tile); // Replace wall with door
+
+        return roomData;
     }
 }
