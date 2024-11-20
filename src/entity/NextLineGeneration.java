@@ -15,6 +15,7 @@ public class NextLineGeneration {
     public void generateNextLine() {
         //Repeat the following code for the tile width of the screen
         for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
+            
             /*totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0); //These generate floor blocks
             totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1); //These generate wall blocks
             totalTile = Integer.parseInt(Integer.toString(1) + 2);*/ //These generate stair blocks
