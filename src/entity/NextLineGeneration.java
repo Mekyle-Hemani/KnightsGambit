@@ -1,4 +1,109 @@
 package entity;
+
+import main.GamePanel;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
+
+public class NextLineGeneration {
+    private static GamePanel gp;
+    private SecureRandom secureRandom = new SecureRandom();
+
+    private boolean inRoom = false;
+    private int roomHeight, roomCurrentRow = 0, roomStartColumn, roomEndColumn;
+    private int roomEntranceColumn, roomOptionalExitColumn, previousRoomEntrance = -1, previousRoomExit = -1;
+
+    public NextLineGeneration(GamePanel gp) {
+        NextLineGeneration.gp = gp;
+    }
+
+    public void generateNextLine() {
+        int numColumns = gp.screenWidth / gp.tileSize;
+        List<Integer> newRowTiles = new ArrayList<>();
+
+        if (!inRoom) {
+            // Chance to start a new room
+            if (secureRandom.nextInt(100) < 20) {
+                inRoom = true;
+                int roomWidth = secureRandom.nextInt(4) + 3;
+                roomHeight = secureRandom.nextInt(4) + 3;
+                roomCurrentRow = 0;
+                roomStartColumn = secureRandom.nextInt(numColumns - roomWidth + 1);
+                roomEndColumn = roomStartColumn + roomWidth - 1;
+                roomEntranceColumn = roomStartColumn + 1 + secureRandom.nextInt(roomWidth - 2);
+                roomOptionalExitColumn = secureRandom.nextInt(100) < 50
+                        ? roomStartColumn + 1 + secureRandom.nextInt(roomWidth - 2) : -1;
+            } else {
+                for (int col = 0; col < numColumns; col++) {
+                    newRowTiles.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
+                }
+                for (int i = newRowTiles.size() - 1; i >= 0; i--) {
+                    GamePanel.tileLocations.addFirst(newRowTiles.get(i));
+                }
+                for (int i = 0; i < gp.screenWidth / gp.tileSize; i++) {
+                    GamePanel.tileLocations.removeLast();
+                }
+                return;
+            }
+        }
+
+        for (int col = 0; col < numColumns; col++) {
+            if (col < roomStartColumn || col > roomEndColumn) {
+                // Blank floor tiles outside the room
+                newRowTiles.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
+            } else if (roomCurrentRow == 0) {
+                // Top wall of the room
+                newRowTiles.add(col == roomOptionalExitColumn ? 13 : 11); // Optional stair or wall
+            } else if (roomCurrentRow == roomHeight - 1) {
+                // Bottom wall of the room
+                newRowTiles.add(col == roomEntranceColumn ? 12 : 11); // Entrance or wall
+            } else {
+                // Inside the room
+                newRowTiles.add((col == roomStartColumn || col == roomEndColumn) ? 11 : 10); // Wall or floor
+            }
+        }
+
+        roomCurrentRow++;
+        if (roomCurrentRow >= roomHeight) {
+            inRoom = false;
+            previousRoomEntrance = roomEntranceColumn;
+            previousRoomExit = roomOptionalExitColumn;
+        }
+        for (int i = newRowTiles.size() - 1; i >= 0; i--) {
+            GamePanel.tileLocations.addFirst(newRowTiles.get(i));
+        }
+        for (int i = 0; i < gp.screenWidth / gp.tileSize; i++) {
+            GamePanel.tileLocations.removeLast();
+        }
+    }
+}
+
+
+/*package entity;
+import main.GamePanel;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
+public class NextLineGeneration {
+    static GamePanel gp;
+    SecureRandom secureRandom = new SecureRandom();
+
+    int width;
+    int height;
+
+    public NextLineGeneration(GamePanel gp) {
+        NextLineGeneration.gp = gp;
+    }
+    public void generateNextLine() {
+        int tileType = secureRandom.nextInt(100);
+        if (tileType <= 3){
+            width = secureRandom.nextInt(4) + 3;
+            height = secureRandom.nextInt(4) + 3;
+        }
+    }
+}//*/
+
+/*package entity;
 import main.GamePanel;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -125,4 +230,4 @@ public class NextLineGeneration {
     private int generateOptionalStairTile() {
         return 13;
     }
-}
+}//*/

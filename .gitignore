@@ -2,6 +2,7 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+/src/entity/test.txt
 
 ### Eclipse ###
 .apt_generated
