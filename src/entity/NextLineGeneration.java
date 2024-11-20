@@ -1,17 +1,12 @@
 package entity;
-
 import main.GamePanel;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-
 public class NextLineGeneration {
     static GamePanel gp;
     SecureRandom secureRandom = new SecureRandom();
-
     private boolean inRoom = false;
-    private int roomWidth;
     private int roomHeight;
     private int roomCurrentRow = 0;
     private int roomStartColumn;
@@ -21,19 +16,16 @@ public class NextLineGeneration {
     private boolean hasOptionalExit = false;
     private int previousRoomEntranceColumn = -1;
     private int previousRoomOptionalExitColumn = -1;
-
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
     }
-
     public void generateNextLine() {
         int numColumns = gp.screenWidth / gp.tileSize;
         List<Integer> newRowTiles = new ArrayList<>();
-
         if (!inRoom) {
             if (secureRandom.nextInt(100) < 20) {
                 inRoom = true;
-                roomWidth = secureRandom.nextInt(4) + 3;
+                int roomWidth = secureRandom.nextInt(4) + 3;
                 roomHeight = secureRandom.nextInt(4) + 3;
                 roomCurrentRow = 0;
                 roomStartColumn = secureRandom.nextInt(numColumns - roomWidth + 1);
@@ -41,10 +33,9 @@ public class NextLineGeneration {
                 roomEntranceColumn = secureRandom.nextInt(roomWidth - 2) + roomStartColumn + 1;
                 hasOptionalExit = (secureRandom.nextInt(100) < 50);
                 if (hasOptionalExit) {
-                    roomOptionalExitColumn = secureRandom.nextInt(roomWidth - 2) + roomStartColumn + 1;
-                    while (roomOptionalExitColumn == roomEntranceColumn) {
+                    do {
                         roomOptionalExitColumn = secureRandom.nextInt(roomWidth - 2) + roomStartColumn + 1;
-                    }
+                    } while (roomOptionalExitColumn == roomEntranceColumn);
                 } else {
                     roomOptionalExitColumn = -1;
                 }
@@ -119,13 +110,11 @@ public class NextLineGeneration {
     }
     private int generateGroundTile() {
         int base = secureRandom.nextInt(5) + 1;
-        int tileId = Integer.parseInt(Integer.toString(base) + "0");
-        return tileId;
+        return Integer.parseInt(base + "0");
     }
     private int generateWallTile() {
         int base = secureRandom.nextInt(5) + 1;
-        int tileId = Integer.parseInt(Integer.toString(base) + "1");
-        return tileId;
+        return Integer.parseInt(base + "1");
     }
     private int generateFloorTile() {
         return generateGroundTile();
