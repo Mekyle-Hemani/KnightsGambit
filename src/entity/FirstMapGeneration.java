@@ -30,7 +30,8 @@ public class FirstMapGeneration {
             //Without the following script, the assets will randomize not showing the same type of wall when the player moves etc.
 
             //Total tile is the assets number + the tile type
-            int totalTile = 0;
+
+            /*int totalTile = 0;
             switch (tileType) {
                 case 0 -> totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0);
                 //There are 5 type(s) of ground asset(s). Picking one at random.
@@ -41,7 +42,9 @@ public class FirstMapGeneration {
                 case 2 -> totalTile = Integer.parseInt(Integer.toString(1) + 2);
                 //There are 1 type(s) of wall asset(s). Picking one at random
             }
-            GamePanel.tileLocations.add(totalTile);
+            GamePanel.tileLocations.add(totalTile);*/
+            GamePanel.tileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
+
             //Add each new item to the array that holds all the tiles and their asset id.
         }
     }
