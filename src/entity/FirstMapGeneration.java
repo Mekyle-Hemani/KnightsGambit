@@ -17,18 +17,6 @@ public class FirstMapGeneration {
         int totalTiles = (gp.screenWidth/gp.tileSize) * (gp.screenHeight/gp.tileSize); //This is the width of the screen in tiles times the height of the screen in tiles
         //For every tile visible on screen...
         for (int i = 0; i < totalTiles; i++) {
-            /*int totalTile = 0;
-            switch (tileType) {
-                case 0 -> totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0);
-                //There are 5 type(s) of ground asset(s). Picking one at random.
-
-                case 1 -> totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1);
-                //There are 5 type(s) of wall asset(s). Picking one at random.
-
-                case 2 -> totalTile = Integer.parseInt(Integer.toString(1) + 2);
-                //There are 1 type(s) of wall asset(s). Picking one at random
-            }
-            GamePanel.tileLocations.add(totalTile);*/
             GamePanel.tileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
         }
     }
