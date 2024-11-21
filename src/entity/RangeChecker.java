@@ -18,18 +18,41 @@ public class RangeChecker {
 
         String targetStr = String.valueOf(target);
 
+        // Loop over the grid and print the result for range checking
         for (int row = Math.max(0, checkRow - range); row < Math.min(gridHeight, checkRow + range + 1); row++) {
             for (int col = Math.max(0, checkCol - range); col < Math.min(gridWidth, checkCol + range + 1); col++) {
                 int index = row * gridWidth + col;
                 if (index < totalItems) {
                     String tileStr = String.valueOf(tileLocations.get(index));
                     if (tileStr.startsWith(targetStr)) {
-                        return true;
+                        tileLocations.set(index, target); // Mark it with the target
                     }
                 }
             }
         }
+
         return false;
+    }
+
+    public static void printGrid(List<Integer> tileLocations, int gridWidth, int checkIndex) {
+        int gridHeight = tileLocations.size() / gridWidth;
+
+        for (int row = 0; row < gridHeight; row++) {
+            for (int col = 0; col < gridWidth; col++) {
+                int index = row * gridWidth + col;
+                if (index == checkIndex) {
+                    System.out.print(" x "); // Mark the checkIndex with 'x'
+                } else {
+                    String tileStr = String.valueOf(tileLocations.get(index));
+                    if (tileStr.startsWith("5")) { // Mark target items with 'y'
+                        System.out.print(" y ");
+                    } else {
+                        System.out.print(" " + tileStr + " ");
+                    }
+                }
+            }
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
@@ -44,7 +67,12 @@ public class RangeChecker {
 
         int gridWidth = 11;
         int checkIndex = 104;
+        int range = 7;
+        int target = 5;
 
-        System.out.println(checkIndex + "? " + isInRange(tileLocations, gridWidth, checkIndex, 7, 5));
+        System.out.println(checkIndex + "? " + isInRange(tileLocations, gridWidth, checkIndex, range, target));
+
+        // Print the grid with modifications
+        printGrid(tileLocations, gridWidth, checkIndex);
     }
 }
