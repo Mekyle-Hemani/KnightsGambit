@@ -16,11 +16,14 @@ public class RangeChecker {
         }
         range = range / 2;
 
+        String targetStr = String.valueOf(target);
+
         for (int row = Math.max(0, checkRow - range); row < Math.min(gridHeight, checkRow + range + 1); row++) {
             for (int col = Math.max(0, checkCol - range); col < Math.min(gridWidth, checkCol + range + 1); col++) {
                 int index = row * gridWidth + col;
                 if (index < totalItems) {
-                    if (tileLocations.get(index) / 10 == target / 10) {
+                    String tileStr = String.valueOf(tileLocations.get(index));
+                    if (tileStr.startsWith(targetStr)) {
                         return true;
                     }
                 }
