@@ -6,6 +6,7 @@ import java.util.List;
 public class NextLineGeneration {
     static GamePanel gp;
     SecureRandom secureRandom = new SecureRandom();
+    RangeChecker rangeChecker = new RangeChecker();
 
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
@@ -44,5 +45,24 @@ public class NextLineGeneration {
             //Remove the oldest tiles
             GamePanel.tileLocations.removeLast();
         }
+        printTileLocations();
+    }
+    private void printTileLocations() {
+        int rowLength = 11;
+        int totalTiles = GamePanel.tileLocations.size();
+        int numRows = (totalTiles + rowLength - 1) / rowLength;
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < rowLength; j++) {
+                int index = i * rowLength + j;
+                if (index < totalTiles) {
+                    System.out.print(GamePanel.tileLocations.get(index) + " ");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
     }
 }//*/

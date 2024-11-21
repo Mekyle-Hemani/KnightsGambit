@@ -19,8 +19,10 @@ public class RangeChecker {
         for (int row = Math.max(0, checkRow - range); row < Math.min(gridHeight, checkRow + range + 1); row++) {
             for (int col = Math.max(0, checkCol - range); col < Math.min(gridWidth, checkCol + range + 1); col++) {
                 int index = row * gridWidth + col;
-                if (index < totalItems && tileLocations.get(index) == target) {
-                    return true;
+                if (index < totalItems) {
+                    if (tileLocations.get(index) / 10 == target / 10) {
+                        return true;
+                    }
                 }
             }
         }
@@ -31,14 +33,14 @@ public class RangeChecker {
         List<Integer> tileLocations = new ArrayList<>();
 
         for (int i = 0; i < 187; i++) {
-            tileLocations.add(0);
+            tileLocations.add(10);
         }
 
-        tileLocations.set(100, 5);
-        tileLocations.set(103, 5);
+        tileLocations.set(100, 50);
+        tileLocations.set(103, 50);
 
         int gridWidth = 11;
-        int checkIndex = 111;
+        int checkIndex = 104;
 
         System.out.println(checkIndex + "? " + isInRange(tileLocations, gridWidth, checkIndex, 7, 5));
     }
