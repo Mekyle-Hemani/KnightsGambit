@@ -1,9 +1,17 @@
 package entity;
 
+import main.GamePanel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class RangeChecker {
+    static GamePanel gp;
+
+    public RangeChecker(GamePanel gp) {
+        RangeChecker.gp = gp;
+    }
+
     public static boolean isInRange(List<Integer> tileLocations, int gridWidth, int checkIndex, int range, int target) {
         int totalItems = tileLocations.size();
         int gridHeight = totalItems / gridWidth;
@@ -30,7 +38,6 @@ public class RangeChecker {
                 }
             }
         }
-
         return found;
     }
 
@@ -71,7 +78,7 @@ public class RangeChecker {
         int range = 7;
         int target = 5;
 
-        System.out.println(checkIndex + "? " + isInRange(tileLocations, gridWidth, checkIndex, range, target));
+        System.out.println(isInRange(tileLocations, gridWidth, checkIndex, range, target));
 
         printGrid(tileLocations, gridWidth, checkIndex);
     }

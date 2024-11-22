@@ -6,7 +6,6 @@ import java.util.List;
 public class NextLineGeneration {
     static GamePanel gp;
     SecureRandom secureRandom = new SecureRandom();
-    RangeChecker rangeChecker = new RangeChecker();
 
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;

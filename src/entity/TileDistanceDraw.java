@@ -24,7 +24,6 @@ public class TileDistanceDraw {
         if (fontStream != null) {
             customFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.BOLD, 38);
         } else {
-            System.out.println("Custom font file not found. Using default font.");
             customFont = new Font("Arial", Font.BOLD, 38);
         }
     }
