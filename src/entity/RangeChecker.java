@@ -16,22 +16,22 @@ public class RangeChecker {
         }
         range = range / 2;
 
-        String targetStr = String.valueOf(target);
+        boolean found = false;
 
-        // Loop over the grid and print the result for range checking
         for (int row = Math.max(0, checkRow - range); row < Math.min(gridHeight, checkRow + range + 1); row++) {
             for (int col = Math.max(0, checkCol - range); col < Math.min(gridWidth, checkCol + range + 1); col++) {
                 int index = row * gridWidth + col;
                 if (index < totalItems) {
-                    String tileStr = String.valueOf(tileLocations.get(index));
-                    if (tileStr.startsWith(targetStr)) {
-                        tileLocations.set(index, target); // Mark it with the target
+                    int tileValue = tileLocations.get(index);
+                    if (tileValue % 10 == target) {
+                        tileLocations.set(index, target);
+                        found = true;
                     }
                 }
             }
         }
 
-        return false;
+        return found;
     }
 
     public static void printGrid(List<Integer> tileLocations, int gridWidth, int checkIndex) {
@@ -41,13 +41,13 @@ public class RangeChecker {
             for (int col = 0; col < gridWidth; col++) {
                 int index = row * gridWidth + col;
                 if (index == checkIndex) {
-                    System.out.print(" x "); // Mark the checkIndex with 'x'
+                    System.out.print(" x ");
                 } else {
-                    String tileStr = String.valueOf(tileLocations.get(index));
-                    if (tileStr.startsWith("5")) { // Mark target items with 'y'
+                    int tileValue = tileLocations.get(index);
+                    if (tileValue % 10 == 5) {
                         System.out.print(" y ");
                     } else {
-                        System.out.print(" " + tileStr + " ");
+                        System.out.print(" " + tileValue + " ");
                     }
                 }
             }
@@ -62,8 +62,9 @@ public class RangeChecker {
             tileLocations.add(10);
         }
 
-        tileLocations.set(100, 50);
-        tileLocations.set(103, 50);
+        tileLocations.set(100, 15);
+        tileLocations.set(103, 25);
+        tileLocations.set(104, 35);
 
         int gridWidth = 11;
         int checkIndex = 104;
@@ -72,7 +73,6 @@ public class RangeChecker {
 
         System.out.println(checkIndex + "? " + isInRange(tileLocations, gridWidth, checkIndex, range, target));
 
-        // Print the grid with modifications
         printGrid(tileLocations, gridWidth, checkIndex);
     }
 }
