@@ -21,13 +21,16 @@ public class Player extends Entity{
     public static BufferedImage playerImageRight; //Creates a player image
 
     public Player(GamePanel gamePanel) throws IOException {
+        if (gamePanel == null) {
+            throw new IllegalArgumentException("GamePanel cannot be null");
+        }
         this.gp = gamePanel;
-        initialize(); //Sets the player up before movement
-
-        //Adds the key listener for movement
+        initialize();
         Movement = new Movement(gp, this);
         gp.addKeyListener(Movement);
     }
+
+
 
     private void initialize() throws IOException {
         playerImageLeft = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/player/playerLeft.png"))); //Sets an image to the left player side

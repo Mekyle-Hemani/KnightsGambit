@@ -11,7 +11,7 @@ public class Movement implements KeyListener {
     private final Player player; //This is the player class. This will be referenced in order to change the positions directly.
 
     private final NextLineGeneration nextLineGeneration; //This is a class that generates a new line of the map
-    private final RangeChecker rangeChecker;
+    //private final RangeChecker rangeChecker;
 
     public int verticalSquaresBackwards = 0; //This is how many squares that the player has gone back. This is used to make sure that player doesn't go back anymore than 5 squares.
     public int spacesCrossed = 0; //This is how many total squares the player has crossed
@@ -19,13 +19,13 @@ public class Movement implements KeyListener {
     public int locationX = (Player.posX / Player.size); //This is the current X location in terms of tiles of the player
     public int locationY = (Player.posY / Player.size); //This is the current Y location in terms of tiles of the player
 
-    public int location = (locationY*(gp.screenWidth/gp.tileSize))+locationX;
+    public int location;
 
     public Movement(GamePanel gp, Player player) {
         this.gp = gp;
         this.player = player;
         this.nextLineGeneration = new NextLineGeneration(gp); //Makes the NextLineGeneration referencable
-        this.rangeChecker = new RangeChecker(gp);
+        //this.rangeChecker = new RangeChecker(gp);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class Movement implements KeyListener {
 
         gp.spacesCrossed = spacesCrossed;
 
-        System.out.println(RangeChecker.isInRange(gp.tileLocations, (gp.screenWidth/gp.tileSize), location, 3, 0));
+        //System.out.println(RangeChecker.isInRange(GamePanel.tileLocations, (gp.screenWidth/gp.tileSize), location, 3, 0));
     }
 
     @Override

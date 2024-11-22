@@ -44,7 +44,7 @@ public class NextLineGeneration {
             //Remove the oldest tiles
             GamePanel.tileLocations.removeLast();
         }
-        printTileLocations();
+        //printTileLocations();
     }
     private void printTileLocations() {
         int rowLength = 11;
