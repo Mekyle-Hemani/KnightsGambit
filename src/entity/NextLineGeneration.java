@@ -10,6 +10,7 @@ public class NextLineGeneration {
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
     }
+
     public void generateNextLine() {
         //Repeat the following code for the tile width of the screen
         for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
@@ -33,7 +34,7 @@ public class NextLineGeneration {
                 totalTile = Integer.parseInt(Integer.toString(1) + 2);
                 //Door
             } else {
-                totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0);
+                totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
             }
             GamePanel.tileLocations.addFirst(totalTile);
             //Add each new item to the array that holds all the tiles and their asset id.
@@ -44,24 +45,5 @@ public class NextLineGeneration {
             //Remove the oldest tiles
             GamePanel.tileLocations.removeLast();
         }
-        //printTileLocations();
-    }
-    private void printTileLocations() {
-        int rowLength = 11;
-        int totalTiles = GamePanel.tileLocations.size();
-        int numRows = (totalTiles + rowLength - 1) / rowLength;
-
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < rowLength; j++) {
-                int index = i * rowLength + j;
-                if (index < totalTiles) {
-                    System.out.print(GamePanel.tileLocations.get(index) + " ");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
     }
 }//*/
