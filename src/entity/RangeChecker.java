@@ -2,7 +2,6 @@ package entity;
 
 import main.GamePanel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RangeChecker {
@@ -38,47 +37,5 @@ public class RangeChecker {
             }
         }
         return found;
-    }
-
-    public static void printGrid(List<Integer> tileLocations, int gridWidth, int checkIndex) {
-        int gridHeight = tileLocations.size() / gridWidth;
-
-        for (int row = 0; row < gridHeight; row++) {
-            for (int col = 0; col < gridWidth; col++) {
-                int index = row * gridWidth + col;
-                if (index == checkIndex) {
-                    System.out.print(" x ");
-                } else {
-                    int tileValue = tileLocations.get(index);
-                    if (tileValue % 10 == 5) {
-                        System.out.print(" y ");
-                    } else {
-                        System.out.print(" " + tileValue + " ");
-                    }
-                }
-            }
-            System.out.println();
-        }
-    }
-
-    public static void main(String[] args) {
-        List<Integer> tileLocations = new ArrayList<>();
-
-        for (int i = 0; i < 187; i++) {
-            tileLocations.add(10);
-        }
-
-        tileLocations.set(100, 15);
-        tileLocations.set(103, 25);
-        tileLocations.set(104, 35);
-
-        int gridWidth = 11;
-        int checkIndex = 105;
-        int range = 7;
-        int target = 5;
-
-        System.out.println(isInRange(tileLocations, gridWidth, checkIndex, range, target));
-
-        printGrid(tileLocations, gridWidth, checkIndex);
     }
 }
