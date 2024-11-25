@@ -21,9 +21,6 @@ public class Player extends Entity{
     public static BufferedImage playerImageRight; //Creates a player image
 
     public Player(GamePanel gamePanel) throws IOException {
-        if (gamePanel == null) {
-            throw new IllegalArgumentException("GamePanel cannot be null");
-        }
         this.gp = gamePanel;
         initialize();
         Movement = new Movement(gp);

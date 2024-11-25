@@ -1,18 +1,13 @@
 package entity;
 import main.GamePanel;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NextLineGeneration {
     static GamePanel gp;
     SecureRandom secureRandom = new SecureRandom();
 
-    private final RangeChecker rangeChecker;
-
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
-        this.rangeChecker = new RangeChecker(gp);
     }
 
     public void generateNextLine() {
