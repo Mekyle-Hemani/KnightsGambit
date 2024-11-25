@@ -4,8 +4,6 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
-import static entity.RangeChecker.isInRange;
-
 public class NextLineGeneration {
     static GamePanel gp;
     SecureRandom secureRandom = new SecureRandom();

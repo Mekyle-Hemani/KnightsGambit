@@ -111,7 +111,7 @@ public class Movement implements KeyListener {
         int locationX = (Player.posX / Player.size);
         int locationY = (Player.posY / Player.size);
         int location = (locationY*(gp.screenWidth/gp.tileSize))+locationX;
-        System.out.println(isInRange(GamePanel.tileLocations, (gp.screenWidth/gp.tileSize), location, 3, 0));
+        System.out.println(RangeChecker.isInRange(GamePanel.tileLocations, (gp.screenWidth/gp.tileSize), location, 3, 0));
     }
 
     @Override
