@@ -26,7 +26,7 @@ public class Player extends Entity{
         }
         this.gp = gamePanel;
         initialize();
-        Movement = new Movement(gp, this);
+        Movement = new Movement(gp);
         gp.addKeyListener(Movement);
     }
 
