@@ -32,7 +32,6 @@ public class RangeChecker {
                 if (index < totalItems) {
                     int tileValue = tileLocations.get(index);
                     if (tileValue % 10 == target) {
-                        tileLocations.set(index, target);
                         found = true;
                     }
                 }
@@ -74,7 +73,7 @@ public class RangeChecker {
         tileLocations.set(104, 35);
 
         int gridWidth = 11;
-        int checkIndex = 104;
+        int checkIndex = 105;
         int range = 7;
         int target = 5;
 
