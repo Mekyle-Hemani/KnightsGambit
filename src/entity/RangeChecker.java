@@ -29,8 +29,7 @@ public class RangeChecker {
             for (int col = Math.max(0, checkCol - range); col < Math.min(gridWidth, checkCol + range + 1); col++) {
                 int index = row * gridWidth + col;
                 if (index < totalItems) {
-                    int tileValue = tileLocations.get(index);
-                    if (tileValue % 10 == target) {
+                    if (tileLocations.get(index) % 10 == target) {
                         found = true;
                     }
                 }
