@@ -7,6 +7,8 @@ import java.util.List;
 
 import main.GamePanel; //Get reference to GamePanel.java
 
+import static entity.RangeChecker.isInRange;
+
 public class Movement implements KeyListener {
     GamePanel gp;
     private final Player player; //This is the player class. This will be referenced in order to change the positions directly.
@@ -101,45 +103,17 @@ public class Movement implements KeyListener {
         //Update the locations of the player
         locationX = (Player.posX / player.size);
         locationY = (Player.posY / player.size);
-
         location = (locationY*(gp.screenWidth/gp.tileSize))+locationX;
 
         gp.spacesCrossed = spacesCrossed;
 
-        System.out.println(isInRange(GamePanel.tileLocations, (gp.screenWidth/gp.tileSize), location, 3, 0));
-
         System.out.println(GamePanel.tileLocations);
+        int locationX = (Player.posX / Player.size);
+        int locationY = (Player.posY / Player.size);
+        int location = (locationY*(gp.screenWidth/gp.tileSize))+locationX;
+        System.out.println(isInRange(GamePanel.tileLocations, (gp.screenWidth/gp.tileSize), location, 3, 0));
     }
 
     @Override
     public void keyTyped(KeyEvent e) {}
-
-    public static boolean isInRange(List<Integer> tileLocations, int gridWidth, int checkIndex, int range, int target) {
-        int totalItems = tileLocations.size();
-        int gridHeight = totalItems / gridWidth;
-
-        int checkRow = checkIndex / gridWidth;
-        int checkCol = checkIndex % gridWidth;
-
-        if (range % 2 == 1) {
-            range -= 1;
-        }
-        range = range / 2;
-
-        boolean found = false;
-
-        for (int row = Math.max(0, checkRow - range); row < Math.min(gridHeight, checkRow + range + 1); row++) {
-            for (int col = Math.max(0, checkCol - range); col < Math.min(gridWidth, checkCol + range + 1); col++) {
-                int index = row * gridWidth + col;
-                if (index < totalItems) {
-                    int tileValue = tileLocations.get(index);
-                    if (tileValue % 10 == target) {
-                        tileLocations.set(index, target);
-                        found = true;
-                    }
-                }
-            }
-        }
-        return found;
-    }
 }
