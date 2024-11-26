@@ -15,17 +15,21 @@ public class NextLineGeneration {
     public void generateNextLine() {
         //Repeat the following code for the tile width of the screen
 
-        if (nextTileLocations.isEmpty()) {
+        if (nextTileLocations.size()/(gp.screenWidth/gp.tileSize) <= 7) {
             System.out.println("Generating next line");
-            int count = secureRandom.nextInt(5)+1;
+            int count = 7 - nextTileLocations.size()/(gp.screenWidth/gp.tileSize);
             for (int l = 0; l<count; l++) {
                 for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
                     int tileType = secureRandom.nextInt(100);
                     int totalTile;
 
-                    if ((tileType <= 2)) {
+                    if ((tileType <= 80)) {
+                        int range = secureRandom.nextInt(3, 7);
                         totalTile = Integer.parseInt(Integer.toString(1) + 2);
-                        //Door
+                        //Stair
+                        if (RangeChecker.isInRange(nextTileLocations, (gp.screenWidth/gp.tileSize), i, 3, 2)){
+                            totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
+                        }
                     } else {
                         totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
                     }
