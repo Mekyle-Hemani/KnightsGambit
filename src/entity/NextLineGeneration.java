@@ -28,6 +28,7 @@ public class NextLineGeneration {
                         totalTileLocations.addAll(nextTileLocations);
                         for (int j = 0; j<((gp.screenWidth / gp.tileSize)-i); j++){
                             totalTileLocations.add(10);
+                            System.out.println(j+" "+i);
                         }
                         totalTileLocations.addAll(GamePanel.tileLocations);
 
@@ -38,7 +39,6 @@ public class NextLineGeneration {
                             System.out.println("Room Location Established");
                             totalTile = Integer.parseInt(Integer.toString(1) + 2);
                         }
-                        //Stair
                     } else {
                         totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
                     }
