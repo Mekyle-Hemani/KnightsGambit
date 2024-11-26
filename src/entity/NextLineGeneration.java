@@ -12,9 +12,11 @@ public class NextLineGeneration {
 
     public void generateNextLine() {
         //Repeat the following code for the tile width of the screen
-        for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
-            int tileType = secureRandom.nextInt(100);
-            int totalTile;
+
+        if (GamePanel.tileLocations.size() >= ((gp.screenWidth/gp.tileSize))*(gp.screenHeight/gp.tileSize)) {
+            for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
+                int tileType = secureRandom.nextInt(100);
+                int totalTile;
 
             /*int totalTile = 0;
             switch (tileType) {
@@ -29,14 +31,15 @@ public class NextLineGeneration {
             }
             GamePanel.tileLocations.add(totalTile);*/
 
-            if (tileType <= 2) {
-                totalTile = Integer.parseInt(Integer.toString(1) + 2);
-                //Door
-            } else {
-                totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
+                if (tileType <= 2) {
+                    totalTile = Integer.parseInt(Integer.toString(1) + 2);
+                    //Door
+                } else {
+                    totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
+                }
+                GamePanel.tileLocations.addFirst(totalTile);
+                //Add each new item to the array that holds all the tiles and their asset id.
             }
-            GamePanel.tileLocations.addFirst(totalTile);
-            //Add each new item to the array that holds all the tiles and their asset id.
         }
 
         //Repeat the following code for the tile width of the screen
