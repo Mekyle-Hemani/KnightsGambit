@@ -27,8 +27,6 @@ public class Player extends Entity{
         gp.addKeyListener(Movement);
     }
 
-
-
     private void initialize() throws IOException {
         playerImageLeft = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/player/playerLeft.png"))); //Sets an image to the left player side
         playerImageRight = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/player/playerRight.png"))); //Sets an image to the right player side
