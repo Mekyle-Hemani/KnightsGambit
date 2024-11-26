@@ -15,8 +15,8 @@ public class NextLineGeneration {
     public void generateNextLine() {
         //Repeat the following code for the tile width of the screen
 
-        if (nextTileLocations.size() == 0) {
-            System.out.println("Generating next line " + nextTileLocations.size());
+        if (nextTileLocations.isEmpty()) {
+            System.out.println("Generating next line");
             int count = secureRandom.nextInt(5)+1;
             for (int l = 0; l<count; l++) {
                 for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
