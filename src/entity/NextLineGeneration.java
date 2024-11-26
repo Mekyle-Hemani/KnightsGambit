@@ -7,6 +7,7 @@ public class NextLineGeneration {
     static GamePanel gp;
     SecureRandom secureRandom = new SecureRandom();
     public static java.util.List<Integer> nextTileLocations = new ArrayList<>();
+    public static java.util.List<Integer> totalTileLocations = new ArrayList<>();
 
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
@@ -16,20 +17,28 @@ public class NextLineGeneration {
         //Repeat the following code for the tile width of the screen
 
         if (nextTileLocations.size()/(gp.screenWidth/gp.tileSize) <= 7) {
-            System.out.println("Generating next line");
             int count = 7 - nextTileLocations.size()/(gp.screenWidth/gp.tileSize);
             for (int l = 0; l<count; l++) {
                 for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
                     int tileType = secureRandom.nextInt(100);
                     int totalTile;
 
-                    if ((tileType <= 80)) {
-                        int range = secureRandom.nextInt(3, 7);
-                        totalTile = Integer.parseInt(Integer.toString(1) + 2);
-                        //Stair
-                        if (RangeChecker.isInRange(nextTileLocations, (gp.screenWidth/gp.tileSize), i, 3, 2)){
-                            totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
+                    if (tileType <= 20) {
+                        totalTileLocations = new ArrayList<>();
+                        totalTileLocations.addAll(nextTileLocations);
+                        for (int j = 0; j<((gp.screenWidth / gp.tileSize)-i); j++){
+                            totalTileLocations.add(10);
                         }
+                        totalTileLocations.addAll(GamePanel.tileLocations);
+
+                        if (RangeChecker.isInRange(totalTileLocations, (gp.screenWidth/gp.tileSize), i, 5, 2)){
+                            System.out.println("Room Location Removed");
+                            totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
+                        } else{
+                            System.out.println("Room Location Established");
+                            totalTile = Integer.parseInt(Integer.toString(1) + 2);
+                        }
+                        //Stair
                     } else {
                         totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
                     }
