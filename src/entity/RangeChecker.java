@@ -18,23 +18,31 @@ public class RangeChecker {
         int checkRow = checkIndex / gridWidth;
         int checkCol = checkIndex % gridWidth;
 
+        // Ensure range is even and calculate half-range
         if (range % 2 == 1) {
             range -= 1;
         }
         range = range / 2;
 
-        boolean found = false;
+        int startRow = checkRow - range;
+        int endRow = checkRow + range;
+        int startCol = checkCol - range;
+        int endCol = checkCol + range;
 
-        for (int row = Math.max(0, checkRow - range); row < Math.min(gridHeight, checkRow + range + 1); row++) {
-            for (int col = Math.max(0, checkCol - range); col < Math.min(gridWidth, checkCol + range + 1); col++) {
+        // Check if range goes off-screen
+        if (startRow < 0 || endRow >= gridHeight || startCol < 0 || endCol >= gridWidth) {
+            return true; // Consider that a stair is in range to prevent stair generation
+        }
+
+        // Search for the target within the range
+        for (int row = startRow; row <= endRow; row++) {
+            for (int col = startCol; col <= endCol; col++) {
                 int index = row * gridWidth + col;
-                if (index < totalItems) {
-                    if (tileLocations.get(index) % 10 == target) {
-                        found = true;
-                    }
+                if (index < totalItems && tileLocations.get(index) % 10 == target) {
+                    return true;
                 }
             }
         }
-        return found;
+        return false;
     }
 }
