@@ -32,13 +32,30 @@ public class NextLineGeneration {
                         int range = secureRandom.nextInt(3,8);
                         if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 1)) {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
+                            nextTileLocations.add(totalTile);
                         } else {
                             totalTile = Integer.parseInt("1" + "2");
+                            nextTileLocations.add(totalTile);
+
+                            if (range%2 == 0){
+                                range = range/2;
+                            } else {
+                                System.out.println(range);
+                                System.out.println((range+1)/2);
+                                range=(range-1)/2;
+                            }
+
+                            for (int j = 0; j < range; j++){
+                                totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
+                                nextTileLocations.add(totalTile);
+                            }
+                            nextTileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1));
+                            i+=range;
                         }
                     } else {
                         totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
+                        nextTileLocations.add(totalTile);
                     }
-                    nextTileLocations.add(totalTile);
                 }
             }
         }
