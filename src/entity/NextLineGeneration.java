@@ -2,61 +2,63 @@ package entity;
 import main.GamePanel;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.List;
 
 public class NextLineGeneration {
     static GamePanel gp;
     SecureRandom secureRandom = new SecureRandom();
-    public static java.util.List<Integer> nextTileLocations = new ArrayList<>();
-    public static java.util.List<Integer> totalTileLocations = new ArrayList<>();
+    public static List<Integer> nextTileLocations = new ArrayList<>();
 
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
     }
 
     public void generateNextLine() {
-        //Repeat the following code for the tile width of the screen
+        int gridWidth = gp.screenWidth / gp.tileSize;
 
-        if (nextTileLocations.size()/(gp.screenWidth/gp.tileSize) <= 7) {
-            int count = 7 - nextTileLocations.size()/(gp.screenWidth/gp.tileSize);
-            for (int l = 0; l<count; l++) {
-                for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
+        if (nextTileLocations.size() / gridWidth <= 7) {
+            int count = 7 - nextTileLocations.size() / gridWidth;
+            for (int l = 0; l < count; l++) {
+                for (int i = 0; i < gridWidth; i++) {
                     int tileType = secureRandom.nextInt(100);
                     int totalTile;
 
-                    if (tileType <= 20) {
-                        totalTileLocations = new ArrayList<>();
-                        totalTileLocations.addAll(nextTileLocations);
-                        for (int j = 0; j<((gp.screenWidth / gp.tileSize)-i); j++){
-                            totalTileLocations.add(10);
-                            System.out.println(j+" "+i);
-                        }
-                        totalTileLocations.addAll(GamePanel.tileLocations);
+                    // Build totalTileLocations
+                    List<Integer> totalTileLocations = new ArrayList<>(nextTileLocations);
+                    totalTileLocations.addAll(GamePanel.tileLocations);
 
-                        if (RangeChecker.isInRange(totalTileLocations, (gp.screenWidth/gp.tileSize), i, 5, 2)){
-                            System.out.println("Room Location Removed");
-                            totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
-                        } else{
-                            System.out.println("Room Location Established");
-                            totalTile = Integer.parseInt(Integer.toString(1) + 2);
+                    // Index of the tile we are generating in totalTileLocations
+                    int indexInTotalTileLocations = nextTileLocations.size();
+
+                    if (tileType <= 20) {
+                        // Try to place a stair tile
+                        int range = 10; // Specify the range to check
+                        if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range, 2)) {
+                            // Stair tile nearby, place a ground tile instead
+                            totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + "0");
+                        } else {
+                            // No stair tile nearby, place a stair tile
+                            totalTile = Integer.parseInt("1" + "2");
                         }
                     } else {
-                        totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0);
+                        // Place a ground tile
+                        totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + "0");
                     }
                     nextTileLocations.add(totalTile);
-                    //Add each new item to the array that holds all the tiles and their asset id.
                 }
             }
         }
 
-        for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
-            GamePanel.tileLocations.addFirst(nextTileLocations.getFirst());
-            nextTileLocations.removeFirst();
+        // Add new tiles to GamePanel.tileLocations
+        //int gridWidth = gp.screenWidth / gp.tileSize;
+        for (int i = 0; i < gridWidth; i++) {
+            GamePanel.tileLocations.addFirst(nextTileLocations.remove(0));
         }
 
-        //Repeat the following code for the tile width of the screen
-        for (int i = 0; i < (gp.screenWidth / gp.tileSize); i++) {
-            //Remove the oldest tiles
+        // Remove the oldest tiles
+        for (int i = 0; i < gridWidth; i++) {
             GamePanel.tileLocations.removeLast();
         }
     }
-}//*/
+}
+
