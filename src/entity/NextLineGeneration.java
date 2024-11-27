@@ -30,7 +30,7 @@ public class NextLineGeneration {
 
                     if (tileType <= 20) {
                         int range = secureRandom.nextInt(3,8);
-                        if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 2)) {
+                        if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 1)) {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                         } else {
                             totalTile = Integer.parseInt("1" + "2");
