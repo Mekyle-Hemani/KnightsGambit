@@ -29,14 +29,14 @@ public class NextLineGeneration {
                     int indexInTotalTileLocations = nextTileLocations.size();
 
                     if (tileType <= 20) {
-                        int range = 7;
+                        int range = secureRandom.nextInt(3,8)+2;
                         if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range, 2)) {
-                            totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + "0");
+                            totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                         } else {
                             totalTile = Integer.parseInt("1" + "2");
                         }
                     } else {
-                        totalTile = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + "0");
+                        totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                     }
                     nextTileLocations.add(totalTile);
                 }
@@ -46,7 +46,6 @@ public class NextLineGeneration {
             GamePanel.tileLocations.addFirst(nextTileLocations.removeFirst());
         }
 
-        // Remove the oldest tiles
         for (int i = 0; i < gridWidth; i++) {
             GamePanel.tileLocations.removeLast();
         }
