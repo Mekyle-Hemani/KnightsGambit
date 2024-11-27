@@ -40,8 +40,6 @@ public class NextLineGeneration {
                             if (range%2 == 0){
                                 range = range/2;
                             } else {
-                                System.out.println(range);
-                                System.out.println((range+1)/2);
                                 range=(range-1)/2;
                             }
 
