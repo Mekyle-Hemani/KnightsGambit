@@ -78,7 +78,6 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        inventory.draw((Graphics2D) g);
         try {
             tileDraw.draw((Graphics2D) g);
         } catch (IOException e) {
@@ -87,5 +86,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         player.draw((Graphics2D) g);
         tileDistanceDraw.draw((Graphics2D) g);
+        inventory.draw((Graphics2D) g);
     }
 }
