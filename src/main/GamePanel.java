@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
     private Thread thread;
-    private final int FPS = 60;
 
     private Player player;
 
@@ -19,8 +18,6 @@ public class GamePanel extends JPanel implements Runnable {
     private Inventory inventory;
     private TileDraw tileDraw;
 
-    private FirstMapGeneration firstMapGeneration;
-    private Collision collision;
     private TileDistanceDraw tileDistanceDraw;
 
     private final int originalTileSize = 23;
@@ -37,12 +34,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private void startup() throws IOException, FontFormatException {
-        firstMapGeneration = new FirstMapGeneration(this);
+        FirstMapGeneration firstMapGeneration = new FirstMapGeneration(this);
         firstMapGeneration.generateFirstMap();
 
         inventory = new Inventory(this);
         tileDraw = new TileDraw(this);
-        collision = new Collision(this);
         tileDistanceDraw = new TileDistanceDraw(this);
 
         player = new Player(this);
@@ -53,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
+        int FPS = 60;
         double drawInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
