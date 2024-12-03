@@ -1,4 +1,4 @@
-package entity;
+package mapGeneration;
 
 import main.GamePanel;
 
