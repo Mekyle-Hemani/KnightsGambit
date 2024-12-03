@@ -100,8 +100,6 @@ public class Movement implements KeyListener {
         location = (locationY*(gp.screenWidth/gp.tileSize))+locationX;
 
         GamePanel.spacesCrossed = spacesCrossed;
-
-        //System.out.println(RangeChecker.isInRange(GamePanel.tileLocations, (gp.screenWidth/gp.tileSize), location, 3, 2));
     }
 
     @Override
