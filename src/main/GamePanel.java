@@ -7,23 +7,19 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
-    private Thread thread;
-
-    private Player player;
-
-    public static int spacesCrossed = 0; //This is how many spaces the player has crossed
-
     public static java.util.List<Integer> tileLocations = new ArrayList<>();
 
+    private Thread thread;
+    private Player player;
     private Inventory inventory;
     private TileDraw tileDraw;
-
     private TileDistanceDraw tileDistanceDraw;
 
+    public static int spacesCrossed = 0; //This is how many spaces the player has crossed
     private final int originalTileSize = 23;
-    private final double scale = 2.0;  //Adjust scale from 3 to 2.0 for 1.5x smaller tiles
+    private final double scale = 2.0; //Adjust scale from 3 to 2.0 for 1.5x smaller tiles
     public final int tileSize = (int) (originalTileSize * scale);
-    public final int screenWidth = tileSize * 11;  //Keep these the same as before
+    public final int screenWidth = tileSize * 11; //Keep these the same as before
     public final int screenHeight = tileSize * 17;
 
     public GamePanel() throws IOException, FontFormatException {
