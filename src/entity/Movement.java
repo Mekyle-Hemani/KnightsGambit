@@ -8,7 +8,7 @@ import main.GamePanel; //Get reference to GamePanel.java
 
 public class Movement implements KeyListener {
     GamePanel gp;
-
+    private final Collision collision;
     private final NextLineGeneration nextLineGeneration; //This is a class that generates a new line of the map
 
     public int verticalSquaresBackwards = 0; //This is how many squares that the player has gone back. This is used to make sure that player doesn't go back anymore than 5 squares.
@@ -22,6 +22,7 @@ public class Movement implements KeyListener {
     public Movement(GamePanel gp) {
         this.gp = gp;
         this.nextLineGeneration = new NextLineGeneration(gp); //Makes the NextLineGeneration referencable
+        this.collision = new Collision(gp);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class Movement implements KeyListener {
         //If "up" was pressed
         if (keyCode == KeyEvent.VK_UP) {
             //Check collision using the collision class
-            if ((Collision.CheckCollision(locationX, locationY, 0))) {
+            if ((collision.CheckCollision(locationX, locationY, 0))) {
                 //If the player is back to the middle of the screen and has not moved backwards...
                 if (verticalSquaresBackwards == 0) {
                     spacesCrossed++; //Increase the spaces crossed
@@ -59,7 +60,7 @@ public class Movement implements KeyListener {
         //If "down" was pressed
         if (keyCode == KeyEvent.VK_DOWN) {
             //Check collision using the collision class
-            if ((Collision.CheckCollision(locationX, locationY, 3))) {
+            if ((collision.CheckCollision(locationX, locationY, 3))) {
                 //If the player is not at the very end...
                 if (verticalSquaresBackwards <= 5) {
                     verticalSquaresBackwards++; //Bring the amount of tiles the player is away from the middle up by one
@@ -72,7 +73,7 @@ public class Movement implements KeyListener {
         //If "left" was pressed
         if (keyCode == KeyEvent.VK_LEFT) {
             //Check collision using the collision class
-            if ((Collision.CheckCollision(locationX, locationY, 1))) {
+            if ((collision.CheckCollision(locationX, locationY, 1))) {
                 //If the player isn't on the left edge...
                 if ((Player.posX) > 0){
                     Player.posX -= Entity.size; //Move the player left on the screen once
@@ -84,7 +85,7 @@ public class Movement implements KeyListener {
         //If "right" was pressed
         if (keyCode == KeyEvent.VK_RIGHT) {
             //Check collision using the collision class
-            if ((Collision.CheckCollision(locationX, locationY, 2))) {
+            if ((collision.CheckCollision(locationX, locationY, 2))) {
                 //If the player isn't on the right edge...
                 if ((Player.posX + Entity.size) < (gp.screenWidth)){
                     Player.posX += Entity.size; //Move the player right on the screen once
