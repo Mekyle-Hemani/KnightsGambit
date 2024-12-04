@@ -19,6 +19,7 @@ public class NextLineGeneration {
 
         if (nextTileLocations.size() / gridWidth <= 7) {
             int count = 7 - nextTileLocations.size() / gridWidth;
+
             for (int l = 0; l < count; l++) {
                 for (int i = 0; i < gridWidth; i++) {
                     int tileType = secureRandom.nextInt(100);
@@ -30,11 +31,12 @@ public class NextLineGeneration {
                     int indexInTotalTileLocations = nextTileLocations.size();
 
                     if (tileType <= 20) {
-                        int range = secureRandom.nextInt(3,8);
+                        int range = secureRandom.nextInt(3,7);
                         if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 1)) {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             nextTileLocations.add(totalTile);
                         } else {
+                            //Check if the iteration is on the edge of screen
                             totalTile = Integer.parseInt("1" + "2");
                             nextTileLocations.add(totalTile);
 
