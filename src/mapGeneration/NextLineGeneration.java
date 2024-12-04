@@ -44,11 +44,16 @@ public class NextLineGeneration {
                                 range=(range-1)/2;
                             }
 
+                            //Add wall left
                             for (int j = 0; j < range; j++){
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                                 nextTileLocations.add(totalTile);
                             }
                             nextTileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1));
+
+                            //Add wall right
+                            nextTileLocations.add(nextTileLocations.size()-range-2-range, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
+
                             i+=range;
                         }
                     } else {
