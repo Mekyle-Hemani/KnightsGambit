@@ -37,7 +37,7 @@ public class NextLineGeneration {
                             nextTileLocations.add(totalTile);
                         } else {
                             //Check if the iteration is on the edge of screen
-                            totalTile = Integer.parseInt("1" + "2");
+                            totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             nextTileLocations.add(totalTile);
 
                             if (range % 2 == 1) {
@@ -53,17 +53,21 @@ public class NextLineGeneration {
                             int wallType = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1);
                             nextTileLocations.add(wallType);
 
-                            //Add wall right
-                            nextTileLocations.set(nextTileLocations.size()-range-range-3, wallType);
-
                             //Add bottom door
                             int middleBottomWall = nextTileLocations.size()-(((range+1)*11)+2+range);
-                            nextTileLocations.set(middleBottomWall, wallType);
+                            nextTileLocations.set(middleBottomWall, 12);
+
 
                             //Bottom wall
                             for (int k = 0; k<range+1; k++){
                                 nextTileLocations.set(middleBottomWall+k+1, wallType);
                                 nextTileLocations.set(middleBottomWall-k-1, wallType);
+                                if (k==range){
+                                    for (int m = 1; m<range+2; m++){
+                                        nextTileLocations.set(middleBottomWall+k+1+(11*m), wallType);
+                                        nextTileLocations.set(middleBottomWall-k-1+(11*m), wallType);
+                                    }
+                                }
                             }
 
                             i+=range+1;
