@@ -50,19 +50,20 @@ public class NextLineGeneration {
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                                 nextTileLocations.add(totalTile);
                             }
-                            nextTileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1));
+                            int wallType = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1);
+                            nextTileLocations.add(wallType);
 
                             //Add wall right
-                            nextTileLocations.set(nextTileLocations.size()-range-range-3, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
+                            nextTileLocations.set(nextTileLocations.size()-range-range-3, wallType);
 
                             //Add bottom door
                             int middleBottomWall = nextTileLocations.size()-(((range+1)*11)+2+range);
-                            nextTileLocations.set(middleBottomWall, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
+                            nextTileLocations.set(middleBottomWall, wallType);
 
                             //Bottom wall
                             for (int k = 0; k<range+1; k++){
-                                nextTileLocations.set(middleBottomWall+k+1, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
-                                nextTileLocations.set(middleBottomWall-k-1, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
+                                nextTileLocations.set(middleBottomWall+k+1, wallType);
+                                nextTileLocations.set(middleBottomWall-k-1, wallType);
                             }
 
                             i+=range+1;
