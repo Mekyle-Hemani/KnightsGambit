@@ -30,8 +30,19 @@ public class NextLineGeneration {
                     int indexInTotalTileLocations = nextTileLocations.size();
 
                     if (true) {
-                        int range = secureRandom.nextInt(3,6);
-                        if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+4, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+4, 1)) {
+                        int range = secureRandom.nextInt(1,6);
+                        int compareRange = range;
+
+                        if (compareRange % 2 == 1) {
+                            compareRange -= 1;
+                        }
+                        compareRange = compareRange / 2;
+
+                        compareRange += 5;
+
+                        System.out.println(compareRange);
+
+                        if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 1)) {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             nextTileLocations.add(totalTile);
                         } else {

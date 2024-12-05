@@ -31,7 +31,7 @@ public class RangeChecker {
 
         // Check if range goes off-screen
         if (startRow < 0 || endRow >= gridHeight || startCol < 0 || endCol >= gridWidth) {
-            return true; // Consider that a stair is in range to prevent stair generation
+            return true;
         }
 
         // Search for the target within the range
