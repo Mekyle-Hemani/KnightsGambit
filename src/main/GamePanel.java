@@ -1,9 +1,8 @@
 package main;
 import entity.*;
-import entity.Inventory;
-import entity.TileDistanceDraw;
-import entity.TileDraw;
+import inventory.*;
 import mapGeneration.FirstMapGeneration;
+import tileDrawing.*;
 
 import java.awt.*;
 import java.io.IOException;

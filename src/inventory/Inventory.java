@@ -1,4 +1,5 @@
-package entity;
+package inventory;
+import entity.Entity;
 import main.GamePanel;
 
 import java.awt.*;

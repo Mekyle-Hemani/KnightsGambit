@@ -1,5 +1,5 @@
 package mapGeneration;
-import entity.RangeChecker;
+import mapDevelopmentFunctions.*;
 import main.GamePanel;
 import java.security.SecureRandom;
 import java.util.ArrayList;

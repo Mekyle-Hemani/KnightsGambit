@@ -1,4 +1,4 @@
-package entity;
+package mapDevelopmentFunctions;
 
 import main.GamePanel;
 

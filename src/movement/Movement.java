@@ -1,10 +1,9 @@
 package movement; //Add to entity package
 
-import entity.Collision;
-import entity.Entity;
-import entity.Inventory;
+import inventory.*;
+import mapDevelopmentFunctions.*;
+import entity.*;
 import entity.Player;
-import mapGeneration.*;
 
 //Add key listeners
 import java.awt.event.KeyEvent;

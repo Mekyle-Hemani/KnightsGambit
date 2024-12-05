@@ -1,4 +1,4 @@
-package entity;
+package tileDrawing;
 
 import main.GamePanel;
 
