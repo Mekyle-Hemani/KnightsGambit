@@ -46,19 +46,17 @@ public class NextLineGeneration {
                             range = range / 2;
 
                             //Add wall left
-                            for (int j = 0; j < range; j++){
+                            for (int j = 0; j < range+1; j++){
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                                 nextTileLocations.add(totalTile);
                             }
                             int wallType = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1);
-                            nextTileLocations.add(wallType);
 
                             //Add bottom door
                             int middleBottomWall = nextTileLocations.size()-(((range+1)*11)+2+range);
                             nextTileLocations.set(middleBottomWall, 12);
 
-
-                            //Bottom wall
+                            //Bottom wall, left wall, right wall
                             for (int k = 0; k<range+1; k++){
                                 nextTileLocations.set(middleBottomWall+k+1, wallType);
                                 nextTileLocations.set(middleBottomWall-k-1, wallType);
@@ -77,7 +75,6 @@ public class NextLineGeneration {
                         nextTileLocations.add(totalTile);
                     }
                 }
-                //System.out.println(nextTileLocations.size()%11);
             }
         }
         for (int i = 0; i < gridWidth; i++) {
