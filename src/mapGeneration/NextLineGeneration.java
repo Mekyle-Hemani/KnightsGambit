@@ -52,10 +52,10 @@ public class NextLineGeneration {
                             int wallType = Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1);
 
                             //Add bottom door
-                            int middleBottomWall = nextTileLocations.size()-(((range+1)*11)+2+range);
+                            int middleBottomWall = nextTileLocations.size()-(((range+1)*gridWidth)+2+range);
                             nextTileLocations.set(middleBottomWall, 12);
 
-                            for (int n = 0; n<(range+1)*11; n++){
+                            for (int n = 0; n<(range+1)*gridWidth; n++){
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                                 nextTileLocations.add(totalTile);
                             }
@@ -67,9 +67,9 @@ public class NextLineGeneration {
                                 nextTileLocations.set(middleBottomWall-k-1, wallType);
                                 if (k==range){
                                     for (int m = 1; m<range*2+3; m++){
-                                        nextTileLocations.set(middleBottomWall+k+1+(11*m), wallType);
-                                        nextTileLocations.set(middleBottomWall-k-1+(11*m), wallType);
-                                        topWallHeight = middleBottomWall+k+1+(11*m);
+                                        nextTileLocations.set(middleBottomWall+k+1+(gridWidth*m), wallType);
+                                        nextTileLocations.set(middleBottomWall-k-1+(gridWidth*m), wallType);
+                                        topWallHeight = middleBottomWall+k+1+(gridWidth*m);
                                     }
                                 }
                             }
