@@ -18,7 +18,6 @@ public class NextLineGeneration {
         int gridWidth = gp.screenWidth / gp.tileSize;
 
         if (nextTileLocations.size() / gridWidth <= 7) {
-            int gridsPerLine = nextTileLocations.size() / gridWidth;
             int count = 7 - nextTileLocations.size() / gridWidth;
 
             for (int l = 0; l < count; l++) {
@@ -38,7 +37,7 @@ public class NextLineGeneration {
                             nextTileLocations.add(totalTile);
                         } else {
                             //Check if the iteration is on the edge of screen
-                            System.out.println(nextTileLocations.size());
+                            System.out.println(i);
                             totalTile = Integer.parseInt("1" + "2");
                             nextTileLocations.add(totalTile);
 
