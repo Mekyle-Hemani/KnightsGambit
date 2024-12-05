@@ -73,9 +73,17 @@ public class NextLineGeneration {
                                     }
                                 }
                             }
-                            System.out.println(range);
+                            int randomValue = secureRandom.nextInt(2);
                             for (int n = 1; n<range*2+3; n++) {
-                                nextTileLocations.set(topWallHeight - n, wallType);
+                                if (n == range+1) {
+                                    if (randomValue == 0) {
+                                        nextTileLocations.set(topWallHeight-n, 12);
+                                    } else {
+                                        nextTileLocations.set(topWallHeight-n, wallType);
+                                    }
+                                } else {
+                                    nextTileLocations.set(topWallHeight - n, wallType);
+                                }
                             }
 
                             i+=range+1;
