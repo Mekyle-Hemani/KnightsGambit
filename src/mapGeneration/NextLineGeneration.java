@@ -45,7 +45,6 @@ public class NextLineGeneration {
                             }
                             range = range / 2;
 
-
                             //Add wall left
                             for (int j = 0; j < range; j++){
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
@@ -53,12 +52,18 @@ public class NextLineGeneration {
                             }
                             nextTileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1));
 
-
                             //Add wall right
                             nextTileLocations.set(nextTileLocations.size()-range-range-3, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
 
-                            //Add bottom wall
-                            nextTileLocations.set(nextTileLocations.size()-((((range+1)*11)+2)+range), Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
+                            //Add bottom door
+                            int middleBottomWall = nextTileLocations.size()-(((range+1)*11)+2+range);
+                            nextTileLocations.set(middleBottomWall, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
+
+                            //Bottom wall
+                            for (int k = 0; k<range+1; k++){
+                                nextTileLocations.set(middleBottomWall+k+1, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
+                                nextTileLocations.set(middleBottomWall-k-1, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
+                            }
 
                             i+=range+1;
                         }
@@ -67,7 +72,7 @@ public class NextLineGeneration {
                         nextTileLocations.add(totalTile);
                     }
                 }
-                System.out.println(nextTileLocations.size()%11);
+                //System.out.println(nextTileLocations.size()%11);
             }
         }
         for (int i = 0; i < gridWidth; i++) {
