@@ -22,7 +22,6 @@ public class NextLineGeneration {
 
             for (int l = 0; l < count; l++) {
                 for (int i = 0; i < gridWidth; i++) {
-                    int tileType = secureRandom.nextInt(100);
                     int totalTile;
 
                     List<Integer> totalTileLocations = new ArrayList<>(nextTileLocations);
@@ -30,9 +29,9 @@ public class NextLineGeneration {
 
                     int indexInTotalTileLocations = nextTileLocations.size();
 
-                    if (tileType <= 20) {
+                    if (true) {
                         int range = secureRandom.nextInt(3,6);
-                        if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 1)) {
+                        if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+4, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+4, 1)) {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             nextTileLocations.add(totalTile);
                         } else {
@@ -56,16 +55,27 @@ public class NextLineGeneration {
                             int middleBottomWall = nextTileLocations.size()-(((range+1)*11)+2+range);
                             nextTileLocations.set(middleBottomWall, 12);
 
+                            for (int n = 0; n<(range+1)*11; n++){
+                                totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
+                                nextTileLocations.add(totalTile);
+                            }
+
                             //Bottom wall, left wall, right wall
+                            int topWallHeight = 0;
                             for (int k = 0; k<range+1; k++){
                                 nextTileLocations.set(middleBottomWall+k+1, wallType);
                                 nextTileLocations.set(middleBottomWall-k-1, wallType);
                                 if (k==range){
-                                    for (int m = 1; m<range+2; m++){
+                                    for (int m = 1; m<range*2+3; m++){
                                         nextTileLocations.set(middleBottomWall+k+1+(11*m), wallType);
                                         nextTileLocations.set(middleBottomWall-k-1+(11*m), wallType);
+                                        topWallHeight = middleBottomWall+k+1+(11*m);
                                     }
                                 }
+                            }
+                            System.out.println(range);
+                            for (int n = 1; n<range*2+3; n++) {
+                                nextTileLocations.set(topWallHeight - n, wallType);
                             }
 
                             i+=range+1;
