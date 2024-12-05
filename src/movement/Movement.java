@@ -1,5 +1,9 @@
-package entity; //Add to entity package
+package movement; //Add to entity package
 
+import entity.Collision;
+import entity.Entity;
+import entity.Inventory;
+import entity.Player;
 import mapGeneration.*;
 
 //Add key listeners

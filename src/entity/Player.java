@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+import movement.*;
+
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
