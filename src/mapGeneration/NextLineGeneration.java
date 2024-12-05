@@ -31,21 +31,20 @@ public class NextLineGeneration {
                     int indexInTotalTileLocations = nextTileLocations.size();
 
                     if (tileType <= 20) {
-                        int range = secureRandom.nextInt(3,7);
+                        int range = secureRandom.nextInt(3,5);
                         if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, range+2, 1)) {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             nextTileLocations.add(totalTile);
                         } else {
                             //Check if the iteration is on the edge of screen
-                            System.out.println(i);
                             totalTile = Integer.parseInt("1" + "2");
                             nextTileLocations.add(totalTile);
 
-                            if (range%2 == 0){
-                                range = range/2;
-                            } else {
-                                range=(range-1)/2;
+                            if (range % 2 == 1) {
+                                range -= 1;
                             }
+                            range = range / 2;
+
 
                             //Add wall left
                             for (int j = 0; j < range; j++){
@@ -54,10 +53,11 @@ public class NextLineGeneration {
                             }
                             nextTileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 1));
 
-                            //Add wall right
-                            nextTileLocations.add(nextTileLocations.size()-range-2-range, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
 
-                            i+=range;
+                            //Add wall right
+                            //nextTileLocations.add(nextTileLocations.size()-range-range-2, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1));
+
+                            i+=range+1;
                         }
                     } else {
                         totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
@@ -65,6 +65,7 @@ public class NextLineGeneration {
                     }
                 }
             }
+            System.out.println(nextTileLocations.size()%11);
         }
         for (int i = 0; i < gridWidth; i++) {
             GamePanel.tileLocations.addFirst(nextTileLocations.removeFirst());
@@ -75,4 +76,3 @@ public class NextLineGeneration {
         }
     }
 }
-
