@@ -40,8 +40,6 @@ public class NextLineGeneration {
 
                         compareRange += 5;
 
-                        System.out.println(compareRange);
-
                         if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 1)) {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             nextTileLocations.add(totalTile);
@@ -105,6 +103,9 @@ public class NextLineGeneration {
                     }
                 }
             }
+        }
+        if (nextTileLocations.size()%gridWidth != 0){
+            System.out.println("Error with nextTileLocations iteration: "+nextTileLocations.size()%gridWidth);
         }
         for (int i = 0; i < gridWidth; i++) {
             GamePanel.tileLocations.addFirst(nextTileLocations.removeFirst());
