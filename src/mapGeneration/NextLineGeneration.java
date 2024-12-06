@@ -55,7 +55,7 @@ public class NextLineGeneration {
                             }
                             range = range / 2;
 
-                            //Add wall left
+                            //Add position left
                             for (int j = 0; j < range+1; j++){
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                                 nextTileLocations.add(totalTile);
