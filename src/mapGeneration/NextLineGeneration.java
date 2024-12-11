@@ -105,11 +105,13 @@ public class NextLineGeneration {
                     } else if (region == 1) {
                         nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
                     }
-                    regionCount += 1;
-                    if (regionCount == regionRange) {
-                        region = secureRandom.nextInt(regionTotal);
-                    }
                 }
+                regionCount += 1;
+                if (regionCount == regionRange) {
+                    region = secureRandom.nextInt(regionTotal);
+                    regionCount = 0;
+                }
+                System.out.println("Region: " + region);
             }
         }
         if (nextTileLocations.size()%gridWidth != 0){
