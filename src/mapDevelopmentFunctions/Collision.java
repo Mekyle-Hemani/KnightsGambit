@@ -27,6 +27,6 @@ public class Collision {
         //Check if the position that the player wants to go to is a ground tile from the tileLocations array.
         //The value of a ground tile is 1. It checks if the requested movement (From the direction integer) is into a wall or not
         //It then returns if the player can go forward (true) or not (false)
-        return Character.getNumericValue((Integer.toString(GamePanel.tileLocations.get(Ypos * (gp.screenWidth / gp.tileSize) + Xpos))).charAt(1)) != 1;
+        return (Character.getNumericValue((Integer.toString(GamePanel.tileLocations.get(Ypos * (gp.screenWidth / gp.tileSize) + Xpos))).charAt(1)) != 1) && (Character.getNumericValue((Integer.toString(GamePanel.tileLocations.get(Ypos * (gp.screenWidth / gp.tileSize) + Xpos))).charAt(1)) != 4);
     }
 }

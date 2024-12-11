@@ -49,8 +49,11 @@ public class NextLineGeneration {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             nextTileLocations.add(totalTile);
                         } else {
-                            //Check if the iteration is on the edge of screen
-                            totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
+                            if (range == 1){
+                                totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
+                            } else {
+                                totalTile = 14;
+                            }
                             nextTileLocations.add(totalTile);
 
                             if (range % 2 == 1) {
