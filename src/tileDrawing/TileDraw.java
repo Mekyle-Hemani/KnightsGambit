@@ -43,7 +43,8 @@ public class TileDraw {
                 switch (Character.getNumericValue(Integer.toString(item).charAt(1))) {
                     case 0 -> type = "ground";
                     case 1 -> type = "wall";
-                    case 2 -> type = "stairs";
+                    case 2 -> type = "door";
+                    case 3 -> type = "roomGround";
                 }
 
                 //Since the script has many different assets for single tile types, the first number of the itemLocations array tells us what image was requested to be loaded
