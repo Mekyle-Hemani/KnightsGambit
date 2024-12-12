@@ -3,6 +3,7 @@ import mapDevelopmentFunctions.*;
 import main.GamePanel;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class NextLineGeneration {
@@ -10,10 +11,19 @@ public class NextLineGeneration {
     SecureRandom secureRandom = new SecureRandom();
     public static List<Integer> nextTileLocations = new ArrayList<>();
 
+
     public int region = 0;
-    public int regionTotal = 2;
     public int regionCount = 0;
-    public int regionRange = 7;
+    public static HashMap<Integer, Integer> regionValues = new HashMap<>();
+    public int regionRange;
+
+    public void setup() {
+        regionValues.clear();
+        regionValues.put(0, 7);
+        regionValues.put(1, 7);
+
+        regionRange = regionValues.size();
+    }
 
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
@@ -45,7 +55,7 @@ public class NextLineGeneration {
 
                         compareRange += 5;
 
-                        if (RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 2) || RangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 1)) {
+                        if (RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 2) || RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 1)) {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             nextTileLocations.add(totalTile);
                         } else {
@@ -110,8 +120,8 @@ public class NextLineGeneration {
                     }
                 }
                 regionCount += 1;
-                if (regionCount == regionRange) {
-                    region = secureRandom.nextInt(regionTotal);
+                if (regionCount == regionValues.get(region)) {
+                    region = secureRandom.nextInt(regionValues.size());
                     regionCount = 0;
                 }
                 System.out.println("Region: " + region);

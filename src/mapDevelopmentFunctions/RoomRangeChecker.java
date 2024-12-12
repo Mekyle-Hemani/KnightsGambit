@@ -4,11 +4,11 @@ import main.GamePanel;
 
 import java.util.List;
 
-public class RangeChecker {
+public class RoomRangeChecker {
     static GamePanel gp;
 
-    public RangeChecker(GamePanel gp) {
-        RangeChecker.gp = gp;
+    public RoomRangeChecker(GamePanel gp) {
+        RoomRangeChecker.gp = gp;
     }
 
     public static boolean isInRange(List<Integer> tileLocations, int gridWidth, int checkIndex, int range, int target) {

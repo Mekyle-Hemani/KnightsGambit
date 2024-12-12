@@ -2,6 +2,7 @@ package main;
 import entity.*;
 import inventory.*;
 import mapGeneration.FirstMapGeneration;
+import mapGeneration.NextLineGeneration;
 import tileDrawing.*;
 
 import java.awt.*;
@@ -35,6 +36,8 @@ public class GamePanel extends JPanel implements Runnable {
     private void startup() throws IOException, FontFormatException {
         FirstMapGeneration firstMapGeneration = new FirstMapGeneration(this);
         firstMapGeneration.generateFirstMap();
+        NextLineGeneration nextLineGeneration = new NextLineGeneration(this);
+        nextLineGeneration.setup();
 
         inventory = new Inventory(this);
         tileDraw = new TileDraw(this);
