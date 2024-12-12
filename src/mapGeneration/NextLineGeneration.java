@@ -20,7 +20,7 @@ public class NextLineGeneration {
     public void setup() {
         regionValues.clear();
         regionValues.put(0, 7);
-        regionValues.put(1, 7);
+        regionValues.put(1, 1);
 
         regionRange = regionValues.size();
     }
@@ -55,7 +55,7 @@ public class NextLineGeneration {
 
                         compareRange += 5;
 
-                        if (RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 2) || RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 1)) {
+                        if (RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 2) || RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 1) || RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 1)) {
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             nextTileLocations.add(totalTile);
                         } else {
@@ -116,14 +116,23 @@ public class NextLineGeneration {
                             i += range + 1;
                         }
                     } else if (region == 1) {
-                        nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
+                        //nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
+                        nextTileLocations.add(13);
                     }
                 }
                 regionCount += 1;
-                if (regionCount == regionValues.get(region)) {
+                if (regionCount >= regionValues.get(region)) {
+                    if (region == 1) {
+                        for (int i = 0; i < gridWidth; i++) {
+                            //nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
+                            //Make sure these blocks are walkable
+                            nextTileLocations.add(13);
+                        }
+                    }
                     region = secureRandom.nextInt(regionValues.size());
                     regionCount = 0;
                 }
+                //region = 1;
                 System.out.println("Region: " + region);
             }
         }
