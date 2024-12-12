@@ -20,7 +20,7 @@ public class NextLineGeneration {
     public void setup() {
         regionValues.clear();
         regionValues.put(0, 7);
-        regionValues.put(1, 1);
+        regionValues.put(1, 7);
 
         regionRange = regionValues.size();
     }
@@ -117,7 +117,13 @@ public class NextLineGeneration {
                         }
                     } else if (region == 1) {
                         //nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
-                        nextTileLocations.add(13);
+                        int tileType = secureRandom.nextInt(1, 100);
+                        if (tileType >= 80){
+                            nextTileLocations.add(14);
+                        } else {
+                            //nextTileLocations.add(13);
+                            nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
+                        }
                     }
                 }
                 regionCount += 1;
