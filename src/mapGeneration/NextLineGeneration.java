@@ -18,6 +18,7 @@ public class NextLineGeneration {
     public int regionCount = 0;
     public static HashMap<Integer, Integer> regionValues = new HashMap<>();
     public int regionRange;
+    public boolean regionOneDone = true;
 
     public void setup() {
         regionValues.clear();
@@ -25,6 +26,8 @@ public class NextLineGeneration {
         regionValues.put(1, 7);
 
         regionRange = regionValues.size();
+
+        regionOneDone = true;
     }
 
     public static int getTreeRegionLength(){
@@ -121,7 +124,7 @@ public class NextLineGeneration {
 
                             i += range + 1;
                         }
-                    } else if (region == 1) {
+                    } else if (region == 1 && regionOneDone) {
                         int[] grid = TreeLocationGeneration.generateTree();
                         for (int value : grid) {
                             System.out.print(value + " ");
@@ -131,12 +134,7 @@ public class NextLineGeneration {
                                 nextTileLocations.add(14);
                             }
                         }
-                        /*int tileType = secureRandom.nextInt(1, 100);
-                        if (tileType >= 80){
-                            nextTileLocations.add(14);
-                        } else {
-                            nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
-                        }*/
+                        regionOneDone = false;
                     }
                 }
                 regionCount += 1;
@@ -150,6 +148,7 @@ public class NextLineGeneration {
                     }
                     region = secureRandom.nextInt(regionValues.size());
                     regionCount = 0;
+                    regionOneDone = true;
                 }
                 //region = 1;
                 System.out.println("Region: " + region);
