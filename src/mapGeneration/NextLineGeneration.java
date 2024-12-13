@@ -33,6 +33,9 @@ public class NextLineGeneration {
     public static int getTreeRegionLength(){
         return regionValues.get(1);
     }
+    public static int getEntranceRegionLength(){
+        return regionValues.get(2);
+    }
 
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
@@ -134,21 +137,16 @@ public class NextLineGeneration {
                             }
                         }
                         regionOneDone = false;
-                    } else if (region == 1 && regionTwoDone) {
-                        /*int[] grid = TreeLocationGeneration.generateTree();
-                        for (int value : grid) {
-                            if (value == 0) {
-                                nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
-                            } else {
-                                nextTileLocations.add(14);
-                            }
-                        }*/
+
+                    } else if (region == 2 && regionTwoDone) {
+                        ArrayList<Integer> grid = EntranceLocationGeneration.generateEntrance();
+                        nextTileLocations.addAll(grid);
                         regionTwoDone = false;
                     }
                 }
                 regionCount += 1;
                 if (regionCount >= regionValues.get(region)) {
-                    if (region == 1) {
+                    if (region == 1 || region == 2) {
                         for (int i = 0; i < gridWidth*2; i++) {
                             nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
                         }
