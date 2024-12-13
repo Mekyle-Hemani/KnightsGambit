@@ -11,7 +11,7 @@ public class NextLineGeneration {
     SecureRandom secureRandom = new SecureRandom();
     public static List<Integer> nextTileLocations = new ArrayList<>();
 
-    public int region = 0;
+    public int region = 3;
     public int regionCount = 0;
     public static HashMap<Integer, Integer> regionValues = new HashMap<>();
     public int regionRange;
@@ -156,7 +156,7 @@ public class NextLineGeneration {
                 }
                 regionCount += 1;
                 if (regionCount >= regionValues.get(region)) {
-                    if (region == 1 || region == 2) {
+                    if (region == 1 || region == 2 || region == 3) {
                         for (int i = 0; i < gridWidth*2; i++) {
                             nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
                         }

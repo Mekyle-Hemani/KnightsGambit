@@ -2,10 +2,13 @@ package mapDevelopmentFunctions;
 
 import main.GamePanel;
 import mapGeneration.NextLineGeneration;
+
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 public class BridgeLocationGeneration {
     static GamePanel gp;
+    static SecureRandom secureRandom = new SecureRandom();
     public static int rows;
     public static int cols;
 
@@ -19,7 +22,7 @@ public class BridgeLocationGeneration {
     }
 
     public static ArrayList<Integer> generateBridge() {
-        ArrayList<Integer> grid = new ArrayList<>();
+        ArrayList<Integer> bridgeLocation = new ArrayList<>();
         int eachside;
         int middle;
         if (cols%2==0){
@@ -29,19 +32,41 @@ public class BridgeLocationGeneration {
             middle = 3;
             eachside = (cols-2)/2;
         }
-        for (int j=0; j<rows; j++) {
-            grid.add(71);
-            for (int i = 0; i < eachside - 1; i++) {
-                grid.add(64);
-            }
-            for (int i = 0; i < middle; i++) {
-                grid.add(10);
-            }
-            for (int i = 0; i < eachside - 1; i++) {
-                grid.add(64);
-            }
-            grid.add(71);
+        bridgeLocation.add(47);
+        for (int i = 0; i < eachside - 1; i++) {
+            bridgeLocation.add(46);
         }
-        return grid;
+        for (int i = 0; i < middle; i++) {
+            bridgeLocation.add(13);
+        }
+        for (int i = 0; i < eachside - 1; i++) {
+            bridgeLocation.add(46);
+        }
+        bridgeLocation.add(17);
+        bridgeLocation.add(36);
+        for (int i = 0; i < eachside - 1; i++) {
+            bridgeLocation.add(Integer.parseInt(secureRandom.nextInt(3) + 1 + "5"));
+        }
+        for (int i = 0; i < middle; i++) {
+            bridgeLocation.add(13);
+        }
+        for (int i = 0; i < eachside - 1; i++) {
+            bridgeLocation.add(Integer.parseInt(secureRandom.nextInt(3) + 1 + "5"));
+        }
+        bridgeLocation.add(16);
+
+        bridgeLocation.add(37);
+        for (int i = 0; i < eachside - 1; i++) {
+            bridgeLocation.add(26);
+        }
+        for (int i = 0; i < middle; i++) {
+            bridgeLocation.add(13);
+        }
+        for (int i = 0; i < eachside - 1; i++) {
+            bridgeLocation.add(26);
+        }
+        bridgeLocation.add(27);
+
+        return bridgeLocation;
     }
 }
