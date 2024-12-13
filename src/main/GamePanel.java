@@ -1,6 +1,7 @@
 package main;
 import entity.*;
 import inventory.*;
+import mapDevelopmentFunctions.TreeLocationGeneration;
 import mapGeneration.FirstMapGeneration;
 import mapGeneration.NextLineGeneration;
 import tileDrawing.*;
@@ -38,6 +39,9 @@ public class GamePanel extends JPanel implements Runnable {
         firstMapGeneration.generateFirstMap();
         NextLineGeneration nextLineGeneration = new NextLineGeneration(this);
         nextLineGeneration.setup();
+
+        TreeLocationGeneration treeLocationGeneration = new TreeLocationGeneration(this);
+        treeLocationGeneration.setup();
 
         inventory = new Inventory(this);
         tileDraw = new TileDraw(this);

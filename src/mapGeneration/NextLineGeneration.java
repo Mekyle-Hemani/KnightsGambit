@@ -11,6 +11,7 @@ public class NextLineGeneration {
     SecureRandom secureRandom = new SecureRandom();
     public static List<Integer> nextTileLocations = new ArrayList<>();
 
+    TreeLocationGeneration treeLocationGeneration = new TreeLocationGeneration(gp);
 
     public int region = 0;
     public int regionCount = 0;
@@ -23,6 +24,10 @@ public class NextLineGeneration {
         regionValues.put(1, 7);
 
         regionRange = regionValues.size();
+    }
+
+    public int getTreeRegionLength(){
+        return regionValues.get(1);
     }
 
     public NextLineGeneration(GamePanel gp) {
@@ -116,7 +121,8 @@ public class NextLineGeneration {
                             i += range + 1;
                         }
                     } else if (region == 1) {
-                        //nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
+                        int[] grid = treeLocationGeneration.generateTree();
+                        System.out.println(grid);
                         int tileType = secureRandom.nextInt(1, 100);
                         if (tileType >= 80){
                             nextTileLocations.add(14);
@@ -129,7 +135,7 @@ public class NextLineGeneration {
                 regionCount += 1;
                 if (regionCount >= regionValues.get(region)) {
                     if (region == 1) {
-                        for (int i = 0; i < gridWidth; i++) {
+                        for (int i = 0; i < gridWidth*2; i++) {
                             //nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
                             //Make sure these blocks are walkable
                             nextTileLocations.add(13);
