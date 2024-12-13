@@ -3,7 +3,6 @@ import mapDevelopmentFunctions.*;
 import main.GamePanel;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,22 +11,23 @@ public class NextLineGeneration {
     SecureRandom secureRandom = new SecureRandom();
     public static List<Integer> nextTileLocations = new ArrayList<>();
 
-    TreeLocationGeneration treeLocationGeneration = new TreeLocationGeneration(gp);
-
     public int region = 0;
     public int regionCount = 0;
     public static HashMap<Integer, Integer> regionValues = new HashMap<>();
     public int regionRange;
     public boolean regionOneDone = true;
+    public boolean regionTwoDone = true;
 
     public void setup() {
         regionValues.clear();
         regionValues.put(0, 7);
-        regionValues.put(1, 7);
+        regionValues.put(1, 19);
+        regionValues.put(2, 3);
 
         regionRange = regionValues.size();
 
         regionOneDone = true;
+        regionTwoDone = true;
     }
 
     public static int getTreeRegionLength(){
@@ -127,7 +127,6 @@ public class NextLineGeneration {
                     } else if (region == 1 && regionOneDone) {
                         int[] grid = TreeLocationGeneration.generateTree();
                         for (int value : grid) {
-                            System.out.print(value + " ");
                             if (value == 0) {
                                 nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
                             } else {
@@ -135,22 +134,30 @@ public class NextLineGeneration {
                             }
                         }
                         regionOneDone = false;
+                    } else if (region == 1 && regionTwoDone) {
+                        /*int[] grid = TreeLocationGeneration.generateTree();
+                        for (int value : grid) {
+                            if (value == 0) {
+                                nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
+                            } else {
+                                nextTileLocations.add(14);
+                            }
+                        }*/
+                        regionTwoDone = false;
                     }
                 }
                 regionCount += 1;
                 if (regionCount >= regionValues.get(region)) {
                     if (region == 1) {
                         for (int i = 0; i < gridWidth*2; i++) {
-                            //nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
-                            //Make sure these blocks are walkable
-                            nextTileLocations.add(13);
+                            nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
                         }
                     }
                     region = secureRandom.nextInt(regionValues.size());
                     regionCount = 0;
                     regionOneDone = true;
+                    regionTwoDone = true;
                 }
-                //region = 1;
                 System.out.println("Region: " + region);
             }
         }
