@@ -3,6 +3,7 @@ import mapDevelopmentFunctions.*;
 import main.GamePanel;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class NextLineGeneration {
         regionRange = regionValues.size();
     }
 
-    public int getTreeRegionLength(){
+    public static int getTreeRegionLength(){
         return regionValues.get(1);
     }
 
@@ -121,8 +122,8 @@ public class NextLineGeneration {
                             i += range + 1;
                         }
                     } else if (region == 1) {
-                        int[] grid = treeLocationGeneration.generateTree();
-                        System.out.println(grid);
+                        int[] grid = TreeLocationGeneration.generateTree();
+                        System.out.println(Arrays.toString(grid));
                         int tileType = secureRandom.nextInt(1, 100);
                         if (tileType >= 80){
                             nextTileLocations.add(14);

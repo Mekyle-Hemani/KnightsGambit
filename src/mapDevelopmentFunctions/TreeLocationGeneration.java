@@ -1,11 +1,8 @@
 package mapDevelopmentFunctions;
 
 import main.GamePanel;
-import mapGeneration.FirstMapGeneration;
 import mapGeneration.NextLineGeneration;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class TreeLocationGeneration {
@@ -14,16 +11,12 @@ public class TreeLocationGeneration {
     public static int cols;
 
     public TreeLocationGeneration(GamePanel gp) {
-        Collision.gp = gp;
+        TreeLocationGeneration.gp = gp;
     }
 
     public void setup() {
-        NextLineGeneration nextLineGeneration = new NextLineGeneration(gp);
-        //rows = nextLineGeneration.getTreeRegionLength();
-        //cols = gp.screenWidth / gp.tileSize;
-
-        rows = 7;
-        cols = 11;
+        rows = NextLineGeneration.getTreeRegionLength();
+        cols = gp.screenWidth / gp.tileSize;
     }
 
     public static int[] generateTree() {
