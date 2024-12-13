@@ -42,8 +42,8 @@ public class GamePanel extends JPanel implements Runnable {
         TreeLocationGeneration treeLocationGeneration = new TreeLocationGeneration(this);
         treeLocationGeneration.setup();
 
-        EntranceLocationGeneration entranceLocationGeneration = new EntranceLocationGeneration(this);
         EntranceLocationGeneration.setup();
+        BridgeLocationGeneration.setup();
 
         inventory = new Inventory(this);
         tileDraw = new TileDraw(this);

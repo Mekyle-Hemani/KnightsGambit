@@ -17,17 +17,20 @@ public class NextLineGeneration {
     public int regionRange;
     public boolean regionOneDone = true;
     public boolean regionTwoDone = true;
+    public boolean regionThreeDone = true;
 
     public void setup() {
         regionValues.clear();
         regionValues.put(0, 7);
         regionValues.put(1, 19);
         regionValues.put(2, 3);
+        regionValues.put(3, 3);
 
         regionRange = regionValues.size();
 
         regionOneDone = true;
         regionTwoDone = true;
+        regionThreeDone = true;
     }
 
     public static int getTreeRegionLength(){
@@ -35,6 +38,9 @@ public class NextLineGeneration {
     }
     public static int getEntranceRegionLength(){
         return regionValues.get(2);
+    }
+    public static int getBridgeRegionLength(){
+        return regionValues.get(3);
     }
 
     public NextLineGeneration(GamePanel gp) {
@@ -142,6 +148,10 @@ public class NextLineGeneration {
                         ArrayList<Integer> grid = EntranceLocationGeneration.generateEntrance();
                         nextTileLocations.addAll(grid);
                         regionTwoDone = false;
+                    } else if (region == 3 && regionThreeDone) {
+                        ArrayList<Integer> bridgeLocations = BridgeLocationGeneration.generateBridge();
+                        nextTileLocations.addAll(bridgeLocations);
+                        regionThreeDone = false;
                     }
                 }
                 regionCount += 1;
@@ -155,6 +165,7 @@ public class NextLineGeneration {
                     regionCount = 0;
                     regionOneDone = true;
                     regionTwoDone = true;
+                    regionThreeDone = true;
                 }
                 System.out.println("Region: " + region);
             }
