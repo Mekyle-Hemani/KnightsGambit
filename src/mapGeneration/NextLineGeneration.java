@@ -123,12 +123,13 @@ public class NextLineGeneration {
                         }
                     } else if (region == 1) {
                         int[] grid = TreeLocationGeneration.generateTree();
-                        System.out.println(Arrays.toString(grid));
+                        for (int value : grid) {
+                            System.out.print(value + " ");
+                        }
                         int tileType = secureRandom.nextInt(1, 100);
                         if (tileType >= 80){
                             nextTileLocations.add(14);
                         } else {
-                            //nextTileLocations.add(13);
                             nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
                         }
                     }
