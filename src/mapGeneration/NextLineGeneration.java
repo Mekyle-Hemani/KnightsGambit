@@ -125,13 +125,18 @@ public class NextLineGeneration {
                         int[] grid = TreeLocationGeneration.generateTree();
                         for (int value : grid) {
                             System.out.print(value + " ");
+                            if (value == 0) {
+                                nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
+                            } else {
+                                nextTileLocations.add(14);
+                            }
                         }
-                        int tileType = secureRandom.nextInt(1, 100);
+                        /*int tileType = secureRandom.nextInt(1, 100);
                         if (tileType >= 80){
                             nextTileLocations.add(14);
                         } else {
                             nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
-                        }
+                        }*/
                     }
                 }
                 regionCount += 1;
