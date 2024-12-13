@@ -1,9 +1,8 @@
 package main;
 import entity.*;
 import inventory.*;
-import mapDevelopmentFunctions.TreeLocationGeneration;
-import mapGeneration.FirstMapGeneration;
-import mapGeneration.NextLineGeneration;
+import mapDevelopmentFunctions.*;
+import mapGeneration.*;
 import tileDrawing.*;
 
 import java.awt.*;
