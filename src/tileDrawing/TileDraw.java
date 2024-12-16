@@ -39,8 +39,17 @@ public class TileDraw {
                 //Have a default tile type in case of the switch statement not catching correct items
                 String type = "ground";
 
+                System.out.println(String.valueOf(item).length());
+
+                int checkInt;
+                if (String.valueOf(item).length() == 2){
+                    checkInt = Character.getNumericValue(Integer.toString(item).charAt(1));
+                } else {
+                    checkInt = Integer.parseInt(Integer.toString(Character.getNumericValue(Integer.toString(item).charAt(1)))+Integer.toString(Character.getNumericValue(Integer.toString(item).charAt(2))));
+                }
+
                 //This gets the second character. The second character tells us what type of item it is (Ground, Wall, Stairs)
-                switch (Character.getNumericValue(Integer.toString(item).charAt(1))) {
+                switch (checkInt) {
                     case 0 -> type = "ground";
                     case 1 -> type = "wall";
                     case 2 -> type = "door";
@@ -51,6 +60,7 @@ public class TileDraw {
                     case 7 -> type = "waterCorner";
                     case 8 -> type = "stairs";
                     case 9 -> type = "docksEdge";
+                    case 10 -> type = "chest";
                 }
 
                 //Since the script has many different assets for single tile types, the first number of the itemLocations array tells us what image was requested to be loaded

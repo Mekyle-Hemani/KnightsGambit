@@ -84,7 +84,7 @@ public class NextLineGeneration {
                             if (range == 1){
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             } else {
-                                totalTile = 14;
+                                totalTile = 110;
                             }
                             nextTileLocations.add(totalTile);
 
