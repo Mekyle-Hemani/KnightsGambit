@@ -17,7 +17,7 @@ public class BridgeLocationGeneration {
     }
 
     public static void setup() {
-        rows = NextLineGeneration.getBridgeRegionLength();
+        rows = NextLineGeneration.getBridgeRegionLength()-1;
         cols = gp.screenWidth / gp.tileSize;
     }
 
@@ -37,35 +37,44 @@ public class BridgeLocationGeneration {
             bridgeLocation.add(46);
         }
         for (int i = 0; i < middle; i++) {
-            bridgeLocation.add(13);
+            bridgeLocation.add(29);
         }
         for (int i = 0; i < eachside - 1; i++) {
             bridgeLocation.add(46);
         }
         bridgeLocation.add(17);
-        bridgeLocation.add(36);
-        for (int i = 0; i < eachside - 1; i++) {
-            bridgeLocation.add(Integer.parseInt(secureRandom.nextInt(3) + 1 + "5"));
+
+        for (int j = 0; j < rows-2; j++) {
+            bridgeLocation.add(36);
+            for (int i = 0; i < eachside - 1; i++) {
+                bridgeLocation.add(Integer.parseInt(secureRandom.nextInt(3) + 1 + "5"));
+            }
+            for (int i = 0; i < middle; i++) {
+                bridgeLocation.add(13);
+            }
+            for (int i = 0; i < eachside - 1; i++) {
+                bridgeLocation.add(Integer.parseInt(secureRandom.nextInt(3) + 1 + "5"));
+            }
+            bridgeLocation.add(16);
         }
-        for (int i = 0; i < middle; i++) {
-            bridgeLocation.add(13);
-        }
-        for (int i = 0; i < eachside - 1; i++) {
-            bridgeLocation.add(Integer.parseInt(secureRandom.nextInt(3) + 1 + "5"));
-        }
-        bridgeLocation.add(16);
 
         bridgeLocation.add(37);
         for (int i = 0; i < eachside - 1; i++) {
             bridgeLocation.add(26);
         }
         for (int i = 0; i < middle; i++) {
-            bridgeLocation.add(13);
+            bridgeLocation.add(19);
         }
         for (int i = 0; i < eachside - 1; i++) {
             bridgeLocation.add(26);
         }
         bridgeLocation.add(27);
+
+        for (int i = 0; i < cols; i++){
+            bridgeLocation.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
+        }
+
+        System.out.println(rows);
 
         return bridgeLocation;
     }

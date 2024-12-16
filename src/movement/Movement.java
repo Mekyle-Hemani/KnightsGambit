@@ -99,12 +99,8 @@ public class Movement implements KeyListener {
             Player.playerImage = Player.playerImageRight; //Change the player image to the right direction
         }
 
-        //System.out.println(Player.posX/Player.size);
-        //System.out.println(Player.posY/Player.size);
-
         int tileCheckCondition = Character.getNumericValue((Integer.toString(GamePanel.tileLocations.get((Player.posY/Player.size) * (gp.screenWidth / gp.tileSize) + (Player.posX/Player.size)))).charAt(1));
-        System.out.println(tileCheckCondition);
-        if (tileCheckCondition == 3) {
+        if (tileCheckCondition == 3 || tileCheckCondition == 9) {
             if (Player.playerImage.equals(Player.playerImageRight)) {
                 Player.playerImage = Player.playerImageRightClear;
             } else {

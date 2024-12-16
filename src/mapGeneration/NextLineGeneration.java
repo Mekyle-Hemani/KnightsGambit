@@ -24,7 +24,7 @@ public class NextLineGeneration {
         regionValues.put(0, 7);
         regionValues.put(1, 19);
         regionValues.put(2, 3);
-        regionValues.put(3, 3);
+        regionValues.put(3, 9);
 
         regionRange = regionValues.size();
 
@@ -174,7 +174,7 @@ public class NextLineGeneration {
                     regionTwoDone = true;
                     regionThreeDone = true;
                 }
-                //System.out.println("Region: " + region);
+                System.out.println("Region: " + region);
             }
         }
         if (nextTileLocations.size()%gridWidth != 0){
