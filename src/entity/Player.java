@@ -22,6 +22,9 @@ public class Player extends Entity{
     public static BufferedImage playerImageLeft; //Creates a player image
     public static BufferedImage playerImageRight; //Creates a player image
 
+    public static BufferedImage playerImageLeftClear; //Creates a player image
+    public static BufferedImage playerImageRightClear; //Creates a player image
+
     public Player(GamePanel gamePanel) throws IOException {
         this.gp = gamePanel;
         initialize();
@@ -32,6 +35,10 @@ public class Player extends Entity{
     private void initialize() throws IOException {
         playerImageLeft = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/player/playerLeft.png"))); //Sets an image to the left player side
         playerImageRight = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/player/playerRight.png"))); //Sets an image to the right player side
+
+        playerImageLeftClear = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/player/playerLeftClear.png"))); //Sets an image to the left player side
+        playerImageRightClear = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/player/playerRightClear.png"))); //Sets an image to the right player side
+
         playerImage = playerImageLeft; //sets the current player image to the left image
         size = gp.tileSize; //Sets the player size to the average tile size
         posX = ((gp.screenWidth-size)/2); //Sets the player x to the middle x

@@ -174,7 +174,7 @@ public class NextLineGeneration {
                     regionTwoDone = true;
                     regionThreeDone = true;
                 }
-                System.out.println("Region: " + region);
+                //System.out.println("Region: " + region);
             }
         }
         if (nextTileLocations.size()%gridWidth != 0){
