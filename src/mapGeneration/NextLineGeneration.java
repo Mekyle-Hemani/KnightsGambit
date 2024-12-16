@@ -24,7 +24,7 @@ public class NextLineGeneration {
         regionValues.put(0, 7);
         regionValues.put(1, 19);
         regionValues.put(2, 3);
-        regionValues.put(3, 9);
+        regionValues.put(3, 2);
 
         regionRange = regionValues.size();
 

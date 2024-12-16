@@ -25,6 +25,9 @@ public class BridgeLocationGeneration {
         ArrayList<Integer> bridgeLocation = new ArrayList<>();
         int eachside;
         int middle;
+
+        int newRows = rows + secureRandom.nextInt(5);
+
         if (cols%2==0){
             middle = 2;
             eachside = cols/2;
@@ -44,7 +47,7 @@ public class BridgeLocationGeneration {
         }
         bridgeLocation.add(17);
 
-        for (int j = 0; j < rows-2; j++) {
+        for (int j = 0; j < newRows-2; j++) {
             bridgeLocation.add(36);
             for (int i = 0; i < eachside - 1; i++) {
                 bridgeLocation.add(Integer.parseInt(secureRandom.nextInt(3) + 1 + "5"));
@@ -73,8 +76,6 @@ public class BridgeLocationGeneration {
         for (int i = 0; i < cols; i++){
             bridgeLocation.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
         }
-
-        System.out.println(rows);
 
         return bridgeLocation;
     }
