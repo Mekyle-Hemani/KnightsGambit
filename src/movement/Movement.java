@@ -103,7 +103,7 @@ public class Movement implements KeyListener {
         if (tileCheckCondition == 3 || tileCheckCondition == 9) {
             if (Player.playerImage.equals(Player.playerImageRight)) {
                 Player.playerImage = Player.playerImageRightClear;
-            } else {
+            } else if (Player.playerImage.equals(Player.playerImageLeft)){
                 Player.playerImage = Player.playerImageLeftClear;
             }
         }

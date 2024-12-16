@@ -39,8 +39,6 @@ public class TileDraw {
                 //Have a default tile type in case of the switch statement not catching correct items
                 String type = "ground";
 
-                System.out.println(String.valueOf(item).length());
-
                 int checkInt;
                 if (String.valueOf(item).length() == 2){
                     checkInt = Character.getNumericValue(Integer.toString(item).charAt(1));
