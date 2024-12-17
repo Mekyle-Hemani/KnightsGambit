@@ -2,6 +2,8 @@ package mapDevelopmentFunctions;
 
 import main.GamePanel;
 import mapGeneration.NextLineGeneration;
+
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 public class EntranceLocationGeneration {
@@ -9,12 +11,14 @@ public class EntranceLocationGeneration {
     public static int rows;
     public static int cols;
 
+    static SecureRandom secureRandom = new SecureRandom();
+
     public EntranceLocationGeneration(GamePanel gp) {
         EntranceLocationGeneration.gp = gp;
     }
 
     public static void setup() {
-        rows = NextLineGeneration.getEntranceRegionLength();
+        rows = NextLineGeneration.getEntranceRegionLength()-1;
         cols = gp.screenWidth / gp.tileSize;
     }
 
@@ -29,7 +33,7 @@ public class EntranceLocationGeneration {
             middle = 3;
             eachside = (cols-2)/2;
         }
-        for (int j=0; j<3; j++) {
+        for (int j=0; j<rows; j++) {
             for (int i = 0; i < eachside; i++) {
                 grid.add(14);
             }
@@ -39,6 +43,9 @@ public class EntranceLocationGeneration {
             for (int i = 0; i < eachside; i++) {
                 grid.add(14);
             }
+        }
+        for (int i = 0; i < cols; i++){
+            grid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
         }
         return grid;
     }

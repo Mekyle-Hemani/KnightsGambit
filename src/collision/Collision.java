@@ -5,6 +5,8 @@ import main.GamePanel;
 public class Collision {
     static GamePanel gp;
 
+    private ChestAccess chestAccess;
+
     public Collision(GamePanel gp) {
         Collision.gp = gp;
     }
@@ -36,6 +38,10 @@ public class Collision {
             tileCheckCondition = Character.getNumericValue((Integer.toString(item)).charAt(1));
         } else {
             tileCheckCondition = Character.getNumericValue((Integer.toString(item)).charAt(1)+(Integer.toString(item)).charAt(2));
+        }
+        if (tileCheckCondition == 10) {
+            //Walking into chest
+            ChestAccess.grabItems(Xpos, Ypos);
         }
         return (tileCheckCondition != 1)
                 && (tileCheckCondition != 4)

@@ -1,4 +1,5 @@
 package main;
+import collision.ChestAccess;
 import entity.*;
 import inventory.*;
 import mapDevelopmentFunctions.*;
@@ -18,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Inventory inventory;
     private TileDraw tileDraw;
     private TileDistanceDraw tileDistanceDraw;
+    private ChestAccess chestAccess;
 
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed
     private final int originalTileSize = 23;
@@ -47,6 +49,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         BridgeLocationGeneration bridgeLocationGeneration = new BridgeLocationGeneration(this);
         BridgeLocationGeneration.setup();
+
+        ChestAccess chestAccess = new ChestAccess(this);
+        chestAccess.setup();
 
         inventory = new Inventory(this);
         tileDraw = new TileDraw(this);
