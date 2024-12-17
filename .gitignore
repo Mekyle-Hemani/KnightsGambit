@@ -4,6 +4,7 @@ out/
 !**/src/test/**/out/
 /src/entity/test.txt
 /src/META_INF
+/.idea
 
 ### Eclipse ###
 .apt_generated
