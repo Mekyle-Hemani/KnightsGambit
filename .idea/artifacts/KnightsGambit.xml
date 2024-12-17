@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="KnightsGambit">
-    <output-path>$PROJECT_DIR$/out/artifacts/KnightsGambit</output-path>
-    <root id="archive" name="KnightsGambit.jar" />
-  </artifact>
-</component>
