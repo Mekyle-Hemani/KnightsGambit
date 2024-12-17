@@ -1,4 +1,4 @@
-package mapDevelopmentFunctions;
+package collision;
 
 import main.GamePanel;
 

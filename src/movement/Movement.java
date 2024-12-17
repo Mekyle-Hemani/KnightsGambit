@@ -4,6 +4,7 @@ import inventory.*;
 import mapDevelopmentFunctions.*;
 import entity.*;
 import entity.Player;
+import collision.*;
 
 //Add key listeners
 import java.awt.event.KeyEvent;
