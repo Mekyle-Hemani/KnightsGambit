@@ -26,6 +26,14 @@ public class ChestAccess {
         ChestAccess.gp = gp;
     }
 
+    public static void logChest(int chestX, int chestY) {
+
+    }
+
+    public static void iterateChests() {
+
+    }
+
     public static void grabItems(int chestX, int chestY) {
         //Run the inventory code with these specific items
         System.out.println("Chess being accessed! at: " + chestX + ", " + (chestY * (gp.screenWidth / gp.tileSize)));
