@@ -27,7 +27,7 @@ public class ChestAccess {
     }
 
     public static void logChest(int chestX, int chestY) {
-
+        System.out.println("Shifted hashmap of chest locations+items");
     }
 
     public static void iterateChests() {

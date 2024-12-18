@@ -54,6 +54,7 @@ public class Movement implements KeyListener {
                 //If the player is back to the middle of the screen and has not moved backwards...
                 if (verticalSquaresBackwards == 0) {
                     spacesCrossed++; //Increase the spaces crossed
+                    ChestAccess.logChest(0,0);
                     nextLineGeneration.generateNextLine(); //Draw the next section of the map
                 } else {
                     Player.posY -= Entity.size; //Move the player up on the screen
