@@ -86,7 +86,7 @@ public class NextLineGeneration {
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             } else {
                                 totalTile = 110; //Chest
-                                ChestAccess.logChest(nextTileLocations.size()+1);
+                                ChestAccess.logChest(10-nextTileLocations.size());
                             }
                             nextTileLocations.add(totalTile);
 

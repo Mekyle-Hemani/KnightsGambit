@@ -51,7 +51,7 @@ public class ChestAccess {
         Map<Integer, List<String>> updatedChestContents = new HashMap<>();
 
         for (Map.Entry<Integer, List<String>> entry : chestContents.entrySet()) {
-            int newKey = entry.getKey() + 11;
+            int newKey = entry.getKey() + (gp.screenWidth / gp.tileSize);
             updatedChestContents.put(newKey, entry.getValue());
         }
 
@@ -63,5 +63,6 @@ public class ChestAccess {
     public static void grabItems(int position) {
         //Run the inventory code with these specific items
         System.out.println("Chest at "+position+" being accessed");
+        System.out.println("Chest contents: " + chestContents.get(position));
     }
 }
