@@ -1,4 +1,5 @@
 package mapGeneration;
+import collision.ChestAccess;
 import mapDevelopmentFunctions.*;
 import main.GamePanel;
 import java.security.SecureRandom;
@@ -84,7 +85,8 @@ public class NextLineGeneration {
                             if (range == 1){
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             } else {
-                                totalTile = 110;
+                                totalTile = 110; //Chest
+                                ChestAccess.logChest(nextTileLocations.size()+1);
                             }
                             nextTileLocations.add(totalTile);
 
@@ -174,7 +176,6 @@ public class NextLineGeneration {
                     regionTwoDone = true;
                     regionThreeDone = true;
                 }
-                System.out.println("Region: " + region);
             }
         }
         if (nextTileLocations.size()%gridWidth != 0){

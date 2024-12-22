@@ -41,7 +41,7 @@ public class Collision {
         }
         if (tileCheckCondition == 10) {
             //Walking into chest
-            ChestAccess.grabItems(Xpos, Ypos);
+            ChestAccess.grabItems(Ypos * (gp.screenWidth / gp.tileSize) + Xpos);
         }
         return (tileCheckCondition != 1)
                 && (tileCheckCondition != 4)
