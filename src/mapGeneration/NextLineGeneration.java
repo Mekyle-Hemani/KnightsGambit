@@ -139,9 +139,12 @@ public class NextLineGeneration {
                                     nextTileLocations.set(topWallHeight - n, wallType);
                                 }
                             }
-
                             i += range + 1;
                         }
+
+
+
+
                     } else if (region == 1 && regionOneDone) {
                         int[] grid = TreeLocationGeneration.generateTree();
                         for (int value : grid) {
