@@ -85,8 +85,13 @@ public class NextLineGeneration {
                             if (range == 1){
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             } else {
-                                totalTile = 110; //Chest
-                                ChestAccess.logChest(10-nextTileLocations.size());
+                                if (secureRandom.nextInt(2) == 0){
+                                    totalTile = 110; //Normal chest
+                                    ChestAccess.logChest(10-nextTileLocations.size(), 0);
+                                } else {
+                                    totalTile = 210; //Rare chest
+                                    ChestAccess.logChest(10-nextTileLocations.size(), 1);
+                                }
                             }
                             nextTileLocations.add(totalTile);
 

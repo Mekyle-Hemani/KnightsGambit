@@ -3,10 +3,7 @@ package collision;
 import main.GamePanel;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ChestAccess {
     static GamePanel gp;
@@ -19,23 +16,26 @@ public class ChestAccess {
 
     public void setup(){
         chestItems.add("Stick");
-        chestItems.add("Stick");
-        chestItems.add("Stick");
-        chestItems.add("Stick");
-        chestItems.add("Stick");
-        chestItems.add("Stick");
-        chestItems.add("Stick");
-        chestItems.add("Stick");
-        chestItems.add("Stick");
-        chestItems.add("Stick");
+        chestItems.add("Sword");
+        chestItems.add("Shield");
+        chestItems.add("Health Potion");
+        chestItems.add("Money");
+        chestItems.add("Sand");
+        chestItems.add("Rocks");
+        chestItems.add("Armour");
+        chestItems.add("Meat");
+        chestItems.add("Effect Potion");
     }
 
     public ChestAccess(GamePanel gp) {
         ChestAccess.gp = gp;
     }
 
-    public static void logChest(int position) {
+    public static void logChest(int position, int rarity) {
         int chestItemRangeLocal = secureRandom.nextInt(1, chestItemRange);
+        if (rarity == 1) {
+            chestItemRangeLocal += 3;
+        }
         System.out.println("Chest at " + position + " logged");
 
         List<String> itemsInChest = new ArrayList<>();
@@ -56,6 +56,14 @@ public class ChestAccess {
         }
 
         chestContents = updatedChestContents;
+
+        Iterator<Map.Entry<Integer, List<String>>> iterator = chestContents.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, List<String>> entry = iterator.next();
+            if (entry.getKey() > 187) {
+                iterator.remove();
+            }
+        }
 
         System.out.println("Updated chest positions: " + chestContents.keySet());
     }
