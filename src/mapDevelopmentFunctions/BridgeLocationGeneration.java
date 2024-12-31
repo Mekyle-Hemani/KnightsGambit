@@ -26,7 +26,7 @@ public class BridgeLocationGeneration {
         int eachside;
         int middle;
 
-        int newRows = rows + secureRandom.nextInt(5);
+        int newRows = rows + secureRandom.nextInt(7);
 
         if (cols%2==0){
             middle = 2;

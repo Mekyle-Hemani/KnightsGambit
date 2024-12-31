@@ -29,7 +29,7 @@ public class NextLineGeneration {
 
         //Add the amount of parts (Rows) there are for each region
         regionValues.put(0, 7);
-        regionValues.put(1, 19);
+        regionValues.put(1, 20);
         regionValues.put(2, 4);
         regionValues.put(3, 2);
 
@@ -179,20 +179,15 @@ public class NextLineGeneration {
 
 
                     } else if (region == 1 && regionOneDone) {
-                        int[] grid = TreeLocationGeneration.generateTree();
-                        for (int value : grid) {
-                            if (value == 0) {
-                                nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
-                            } else {
-                                nextTileLocations.add(14);
-                            }
-                        }
+                        ArrayList<Integer> grid = TreeLocationGeneration.generateTree();
+                        nextTileLocations.addAll(grid);
                         regionOneDone = false;
 
                     } else if (region == 2 && regionTwoDone) {
                         ArrayList<Integer> grid = EntranceLocationGeneration.generateEntrance();
                         nextTileLocations.addAll(grid);
                         regionTwoDone = false;
+
                     } else if (region == 3 && regionThreeDone) {
                         ArrayList<Integer> bridgeLocations = BridgeLocationGeneration.generateBridge();
                         nextTileLocations.addAll(bridgeLocations);

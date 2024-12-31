@@ -2,49 +2,63 @@ package mapDevelopmentFunctions;
 
 import main.GamePanel;
 import mapGeneration.NextLineGeneration;
+
+import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
 public class TreeLocationGeneration {
     static GamePanel gp;
     public static int rows;
     public static int cols;
 
+    static SecureRandom secureRandom = new SecureRandom();
+
     public TreeLocationGeneration(GamePanel gp) {
         TreeLocationGeneration.gp = gp;
     }
 
     public void setup() {
-        rows = NextLineGeneration.getTreeRegionLength();
+        rows = NextLineGeneration.getTreeRegionLength()-2;
         cols = gp.screenWidth / gp.tileSize;
     }
 
-    public static int[] generateTree() {
-        int[] grid = new int[rows * cols];
-        ArrayList<Integer> openRows = new ArrayList<>();
-        Random rand = new Random();
+    public static ArrayList<Integer> generateTree() {
+        System.out.println(rows);
+        ArrayList<Integer> betterGrid = new ArrayList<>();
+        ArrayList<Integer> skipCols = new ArrayList<>();
 
-        while (openRows.size() < 3) {
-            int randomRow = rand.nextInt(rows);
-            if (!openRows.contains(randomRow)) {
-                openRows.add(randomRow);
+        int checkingColInt;
+        for (int i = 0; i < 3; ) {
+            checkingColInt = secureRandom.nextInt(cols);
+            if (!skipCols.contains(checkingColInt)) {
+                skipCols.add(checkingColInt);
+                i++;
             }
         }
 
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-                int index = r * cols + c;
-                grid[index] = (!openRows.contains(r) && rand.nextInt(100) < 20) ? 1 : 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (skipCols.contains(j)) {
+                    betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
+                } else {
+                    if (secureRandom.nextInt(3) == 1) {
+                        betterGrid.add(14); //Tree tile
+                    } else {
+                        betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
+                    }
+                }
             }
         }
 
-        for (int openRow : openRows) {
-            for (int c = 0; c < cols; c++) {
-                int index = openRow * cols + c;
-                grid[index] = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < cols; j++) {
+                betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
             }
         }
 
-        return grid;
+        System.out.println(betterGrid);
+
+        return betterGrid;
     }
 }
