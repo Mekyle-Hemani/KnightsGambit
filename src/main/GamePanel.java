@@ -35,30 +35,33 @@ public class GamePanel extends JPanel implements Runnable {
         startup();
     }
 
+    //These are all the different functions the game will do before anything else starts
     private void startup() throws IOException, FontFormatException {
-        FirstMapGeneration firstMapGeneration = new FirstMapGeneration(this);
-        firstMapGeneration.generateFirstMap();
-        NextLineGeneration nextLineGeneration = new NextLineGeneration(this);
-        nextLineGeneration.setup();
+        FirstMapGeneration firstMapGeneration = new FirstMapGeneration(this); //Allows functions from this specific class to be called by initiating it
+        firstMapGeneration.generateFirstMap(); //Runs a specified script to initiate certain parts of the game
 
-        TreeLocationGeneration treeLocationGeneration = new TreeLocationGeneration(this);
-        treeLocationGeneration.setup();
+        NextLineGeneration nextLineGeneration = new NextLineGeneration(this); //Allows functions from this specific class to be called by initiating it
+        nextLineGeneration.setup(); //Runs a specified script to initiate certain parts of the game
 
-        EntranceLocationGeneration entranceLocationGeneration = new EntranceLocationGeneration(this);
-        EntranceLocationGeneration.setup();
+        TreeLocationGeneration treeLocationGeneration = new TreeLocationGeneration(this); //Allows functions from this specific class to be called by initiating it
+        treeLocationGeneration.setup(); //Runs a specified script to initiate certain parts of the game
 
-        BridgeLocationGeneration bridgeLocationGeneration = new BridgeLocationGeneration(this);
-        BridgeLocationGeneration.setup();
+        EntranceLocationGeneration entranceLocationGeneration = new EntranceLocationGeneration(this); //Allows functions from this specific class to be called by initiating it
+        EntranceLocationGeneration.setup(); //Runs a specified script to initiate certain parts of the game
 
-        ChestAccess chestAccess = new ChestAccess(this);
-        chestAccess.setup();
+        BridgeLocationGeneration bridgeLocationGeneration = new BridgeLocationGeneration(this); //Allows functions from this specific class to be called by initiating it
+        BridgeLocationGeneration.setup(); //Runs a specified script to initiate certain parts of the game
 
+        ChestAccess chestAccess = new ChestAccess(this); //Allows functions from this specific class to be called by initiating it
+        chestAccess.setup(); //Runs a specified script to initiate certain parts of the game
+
+        //Starts to draw the rest of the visual items after necessary initialization
         inventory = new Inventory(this);
         tileDraw = new TileDraw(this);
         tileDistanceDraw = new TileDistanceDraw(this);
-
         player = new Player(this);
 
+        //Starts the actual game
         thread = new Thread(this);
         thread.start();
     }
@@ -88,17 +91,19 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
+    //This draws every new frame
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        //This is in a try catch as the script needs to have some sort of fail-safe if the wanted pngs are not present
         try {
-            tileDraw.draw((Graphics2D) g);
+            tileDraw.draw((Graphics2D) g); //Draw every tile that is supposed to be shown onscreen
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); //Throw possible errors
         }
 
-        player.draw((Graphics2D) g);
-        tileDistanceDraw.draw((Graphics2D) g);
-        inventory.draw((Graphics2D) g);
+        player.draw((Graphics2D) g); //Draw the player
+        tileDistanceDraw.draw((Graphics2D) g); //Draw the score
+        inventory.draw((Graphics2D) g); //Draw the hidden inventory
     }
 }

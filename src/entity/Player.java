@@ -39,7 +39,7 @@ public class Player extends Entity{
         playerImageLeftClear = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/player/playerLeftClear.png"))); //Sets an image to the left player side
         playerImageRightClear = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/player/playerRightClear.png"))); //Sets an image to the right player side
 
-        playerImage = playerImageLeft; //sets the current player image to the left image
+        playerImage = playerImageLeft; //Sets the current player image to the left image
         size = gp.tileSize; //Sets the player size to the average tile size
         posX = ((gp.screenWidth-size)/2); //Sets the player x to the middle x
         posY = (((gp.screenHeight-size)/2)+(size*2)); //Sets the player y to the middle y

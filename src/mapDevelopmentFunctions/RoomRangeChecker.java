@@ -18,7 +18,7 @@ public class RoomRangeChecker {
         int checkRow = checkIndex / gridWidth;
         int checkCol = checkIndex % gridWidth;
 
-        // Ensure range is even and calculate half-range
+        //Ensure range is even and calculate half-range
         if (range % 2 == 1) {
             range -= 1;
         }
@@ -29,12 +29,12 @@ public class RoomRangeChecker {
         int startCol = checkCol - range;
         int endCol = checkCol + range;
 
-        // Check if range goes off-screen
+        //Check if range goes off-screen
         if (startRow < 0 || endRow >= gridHeight || startCol < 0 || endCol >= gridWidth) {
             return true;
         }
 
-        // Search for the target within the range
+        //Search for the target within the range
         for (int row = startRow; row <= endRow; row++) {
             for (int col = startCol; col <= endCol; col++) {
                 int index = row * gridWidth + col;

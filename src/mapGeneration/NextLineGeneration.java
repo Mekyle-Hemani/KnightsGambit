@@ -9,31 +9,39 @@ import java.util.List;
 
 public class NextLineGeneration {
     static GamePanel gp;
-    SecureRandom secureRandom = new SecureRandom();
-    public static List<Integer> nextTileLocations = new ArrayList<>();
+    SecureRandom secureRandom = new SecureRandom(); //Used for getting random values
+    public static List<Integer> nextTileLocations = new ArrayList<>(); //This is the array of pre-calculated tiles not yet shown on screen
 
-    public int region = 0;
-    public int regionCount = 0;
-    public static HashMap<Integer, Integer> regionValues = new HashMap<>();
-    public int regionRange;
+    public int region = 0; //This is the current region that the player is in
+    public int regionCount = 0; //This is how many parts (Rows) of the region have been generated
+    public static HashMap<Integer, Integer> regionValues = new HashMap<>(); //This is the hashmap holding the amount of parts (Rows) are in each region
+    public int regionRange; //This is the total amount of region for random selection
+
+    //These are the booleans that will change as each region is done
     public boolean regionOneDone = true;
     public boolean regionTwoDone = true;
     public boolean regionThreeDone = true;
 
     public void setup() {
-        regionValues.clear();
+        //This is called once before the game starts
+
+        regionValues.clear(); //Clear any old values
+
+        //Add the amount of parts (Rows) there are for each region
         regionValues.put(0, 7);
         regionValues.put(1, 19);
         regionValues.put(2, 4);
         regionValues.put(3, 2);
 
-        regionRange = regionValues.size();
+        regionRange = regionValues.size(); //Set the region range
 
+        //Claim all regions are done as none have been drawn yet
         regionOneDone = true;
         regionTwoDone = true;
         regionThreeDone = true;
     }
 
+    //These functions are used to pull values from NextLineGeneration.java to other scripts easier
     public static int getTreeRegionLength(){
         return regionValues.get(1);
     }
@@ -48,43 +56,63 @@ public class NextLineGeneration {
         NextLineGeneration.gp = gp;
     }
 
+    //Generate the next line to be drawn
     public void generateNextLine() {
-        int gridWidth = gp.screenWidth / gp.tileSize;
+        int gridWidth = gp.screenWidth / gp.tileSize; //This is the width of each row
 
+        //If there are not enough pre-rendered tiles...
         if (nextTileLocations.size() / gridWidth <= 7) {
+            //Determine how many pre-rendered tile rows should be calculated
             int count = 7 - nextTileLocations.size() / gridWidth;
 
+            //For every row that needs to be rendered
             for (int l = 0; l < count; l++) {
+                //For every tile that needs to be rendered
                 for (int i = 0; i < gridWidth; i++) {
+                    //If the region is 0...
                     if (region == 0) {
+                        //The variable doorTile is the tile ID of doors
                         int doorTile = 12;
+                        //There is a 50-50 chance of the door being changed to stairs for visual change
                         if (secureRandom.nextInt(2) == 0){
-                            doorTile = 18;
+                            doorTile = 18; //Stair tile
                         }
-                        int totalTile;
+                        int totalTile; //totalTile is the full tile ID to be drawn and added to the array of pre-rendered tiles
 
+                        //This array finds out how many total tiles there are and combines all the rendered ones to the pre-rendered ones for future calculation
                         List<Integer> totalTileLocations = new ArrayList<>(nextTileLocations);
                         totalTileLocations.addAll(GamePanel.tileLocations);
 
+                        //This helps to find out where the rendered and non-rendered tiles are in the totalTileLocations array
                         int indexInTotalTileLocations = nextTileLocations.size();
 
+                        //Room drawing
+
+                        //Range is the length of the room that will be drawn
                         int range = secureRandom.nextInt(1, 4);
                         int compareRange = range;
 
+                        //This part checks the length and makes it divisible by 2, then divides it by 2
                         if (compareRange % 2 == 1) {
                             compareRange -= 1;
                         }
                         compareRange = compareRange / 2;
 
-                        compareRange += 5;
 
+                        compareRange += 5; //This helps to draw the rooms a little bigger than their actual representation
+
+                        //If the rooms range interferes or collides with any other already drawn rooms etc...
                         if (RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 2) || RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 1) || RoomRangeChecker.isInRange(totalTileLocations, gridWidth, indexInTotalTileLocations, compareRange, 1)) {
+                            //Just draw a walkable ground tile and move on
                             totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
-                            nextTileLocations.add(totalTile);
+                            nextTileLocations.add(totalTile); //Add it to the pre-rendered tiles array
                         } else {
+                            //If the range is too small
                             if (range == 1){
+                                //Just draw a walkable ground tile and move on
                                 totalTile = Integer.parseInt(secureRandom.nextInt(5) + 1 + "0");
                             } else {
+                                //Make a chest appear by 50-50 chance
                                 if (secureRandom.nextInt(2) == 0){
                                     totalTile = 110; //Normal chest
                                     ChestAccess.logChest(10-nextTileLocations.size(), 0);

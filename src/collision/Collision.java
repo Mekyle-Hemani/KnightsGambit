@@ -5,11 +5,9 @@ import main.GamePanel;
 public class Collision {
     static GamePanel gp;
 
-    private ChestAccess chestAccess;
-
     public Collision(GamePanel gp) {
         Collision.gp = gp;
-    }
+    } //This access the gamepanel script where lots of major values are stored such as the screen length and width
 
     //Sees if the players next movement is into a wall or not
     public static boolean CheckCollision(int Xpos, int Ypos, int direction) {
@@ -30,19 +28,35 @@ public class Collision {
         //The value of a ground tile is 1. It checks if the requested movement (From the direction integer) is into a wall or not
         //It then returns if the player can go forward (true) or not (false)
 
-        int item = (GamePanel.tileLocations.get(Ypos * (gp.screenWidth / gp.tileSize) + Xpos));
+        //IMPORTANT NOTE
+        //Tiles are assigned IDs for collision
 
-        int tileCheckCondition;
+        //A tile ID with the value of 21 would mean that...
+        //1 is the tile type, the wall tile type
 
+        //2 is the asset specifically in correlation to the tile type
+        //That means that tile ID 21 will reference the second wall asset
+
+        int item = (GamePanel.tileLocations.get(Ypos * (gp.screenWidth / gp.tileSize) + Xpos)); //This is the tile that the player would like to walk into
+
+        int tileCheckCondition; //This is the condensed value of the tile, the tile type
+
+        //Some tile IDs can have 2 digit tile types 10 rather than 2
+
+        //This script grabs the tile type depending on if the tile ID is 2 or 3 digits long
         if ((String.valueOf(item).length()) == 2) {
             tileCheckCondition = Character.getNumericValue((Integer.toString(item)).charAt(1));
         } else {
             tileCheckCondition = Character.getNumericValue((Integer.toString(item)).charAt(1)+(Integer.toString(item)).charAt(2));
         }
+
+        //If the player is trying to walk into a chest, tile type 10
         if (tileCheckCondition == 10) {
-            //Walking into chest
+            //Run the item selection script from the chest at the players wanted location (Where the player is trying to go)
             ChestAccess.grabItems(Ypos * (gp.screenWidth / gp.tileSize) + Xpos);
         }
+
+        //This is the full list of the tiles that the player can't walk into using a full boolean returning value
         return (tileCheckCondition != 1)
                 && (tileCheckCondition != 4)
                 && (tileCheckCondition != 5)
