@@ -175,7 +175,11 @@ public class NextLineGeneration {
                             i += range + 1;
                         }
 
-
+                        /*for (int j = 0; j < 2; j++) {
+                            for (int k = 0; k < gridWidth; k++) {
+                                nextTileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
+                            }
+                        }*/
 
 
                     } else if (region == 1 && regionOneDone) {

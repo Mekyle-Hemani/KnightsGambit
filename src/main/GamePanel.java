@@ -5,6 +5,7 @@ import inventory.*;
 import mapDevelopmentFunctions.*;
 import mapGeneration.*;
 import tileDrawing.*;
+import saveFunction.*;
 
 import java.awt.*;
 import java.io.IOException;
@@ -21,6 +22,8 @@ public class GamePanel extends JPanel implements Runnable {
     private TileDistanceDraw tileDistanceDraw;
     private ChestAccess chestAccess;
 
+    public boolean gameStart = true;
+
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed
     private final int originalTileSize = 23;
     private final double scale = 2.0; //Adjust scale from 3 to 2.0 for 1.5x smaller tiles
@@ -32,7 +35,17 @@ public class GamePanel extends JPanel implements Runnable {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.LIGHT_GRAY);
         this.setFocusable(true);
-        startup();
+
+        new Thread(() -> {
+            try {
+                while (!gameStart) {
+                    Thread.sleep(1);
+                }
+                startup();
+            } catch (InterruptedException | IOException | FontFormatException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     //These are all the different functions the game will do before anything else starts
@@ -54,6 +67,11 @@ public class GamePanel extends JPanel implements Runnable {
 
         ChestAccess chestAccess = new ChestAccess(this); //Allows functions from this specific class to be called by initiating it
         chestAccess.setup(); //Runs a specified script to initiate certain parts of the game
+
+        //java.util.List<String> savingValues = new ArrayList<>();
+        //savingValues.add("1");
+        //save.save(haha, "save.txt");
+        //System.out.println(save.load("save.txt").get(0));
 
         //Starts to draw the rest of the visual items after necessary initialization
         inventory = new Inventory(this);

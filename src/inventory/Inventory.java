@@ -3,9 +3,13 @@ import entity.Entity;
 import main.GamePanel;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Inventory extends Entity {
     GamePanel gp;
+
+    public static List<String> Inventory = new ArrayList<>();
 
     public static boolean isVisible; //This will change depending on if the inventory is showing or not
 
