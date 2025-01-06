@@ -40,12 +40,17 @@ public class GamePanel extends JPanel implements Runnable {
             try {
                 while (!gameStart) {
                     Thread.sleep(1);
+                    UI.drawUI(screenWidth, screenHeight);
+                    if (UI.isStarted) {
+                        this.gameStart = true;
+                    }
                 }
                 startup();
             } catch (InterruptedException | IOException | FontFormatException e) {
                 e.printStackTrace();
             }
         }).start();
+
     }
 
     //These are all the different functions the game will do before anything else starts
@@ -71,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
         //java.util.List<String> savingValues = new ArrayList<>();
         //savingValues.add("1");
         //save.save(haha, "save.txt");
-        //System.out.println(save.load("save.txt").get(0));
+        //System.out.println(save.load("save.txt"));
 
         //Starts to draw the rest of the visual items after necessary initialization
         inventory = new Inventory(this);
