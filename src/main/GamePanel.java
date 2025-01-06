@@ -38,9 +38,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.LIGHT_GRAY);
         this.setFocusable(true);
 
-        startup();
+        //startup();
 
-        /*JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel spacer = new JPanel();
         spacer.setPreferredSize(new Dimension(0, screenHeight / 6));
         panel.add(spacer);
@@ -56,15 +56,13 @@ public class GamePanel extends JPanel implements Runnable {
                 } catch (IOException | FontFormatException ex) {
                     throw new RuntimeException(ex);
                 }
-                Main.window.setVisible(false);
-                Main.window.dispose();
-                Main.window = null;
+                panel.setVisible(false);
             }
         });
 
         panel.add(startButton);
         this.add(panel);
-        this.setVisible(true);*/
+        this.setVisible(true);
     }
 
     //These are all the different functions the game will do before anything else starts
