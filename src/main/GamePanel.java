@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements Runnable {
     private TileDistanceDraw tileDistanceDraw;
     private ChestAccess chestAccess;
 
-    public boolean gameStart = true;
+    public boolean gameStart = false;
 
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed
     private final int originalTileSize = 23;
