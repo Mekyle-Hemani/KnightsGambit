@@ -10,14 +10,21 @@ public class UI {
 
     private static JFrame frame;
 
-    public static void drawUI(int screenWidth,int screenHeight) {
+    public static void drawUI(int screenWidth, int screenHeight) {
         if (!isStarted && frame == null) {
-            frame = new JFrame("Game UI");
+            frame = new JFrame("Knights Gambit");
             frame.setSize(screenWidth, screenHeight);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setLocationRelativeTo(null);
 
-            JPanel panel = new JPanel(new BorderLayout());
+            // Create a panel with FlowLayout
+            JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+            // Add vertical space above the button by adding an empty panel
+            JPanel spacer = new JPanel();
+            spacer.setPreferredSize(new Dimension(0, screenHeight / 6)); // Adjust the value to move the button up or down
+            panel.add(spacer);
+
             JButton startButton = new JButton("Start");
             startButton.setFont(new Font("Arial", Font.BOLD, 32));
 
@@ -31,7 +38,7 @@ public class UI {
                 }
             });
 
-            panel.add(startButton, BorderLayout.CENTER);
+            panel.add(startButton); // Add button to the panel
             frame.add(panel);
             frame.setVisible(true);
         }
