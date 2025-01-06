@@ -8,9 +8,11 @@ import tileDrawing.*;
 import saveFunction.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable {
     public static java.util.List<Integer> tileLocations = new ArrayList<>();
@@ -36,21 +38,33 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.LIGHT_GRAY);
         this.setFocusable(true);
 
-        new Thread(() -> {
-            try {
-                while (!gameStart) {
-                    Thread.sleep(1);
-                    UI.drawUI(screenWidth, screenHeight);
-                    if (UI.isStarted) {
-                        this.gameStart = true;
-                    }
-                }
-                startup();
-            } catch (InterruptedException | IOException | FontFormatException e) {
-                e.printStackTrace();
-            }
-        }).start();
+        startup();
 
+        /*JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel spacer = new JPanel();
+        spacer.setPreferredSize(new Dimension(0, screenHeight / 6));
+        panel.add(spacer);
+
+        JButton startButton = new JButton("Start");
+        startButton.setFont(new Font("Arial", Font.BOLD, 32));
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    startup();
+                } catch (IOException | FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+                Main.window.setVisible(false);
+                Main.window.dispose();
+                Main.window = null;
+            }
+        });
+
+        panel.add(startButton);
+        this.add(panel);
+        this.setVisible(true);*/
     }
 
     //These are all the different functions the game will do before anything else starts
