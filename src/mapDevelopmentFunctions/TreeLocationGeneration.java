@@ -24,7 +24,6 @@ public class TreeLocationGeneration {
     }
 
     public static ArrayList<Integer> generateTree() {
-        System.out.println(rows);
         ArrayList<Integer> betterGrid = new ArrayList<>();
         ArrayList<Integer> skipCols = new ArrayList<>();
 
@@ -56,8 +55,6 @@ public class TreeLocationGeneration {
                 betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
             }
         }
-
-        System.out.println(betterGrid);
 
         return betterGrid;
     }

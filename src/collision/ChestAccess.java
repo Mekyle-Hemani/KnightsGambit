@@ -36,15 +36,12 @@ public class ChestAccess {
         if (rarity == 1) {
             chestItemRangeLocal += 3;
         }
-        //System.out.println("Chest at " + position + " logged");
 
         List<String> itemsInChest = new ArrayList<>();
         for (int i = 0; i < chestItemRangeLocal; i++) {
             itemsInChest.add(chestItems.get(secureRandom.nextInt(chestItems.size())));
         }
         chestContents.put(position, itemsInChest);
-
-        //System.out.println("Chest contents: " + chestContents.get(position));
     }
 
     public static void iterateChests() {
@@ -64,8 +61,6 @@ public class ChestAccess {
                 iterator.remove();
             }
         }
-
-        //System.out.println("Updated chest positions: " + chestContents.keySet());
     }
 
     public static void grabItems(int position) {
