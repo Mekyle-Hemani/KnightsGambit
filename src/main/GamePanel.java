@@ -38,8 +38,6 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.LIGHT_GRAY);
         this.setFocusable(true);
 
-        //startup();
-
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel spacer = new JPanel();
         spacer.setPreferredSize(new Dimension(0, screenHeight / 6));
