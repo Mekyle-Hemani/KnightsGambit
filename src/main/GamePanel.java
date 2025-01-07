@@ -45,6 +45,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         JButton startButton = new JButton("Start");
         startButton.setFont(new Font("Arial", Font.BOLD, 32));
+        startButton.setBackground(Color.DARK_GRAY);
+        startButton.setForeground(Color.WHITE);
 
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -61,6 +63,11 @@ public class GamePanel extends JPanel implements Runnable {
         panel.add(startButton);
         this.add(panel);
         this.setVisible(true);
+
+        panel.revalidate();
+        panel.repaint();
+
+        System.out.println("wqdwqdwdqdwq");
     }
 
     //These are all the different functions the game will do before anything else starts
