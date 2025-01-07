@@ -6,6 +6,8 @@ import mapGeneration.NextLineGeneration;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
+import presetTileConfigs.*;
+
 public class EntranceLocationGeneration {
     static GamePanel gp;
     public static int rows;
