@@ -6,9 +6,11 @@ import java.security.SecureRandom;
 import java.util.*;
 import java.util.List;
 import entity.*;
+import mapGeneration.NextLineGeneration;
 
 public class CoinDraw {
     static GamePanel gp;
+
     private static SecureRandom secureRandom = new SecureRandom();
 
     public static List<Integer> coinLocations = new ArrayList<>();
@@ -22,8 +24,8 @@ public class CoinDraw {
     }
 
     public static void developCoin(int index) {
-        if (!coinLocations.contains(index) && secureRandom.nextInt(12) == 3) {
-        //if (!coinLocations.contains(index)) {
+        //if (!coinLocations.contains(index) && secureRandom.nextInt(12) == 3) {
+        if (!coinLocations.contains(index)) {
             coinLocations.add(index);
         }
     }

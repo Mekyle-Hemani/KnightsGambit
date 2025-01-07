@@ -50,8 +50,8 @@ public class EntranceLocationGeneration {
             }
         }
         for (int i = 0; i < cols; i++){
-            grid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
-            //GroundConfig.formGroundTile(grid, 8);
+            //grid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
+            GroundConfig.formGroundTile(grid, 8);
         }
         return grid;
     }
