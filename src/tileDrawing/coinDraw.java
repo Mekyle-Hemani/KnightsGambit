@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.List;
+import entity.*;
 
 public class CoinDraw {
     static GamePanel gp;
@@ -36,5 +37,13 @@ public class CoinDraw {
 
     public static boolean compileCoins(int index){
         return coinLocations.contains(index);
+    }
+
+    public static void collectCoins(int playerIndex) {
+        if (coinLocations.contains(playerIndex)) {
+            coinLocations.remove((Integer) playerIndex);
+            Player.money += 1;
+            System.out.println("Money: "+Player.money);
+        }
     }
 }

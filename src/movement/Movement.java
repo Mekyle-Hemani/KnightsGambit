@@ -117,6 +117,8 @@ public class Movement implements KeyListener {
             locationY = (Player.posY / Entity.size);
             location = (locationY * (gp.screenWidth / gp.tileSize)) + locationX;
 
+            CoinDraw.collectCoins(location);
+
             GamePanel.spacesCrossed = spacesCrossed;
         }
     }

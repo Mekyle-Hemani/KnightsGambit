@@ -25,6 +25,8 @@ public class Player extends Entity{
     public static BufferedImage playerImageLeftClear; //Creates a player image
     public static BufferedImage playerImageRightClear; //Creates a player image
 
+    public static int money;
+
     public Player(GamePanel gamePanel) throws IOException {
         this.gp = gamePanel;
         initialize();
