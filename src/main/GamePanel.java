@@ -24,8 +24,6 @@ public class GamePanel extends JPanel implements Runnable {
     private TileDistanceDraw tileDistanceDraw;
     private ChestAccess chestAccess;
 
-    public boolean gameStart = false;
-
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed
     private final int originalTileSize = 23;
     private final double scale = 2.0; //Adjust scale from 3 to 2.0 for 1.5x smaller tiles
@@ -40,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel spacer = new JPanel();
-        spacer.setPreferredSize(new Dimension(0, screenHeight / 6));
+        spacer.setPreferredSize(new Dimension(0, screenHeight / 4));
         panel.add(spacer);
 
         JButton startButton = new JButton("Start");
@@ -66,8 +64,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         panel.revalidate();
         panel.repaint();
-
-        System.out.println("wqdwqdwdqdwq");
     }
 
     //These are all the different functions the game will do before anything else starts
