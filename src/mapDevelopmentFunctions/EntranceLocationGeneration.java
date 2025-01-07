@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import presetTileConfigs.*;
 
+import static main.GamePanel.tileLocations;
+
 public class EntranceLocationGeneration {
     static GamePanel gp;
     public static int rows;
@@ -40,7 +42,8 @@ public class EntranceLocationGeneration {
                 grid.add(14);
             }
             for (int i = 0; i < middle; i++) {
-                grid.add(10);
+                //grid.add(10);
+                GroundConfig.formGroundTile(grid, 8);
             }
             for (int i = 0; i < eachside; i++) {
                 grid.add(14);
@@ -48,6 +51,7 @@ public class EntranceLocationGeneration {
         }
         for (int i = 0; i < cols; i++){
             grid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0));
+            //GroundConfig.formGroundTile(grid, 8);
         }
         return grid;
     }
