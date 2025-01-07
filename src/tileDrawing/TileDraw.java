@@ -83,7 +83,8 @@ public class TileDraw {
                 //Draw the image with a regulated size and given position based off of the i and j variables. (X and Y variables)
                 g2.drawImage(drawTile, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
 
-                if (coinDraw.compileCoins(item)) {
+                int location = (i * (gp.screenWidth / gp.tileSize) + j);
+                if (coinDraw.compileCoins(location)) {
                     g2.drawImage(coinImg, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
                 }
             }

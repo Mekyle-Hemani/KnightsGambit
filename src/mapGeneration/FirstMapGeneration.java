@@ -3,6 +3,9 @@ package mapGeneration;
 import main.GamePanel;
 import tileDrawing.*;
 import java.security.SecureRandom;
+import presetTileConfigs.*;
+
+import static main.GamePanel.tileLocations;
 
 public class FirstMapGeneration {
     private final GamePanel gp;
@@ -17,8 +20,9 @@ public class FirstMapGeneration {
         int totalTiles = (gp.screenWidth/gp.tileSize) * (gp.screenHeight/gp.tileSize); //This is the width of the screen in tiles times the height of the screen in tiles
         //For every tile visible on screen...
         for (int i = 0; i < totalTiles; i++) {
-            GamePanel.tileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0)); //Just add tons of regular floor tiles
+            //GamePanel.tileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0)); //Just add tons of regular floor tiles
             //coinDraw.developCoin(i);
+            GroundConfig.formGroundTile(tileLocations);
         }
     }
 }
