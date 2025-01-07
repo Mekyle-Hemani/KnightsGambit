@@ -4,7 +4,6 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Main {
-    private Thread thread;
     public static JFrame window = new JFrame();
     public static void main(String[] args) throws IOException, FontFormatException {
         window.setName("Knight's Gambit");
