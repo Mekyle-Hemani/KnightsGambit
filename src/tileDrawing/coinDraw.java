@@ -15,7 +15,7 @@ public class CoinDraw {
     public CoinDraw(GamePanel gamePanel) throws IOException {
         this.gp = gamePanel;
     }
-    
+
     private void initialize() {
 
     }
