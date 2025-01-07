@@ -84,7 +84,7 @@ public class TileDraw {
                 g2.drawImage(drawTile, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
 
                 int location = (i * (gp.screenWidth / gp.tileSize) + j);
-                if (coinDraw.compileCoins(location)) {
+                if (CoinDraw.compileCoins(location)) {
                     g2.drawImage(coinImg, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
                 }
             }

@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable {
     private TileDraw tileDraw;
     private TileDistanceDraw tileDistanceDraw;
     private ChestAccess chestAccess;
+    private CoinDraw coinDraw;
 
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed
     private final int originalTileSize = 23;
@@ -85,6 +86,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         ChestAccess chestAccess = new ChestAccess(this); //Allows functions from this specific class to be called by initiating it
         chestAccess.setup(); //Runs a specified script to initiate certain parts of the game
+
+        CoinDraw coinDraw = new CoinDraw(this);
 
         //java.util.List<String> savingValues = new ArrayList<>();
         //savingValues.add("1");

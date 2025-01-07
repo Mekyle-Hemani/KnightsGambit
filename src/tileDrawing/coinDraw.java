@@ -6,12 +6,16 @@ import java.security.SecureRandom;
 import java.util.*;
 import java.util.List;
 
-public class coinDraw {
-    GamePanel gp;
+public class CoinDraw {
+    static GamePanel gp;
     private static SecureRandom secureRandom = new SecureRandom();
 
     public static List<Integer> coinLocations = new ArrayList<>();
 
+    public CoinDraw(GamePanel gamePanel) throws IOException {
+        this.gp = gamePanel;
+    }
+    
     private void initialize() {
 
     }
@@ -23,17 +27,14 @@ public class coinDraw {
     }
 
     public static void iterateCoins() {
-        System.out.println("Iterating coins:");
         for (int item = 0; item < coinLocations.size(); item++) {
-            if (coinLocations.get(item) + (11) < 187) {
-                coinLocations.set(item, coinLocations.get(item) + (11));
-                System.out.println(coinLocations.get(item));
+            if (coinLocations.get(item) + (gp.screenWidth / gp.tileSize) < 187) {
+                coinLocations.set(item, coinLocations.get(item) + (gp.screenWidth / gp.tileSize));
             }
         }
     }
 
-    public static boolean compileCoins(int index) throws IOException {
-        //Check if the given index is found in the coinLocations array
+    public static boolean compileCoins(int index){
         return coinLocations.contains(index);
     }
 }
