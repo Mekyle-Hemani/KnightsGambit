@@ -29,10 +29,9 @@ public class CoinDraw {
 
     public static void iterateCoins() {
         for (int item = 0; item < coinLocations.size(); item++) {
-            if (coinLocations.get(item) + (gp.screenWidth / gp.tileSize) < 187) {
-                coinLocations.set(item, coinLocations.get(item) + (gp.screenWidth / gp.tileSize));
-            }
+            coinLocations.set(item, coinLocations.get(item) + (gp.screenWidth / gp.tileSize));
         }
+        coinLocations.removeIf(coin -> coin > 187);
     }
 
     public static boolean compileCoins(int index){
