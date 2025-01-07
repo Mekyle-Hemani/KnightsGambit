@@ -16,6 +16,8 @@ public class TileDraw {
     private BufferedImage drawTile; //This is what image will be drawn at the current moment
     private Map<String, BufferedImage> imageCache; //This hashmap is being treated like an image cache to help redundant image loading
 
+    BufferedImage coinImg = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/coin/coin.png")));
+
     public TileDraw(GamePanel gamePanel) throws IOException {
         this.gp = gamePanel;
         imageCache = new HashMap<>(); //Finalize the hashmap
@@ -80,6 +82,10 @@ public class TileDraw {
 
                 //Draw the image with a regulated size and given position based off of the i and j variables. (X and Y variables)
                 g2.drawImage(drawTile, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
+
+                if (coinDraw.compileCoins(item)) {
+                    g2.drawImage(coinImg, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
+                }
             }
         }
     }

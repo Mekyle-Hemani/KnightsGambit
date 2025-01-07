@@ -1,7 +1,7 @@
 package mapGeneration;
 
 import main.GamePanel;
-
+import tileDrawing.*;
 import java.security.SecureRandom;
 
 public class FirstMapGeneration {
@@ -18,6 +18,7 @@ public class FirstMapGeneration {
         //For every tile visible on screen...
         for (int i = 0; i < totalTiles; i++) {
             GamePanel.tileLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5)+1) + 0)); //Just add tons of regular floor tiles
+            //coinDraw.developCoin(i);
         }
     }
 }
