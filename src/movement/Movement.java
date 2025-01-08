@@ -56,7 +56,7 @@ public class Movement implements KeyListener {
                     if (verticalSquaresBackwards == 0) {
                         spacesCrossed++; //Increase the spaces crossed
                         ChestAccess.iterateChests();
-                        CoinDraws.iterateCoins();
+                        CoinDraw.iterateCoins();
                         nextLineGeneration.generateNextLine(); //Draw the next section of the map
                     } else {
                         Player.posY -= Entity.size; //Move the player up on the screen
@@ -117,7 +117,7 @@ public class Movement implements KeyListener {
             locationY = (Player.posY / Entity.size);
             location = (locationY * (gp.screenWidth / gp.tileSize)) + locationX;
 
-            CoinDraws.collectCoins(location);
+            CoinDraw.collectCoins(location);
 
             GamePanel.spacesCrossed = spacesCrossed;
         }

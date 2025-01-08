@@ -8,14 +8,14 @@ import java.util.List;
 import entity.*;
 
 //
-public class CoinDraws {
+public class CoinDraw {
     static GamePanel gp;
 
     private static SecureRandom secureRandom = new SecureRandom();
 
     public static List<Integer> coinLocations = new ArrayList<>();
 
-    public CoinDraws(GamePanel gamePanel) throws IOException {
+    public CoinDraw(GamePanel gamePanel) throws IOException {
         this.gp = gamePanel;
     }
 
