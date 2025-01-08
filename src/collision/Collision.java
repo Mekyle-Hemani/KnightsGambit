@@ -1,6 +1,9 @@
 package collision;
 
 import main.GamePanel;
+import saveFunction.*;
+
+import java.io.IOException;
 
 public class Collision {
     static GamePanel gp;
@@ -10,7 +13,7 @@ public class Collision {
     } //This access the gamepanel script where lots of major values are stored such as the screen length and width
 
     //Sees if the players next movement is into a wall or not
-    public static boolean CheckCollision(int Xpos, int Ypos, int direction) {
+    public static boolean CheckCollision(int Xpos, int Ypos, int direction) throws IOException {
         //Depending on the direction given...
         switch (direction) {
             //Change the given coordinates by one position
@@ -56,12 +59,17 @@ public class Collision {
             ChestAccess.grabItems(Ypos * (gp.screenWidth / gp.tileSize) + Xpos);
         }
 
+        if (tileCheckCondition == 11) {
+            midGameSave.save();
+        }
+
         //This is the full list of the tiles that the player can't walk into using a full boolean returning value
         return (tileCheckCondition != 1)
                 && (tileCheckCondition != 4)
                 && (tileCheckCondition != 5)
                 && (tileCheckCondition != 6)
                 && (tileCheckCondition != 7)
-                && (tileCheckCondition != 10);
+                && (tileCheckCondition != 10)
+                && (tileCheckCondition != 11);
     }
 }

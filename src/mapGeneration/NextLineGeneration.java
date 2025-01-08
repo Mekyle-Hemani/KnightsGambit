@@ -199,24 +199,25 @@ public class NextLineGeneration {
 
                     } else if (region == 4 && regionFourDone) {
                         System.out.println("Pass save");
-                        //ArrayList<Integer> saveAreaLocations = BridgeLocationGeneration.generateBridge();
-                        //nextTileLocations.addAll(saveAreaLocations);
+                        ArrayList<Integer> saveAreaLocations = saveRegion.generateSaveRegion();
+                        nextTileLocations.addAll(saveAreaLocations);
                         regionFourDone = false;
                     }
                 }
                 regionCount += 1;
                 if (regionCount >= regionValues.get(region)) {
-                    if (region == 1 || region == 2 || region == 3) {
+                    if (region == 1 || region == 2 || region == 3 || region == 4) {
                         for (int i = 0; i < gridWidth*2; i++) {
                             nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
                         }
                     }
                     region = secureRandom.nextInt(regionValues.size());
-                    //region=1;
+                    region=4;
                     regionCount = 0;
                     regionOneDone = true;
                     regionTwoDone = true;
                     regionThreeDone = true;
+                    regionFourDone = true;
                 }
             }
         }

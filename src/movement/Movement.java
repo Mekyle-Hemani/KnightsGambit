@@ -53,50 +53,54 @@ public class Movement implements KeyListener {
             //If "up" was pressed
             if (keyCode == KeyEvent.VK_UP) {
                 //Check collision using the collision class
-                if ((collision.CheckCollision(locationX, locationY, 0))) {
-                    //If the player is back to the middle of the screen and has not moved backwards...
-                    if (verticalSquaresBackwards == 0) {
-                        if ((spacesCrossed%50 == 0)&&(spacesCrossed!=0)) {
-                            System.out.println("Running game save algorithm");
-                            try {
-                                midGameSave.save();
-                            } catch (IOException ex) {
-                                throw new RuntimeException(ex);
-                            }
+                try {
+                    if ((collision.CheckCollision(locationX, locationY, 0))) {
+                        //If the player is back to the middle of the screen and has not moved backwards...
+                        if (verticalSquaresBackwards == 0) {
+                            spacesCrossed++; //Increase the spaces crossed
+                            ChestAccess.iterateChests();
+                            CoinDraw.iterateCoins();
+                            nextLineGeneration.generateNextLine(); //Draw the next section of the map
+                        } else {
+                            Player.posY -= Entity.size; //Move the player up on the screen
+                            verticalSquaresBackwards--; //Bring the amount of tiles the player is away from the middle down by one
+                            spacesCrossed++; //Increase the amount of spaces crossed
                         }
-                        spacesCrossed++; //Increase the spaces crossed
-                        ChestAccess.iterateChests();
-                        CoinDraw.iterateCoins();
-                        nextLineGeneration.generateNextLine(); //Draw the next section of the map
-                    } else {
-                        Player.posY -= Entity.size; //Move the player up on the screen
-                        verticalSquaresBackwards--; //Bring the amount of tiles the player is away from the middle down by one
-                        spacesCrossed++; //Increase the amount of spaces crossed
                     }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
 
             //If "down" was pressed
             if (keyCode == KeyEvent.VK_DOWN) {
                 //Check collision using the collision class
-                if ((collision.CheckCollision(locationX, locationY, 3))) {
-                    //If the player is not at the very end...
-                    if (verticalSquaresBackwards <= 5) {
-                        verticalSquaresBackwards++; //Bring the amount of tiles the player is away from the middle up by one
-                        spacesCrossed--; //Decrease the amount of spaces crossed
-                        Player.posY += Entity.size; //Move the player down on the screen
+                try {
+                    if ((collision.CheckCollision(locationX, locationY, 3))) {
+                        //If the player is not at the very end...
+                        if (verticalSquaresBackwards <= 5) {
+                            verticalSquaresBackwards++; //Bring the amount of tiles the player is away from the middle up by one
+                            spacesCrossed--; //Decrease the amount of spaces crossed
+                            Player.posY += Entity.size; //Move the player down on the screen
+                        }
                     }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
 
             //If "left" was pressed
             if (keyCode == KeyEvent.VK_LEFT) {
                 //Check collision using the collision class
-                if ((collision.CheckCollision(locationX, locationY, 1))) {
-                    //If the player isn't on the left edge...
-                    if ((Player.posX) > 0) {
-                        Player.posX -= Entity.size; //Move the player left on the screen once
+                try {
+                    if ((collision.CheckCollision(locationX, locationY, 1))) {
+                        //If the player isn't on the left edge...
+                        if ((Player.posX) > 0) {
+                            Player.posX -= Entity.size; //Move the player left on the screen once
+                        }
                     }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
                 Player.playerImage = Player.playerImageLeft; //Change the player image to the right direction
             }
@@ -104,11 +108,15 @@ public class Movement implements KeyListener {
             //If "right" was pressed
             if (keyCode == KeyEvent.VK_RIGHT) {
                 //Check collision using the collision class
-                if ((collision.CheckCollision(locationX, locationY, 2))) {
-                    //If the player isn't on the right edge...
-                    if ((Player.posX + Entity.size) < (gp.screenWidth)) {
-                        Player.posX += Entity.size; //Move the player right on the screen once
+                try {
+                    if ((collision.CheckCollision(locationX, locationY, 2))) {
+                        //If the player isn't on the right edge...
+                        if ((Player.posX + Entity.size) < (gp.screenWidth)) {
+                            Player.posX += Entity.size; //Move the player right on the screen once
+                        }
                     }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
                 Player.playerImage = Player.playerImageRight; //Change the player image to the right direction
             }
