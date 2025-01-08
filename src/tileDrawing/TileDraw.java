@@ -1,5 +1,6 @@
 package tileDrawing;
 
+import entity.Enemy;
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
@@ -17,6 +18,9 @@ public class TileDraw {
     private Map<String, BufferedImage> imageCache; //This hashmap is being treated like an image cache to help redundant image loading
 
     BufferedImage coinImg = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/coin/coin.png")));
+
+    BufferedImage boxEnemyImg = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/enemy/1.png")));
+    BufferedImage squidEnemyImg = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/enemy/2.png")));
 
     public TileDraw(GamePanel gamePanel) throws IOException {
         this.gp = gamePanel;
@@ -62,6 +66,7 @@ public class TileDraw {
                     case 9 -> type = "docksEdge";
                     case 10 -> type = "chest";
                     case 11 -> type = "campfire";
+                    case 12 -> type = "enemy";
                 }
 
                 //Since the script has many different assets for single tile types, the first number of the itemLocations array tells us what image was requested to be loaded
@@ -92,6 +97,17 @@ public class TileDraw {
                         CoinDraw.coinLocations.remove((Integer) location);
                     }
                 }
+                /*if (Enemy.compileEnemy(location)) {
+                    if (checkInt == 0 || checkInt == 3 || checkInt == 9) {
+                        if (Enemy.enemyLocations.get(location) == 212){
+                            g2.drawImage(squidEnemyImg, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
+                        } else {
+                            g2.drawImage(boxEnemyImg, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
+                        }
+                    } else {
+                        Enemy.enemyLocations.remove((Integer) location);
+                    }
+                }*/
             }
         }
     }

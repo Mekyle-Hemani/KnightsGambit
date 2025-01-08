@@ -12,7 +12,7 @@ public class saveRegion {
     public static int rows;
     public static int cols;
 
-    public static int tileSaveInterval = 20;
+    public static int tileSaveInterval = 250;
 
     static SecureRandom secureRandom = new SecureRandom();
 

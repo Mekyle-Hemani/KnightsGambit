@@ -1,5 +1,6 @@
 package mapGeneration;
 import collision.ChestAccess;
+import entity.Enemy;
 import mapDevelopmentFunctions.*;
 import main.GamePanel;
 import tileDrawing.CoinDraw;
@@ -222,10 +223,6 @@ public class NextLineGeneration {
                             region = secureRandom.nextInt(regionValues.size());
                         }
                     }
-                    /*if (GamePanel.spacesCrossed%saveRegion.tileSaveInterval == 0 && GamePanel.spacesCrossed != 0) {
-                        region = 4;
-                        System.out.println("Region set to 4");
-                    }*/
                     regionCount = 0;
                     regionOneDone = true;
                     regionTwoDone = true;
@@ -248,6 +245,7 @@ public class NextLineGeneration {
             }
             if (checkInt == 0){
                 CoinDraw.developCoin(i);
+                Enemy.developEnemy(i);
             }
         }
 
