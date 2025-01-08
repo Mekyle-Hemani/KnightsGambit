@@ -19,6 +19,8 @@ public class NextLineGeneration {
     public static HashMap<Integer, Integer> regionValues = new HashMap<>(); //This is the hashmap holding the amount of parts (Rows) are in each region
     public int regionRange; //This is the total amount of region for random selection
 
+    public static int lastTileSave = 0;
+
     //These are the booleans that will change as each region is done
     public boolean regionOneDone = true;
     public boolean regionTwoDone = true;
@@ -211,8 +213,19 @@ public class NextLineGeneration {
                             nextTileLocations.add(Integer.parseInt(secureRandom.nextInt(5) + 1 + "0"));
                         }
                     }
-                    region = secureRandom.nextInt(regionValues.size());
-                    region=4;
+                    region = 4;
+                    if (GamePanel.spacesCrossed>(lastTileSave+saveRegion.tileSaveInterval)) {
+                        lastTileSave+=saveRegion.tileSaveInterval; //This might need to be added by a larger difference
+                        System.out.println("Last tile save: " + lastTileSave);
+                    } else {
+                        while (region == 4) {
+                            region = secureRandom.nextInt(regionValues.size());
+                        }
+                    }
+                    /*if (GamePanel.spacesCrossed%saveRegion.tileSaveInterval == 0 && GamePanel.spacesCrossed != 0) {
+                        region = 4;
+                        System.out.println("Region set to 4");
+                    }*/
                     regionCount = 0;
                     regionOneDone = true;
                     regionTwoDone = true;

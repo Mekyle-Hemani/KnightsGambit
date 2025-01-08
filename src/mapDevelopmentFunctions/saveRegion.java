@@ -2,7 +2,6 @@ package mapDevelopmentFunctions;
 
 import main.GamePanel;
 import mapGeneration.NextLineGeneration;
-import presetTileConfigs.GroundConfig;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -12,6 +11,8 @@ public class saveRegion {
 
     public static int rows;
     public static int cols;
+
+    public static int tileSaveInterval = 20;
 
     static SecureRandom secureRandom = new SecureRandom();
 
