@@ -89,9 +89,7 @@ public class TileDraw {
                         g2.drawImage(coinImg, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
                     } else {
                         CoinDraw.coinLocations.remove((Integer) location);
-                        System.out.println("Found coin on non-walkable at: "+location+". Deleting...");
                     }
-                    //g2.drawImage(coinImg, (j * gp.tileSize), (i * gp.tileSize), gp.tileSize, gp.tileSize, null);
                 }
             }
         }

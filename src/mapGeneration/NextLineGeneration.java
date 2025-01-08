@@ -23,6 +23,7 @@ public class NextLineGeneration {
     public boolean regionOneDone = true;
     public boolean regionTwoDone = true;
     public boolean regionThreeDone = true;
+    public boolean regionFourDone = true;
 
     public void setup() {
         //This is called once before the game starts
@@ -34,6 +35,7 @@ public class NextLineGeneration {
         regionValues.put(1, 20);
         regionValues.put(2, 4);
         regionValues.put(3, 2);
+        regionValues.put(4, 12);
 
         regionRange = regionValues.size(); //Set the region range
 
@@ -191,6 +193,12 @@ public class NextLineGeneration {
                         ArrayList<Integer> bridgeLocations = BridgeLocationGeneration.generateBridge();
                         nextTileLocations.addAll(bridgeLocations);
                         regionThreeDone = false;
+
+                    } else if (region == 4 && regionFourDone) {
+                        System.out.println("Pass save");
+                        //ArrayList<Integer> saveAreaLocations = BridgeLocationGeneration.generateBridge();
+                        //nextTileLocations.addAll(saveAreaLocations);
+                        regionFourDone = false;
                     }
                 }
                 regionCount += 1;
