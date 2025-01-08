@@ -199,7 +199,7 @@ public class NextLineGeneration {
                         }
                     }
                     region = secureRandom.nextInt(regionValues.size());
-                    //region=2;
+                    region=1;
                     regionCount = 0;
                     regionOneDone = true;
                     regionTwoDone = true;
