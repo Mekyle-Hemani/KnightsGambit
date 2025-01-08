@@ -61,6 +61,7 @@ public class TileDraw {
                     case 8 -> type = "stairs";
                     case 9 -> type = "docksEdge";
                     case 10 -> type = "chest";
+                    case 11 -> type = "campfire";
                 }
 
                 //Since the script has many different assets for single tile types, the first number of the itemLocations array tells us what image was requested to be loaded
