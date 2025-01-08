@@ -5,10 +5,12 @@ import tileDrawing.*;
 import entity.*;
 import entity.Player;
 import collision.*;
+import saveFunction.*;
 
 //Add key listeners
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 import main.GamePanel; //Get reference to GamePanel.java
 
@@ -54,6 +56,14 @@ public class Movement implements KeyListener {
                 if ((collision.CheckCollision(locationX, locationY, 0))) {
                     //If the player is back to the middle of the screen and has not moved backwards...
                     if (verticalSquaresBackwards == 0) {
+                        if ((spacesCrossed%50 == 0)&&(spacesCrossed!=0)) {
+                            System.out.println("Running game save algorithm");
+                            try {
+                                midGameSave.save();
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        }
                         spacesCrossed++; //Increase the spaces crossed
                         ChestAccess.iterateChests();
                         CoinDraw.iterateCoins();

@@ -88,11 +88,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         CoinDraw coinDraw = new CoinDraw(this);
 
-        //java.util.List<String> savingValues = new ArrayList<>();
-        //savingValues.add("1");
-        //save.save(haha, "save.txt");
-        //System.out.println(save.load("save.txt"));
-
         //Starts to draw the rest of the visual items after necessary initialization
         inventory = new Inventory(this);
         tileDraw = new TileDraw(this);

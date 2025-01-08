@@ -5,6 +5,7 @@ out/
 /src/entity/test.txt
 /src/META_INF
 /.idea
+/save
 
 ### Eclipse ###
 .apt_generated
