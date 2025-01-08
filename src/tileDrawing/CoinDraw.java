@@ -7,7 +7,6 @@ import java.util.*;
 import java.util.List;
 import entity.*;
 
-//
 public class CoinDraw {
     static GamePanel gp;
 

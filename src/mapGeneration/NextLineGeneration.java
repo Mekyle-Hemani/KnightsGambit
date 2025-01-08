@@ -2,6 +2,8 @@ package mapGeneration;
 import collision.ChestAccess;
 import mapDevelopmentFunctions.*;
 import main.GamePanel;
+import tileDrawing.CoinDraw;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -199,7 +201,7 @@ public class NextLineGeneration {
                         }
                     }
                     region = secureRandom.nextInt(regionValues.size());
-                    region=1;
+                    //region=1;
                     regionCount = 0;
                     regionOneDone = true;
                     regionTwoDone = true;
@@ -212,6 +214,16 @@ public class NextLineGeneration {
         }
         for (int i = 0; i < gridWidth; i++) {
             GamePanel.tileLocations.addFirst(nextTileLocations.removeFirst());
+            int item = nextTileLocations.getFirst();
+            int checkInt;
+            if (String.valueOf(item).length() == 2){
+                checkInt = Character.getNumericValue(Integer.toString(item).charAt(1));
+            } else {
+                checkInt = Integer.parseInt(Integer.toString(Character.getNumericValue(Integer.toString(item).charAt(1)))+Integer.toString(Character.getNumericValue(Integer.toString(item).charAt(2))));
+            }
+            if (checkInt == 0){
+                CoinDraw.developCoin(i);
+            }
         }
 
         for (int i = 0; i < gridWidth; i++) {

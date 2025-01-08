@@ -7,7 +7,7 @@ import tileDrawing.*;
 public class GroundConfig {
     static SecureRandom secureRandom = new SecureRandom();
     public static void formGroundTile(java.util.List<Integer> list, int offset) {
-        CoinDraw.developCoin(list.size()-(offset*11));
+        //CoinDraw.developCoin(list.size()-(offset*11));
         list.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0));
     }
 
