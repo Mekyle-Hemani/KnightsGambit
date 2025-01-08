@@ -10,4 +10,9 @@ public class GroundConfig {
         CoinDraw.developCoin(list.size()-(offset*11));
         list.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0));
     }
+
+    public static void formDocksTile(java.util.List<Integer> list, int offset, int tile) {
+        CoinDraw.developCoin(list.size()-(offset*11));
+        list.add(tile);
+    }
 }

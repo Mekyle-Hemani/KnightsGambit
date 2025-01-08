@@ -2,6 +2,7 @@ package mapDevelopmentFunctions;
 
 import main.GamePanel;
 import mapGeneration.NextLineGeneration;
+import presetTileConfigs.*;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class BridgeLocationGeneration {
 
         int newRows = rows + secureRandom.nextInt(7);
 
+        System.out.println(newRows-rows-2);
+
         if (cols%2==0){
             middle = 2;
             eachside = cols/2;
@@ -41,6 +44,7 @@ public class BridgeLocationGeneration {
         }
         for (int i = 0; i < middle; i++) {
             bridgeLocation.add(29);
+            //GroundConfig.formDocksTile(bridgeLocation, 10, 29);
         }
         for (int i = 0; i < eachside - 1; i++) {
             bridgeLocation.add(46);
@@ -54,6 +58,7 @@ public class BridgeLocationGeneration {
             }
             for (int i = 0; i < middle; i++) {
                 bridgeLocation.add(13);
+                //GroundConfig.formDocksTile(bridgeLocation, 10, 13);
             }
             for (int i = 0; i < eachside - 1; i++) {
                 bridgeLocation.add(Integer.parseInt(secureRandom.nextInt(3) + 1 + "5"));
@@ -67,6 +72,7 @@ public class BridgeLocationGeneration {
         }
         for (int i = 0; i < middle; i++) {
             bridgeLocation.add(19);
+            //GroundConfig.formDocksTile(bridgeLocation, 10, 19);
         }
         for (int i = 0; i < eachside - 1; i++) {
             bridgeLocation.add(26);

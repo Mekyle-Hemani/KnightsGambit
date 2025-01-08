@@ -24,8 +24,8 @@ public class CoinDraw {
     }
 
     public static void developCoin(int index) {
-        //if (!coinLocations.contains(index) && secureRandom.nextInt(12) == 3) {
-        if (!coinLocations.contains(index)) {
+        if (!coinLocations.contains(index) && secureRandom.nextInt(12) == 3) {
+        //if (!coinLocations.contains(index)) {
             coinLocations.add(index);
         }
     }
