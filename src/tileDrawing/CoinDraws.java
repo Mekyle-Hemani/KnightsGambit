@@ -6,16 +6,16 @@ import java.security.SecureRandom;
 import java.util.*;
 import java.util.List;
 import entity.*;
-import mapGeneration.NextLineGeneration;
 
-public class CoinDraw {
+//
+public class CoinDraws {
     static GamePanel gp;
 
     private static SecureRandom secureRandom = new SecureRandom();
 
     public static List<Integer> coinLocations = new ArrayList<>();
 
-    public CoinDraw(GamePanel gamePanel) throws IOException {
+    public CoinDraws(GamePanel gamePanel) throws IOException {
         this.gp = gamePanel;
     }
 
