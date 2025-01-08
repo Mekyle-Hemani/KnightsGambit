@@ -83,6 +83,9 @@ public class GamePanel extends JPanel implements Runnable {
         BridgeLocationGeneration bridgeLocationGeneration = new BridgeLocationGeneration(this); //Allows functions from this specific class to be called by initiating it
         BridgeLocationGeneration.setup(); //Runs a specified script to initiate certain parts of the game
 
+        saveRegion saveRegionGeneration = new saveRegion(this);
+        saveRegionGeneration.setup();
+
         ChestAccess chestAccess = new ChestAccess(this); //Allows functions from this specific class to be called by initiating it
         chestAccess.setup(); //Runs a specified script to initiate certain parts of the game
 

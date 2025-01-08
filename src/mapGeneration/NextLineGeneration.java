@@ -55,6 +55,9 @@ public class NextLineGeneration {
     public static int getBridgeRegionLength(){
         return regionValues.get(3);
     }
+    public static int getSaveRegionLength(){
+        return regionValues.get(4);
+    }
 
     public NextLineGeneration(GamePanel gp) {
         NextLineGeneration.gp = gp;
