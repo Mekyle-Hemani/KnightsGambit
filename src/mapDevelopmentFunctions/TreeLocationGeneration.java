@@ -2,7 +2,6 @@ package mapDevelopmentFunctions;
 
 import main.GamePanel;
 import mapGeneration.NextLineGeneration;
-import presetTileConfigs.GroundConfig;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -40,14 +39,14 @@ public class TreeLocationGeneration {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (skipCols.contains(j)) {
-                    //betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
-                    GroundConfig.formGroundTile(betterGrid, 26);
+                    betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
+                    //GroundConfig.formGroundTile(betterGrid, 26);
                 } else {
                     if (secureRandom.nextInt(3) == 1) {
                         betterGrid.add(14); //Tree tile
                     } else {
-                        //betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
-                        GroundConfig.formGroundTile(betterGrid, 26);
+                        betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
+                        //GroundConfig.formGroundTile(betterGrid, 26);
                     }
                 }
             }
@@ -55,8 +54,8 @@ public class TreeLocationGeneration {
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < cols; j++) {
-                //betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
-                GroundConfig.formGroundTile(betterGrid, 26);
+                betterGrid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0)); //Ground tile
+                //GroundConfig.formGroundTile(betterGrid, 26);
             }
         }
 
