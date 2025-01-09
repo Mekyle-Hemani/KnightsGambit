@@ -196,14 +196,14 @@ public class NextLineGeneration {
                         regionTwoDone = false;
 
                     } else if (region == 3 && regionThreeDone) {
-                        ArrayList<Integer> bridgeLocations = BridgeLocationGeneration.generateBridge();
-                        nextTileLocations.addAll(bridgeLocations);
+                        ArrayList<Integer> grid = BridgeLocationGeneration.generateBridge();
+                        nextTileLocations.addAll(grid);
                         regionThreeDone = false;
 
                     } else if (region == 4 && regionFourDone) {
                         System.out.println("Pass save");
-                        ArrayList<Integer> saveAreaLocations = saveRegion.generateSaveRegion();
-                        nextTileLocations.addAll(saveAreaLocations);
+                        ArrayList<Integer> grid = saveRegion.generateSaveRegion();
+                        nextTileLocations.addAll(grid);
                         regionFourDone = false;
                     }
                 }
