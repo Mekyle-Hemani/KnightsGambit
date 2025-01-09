@@ -184,25 +184,22 @@ public class NextLineGeneration {
                             }
                             i += range + 1;
                         }
-
-                    } else if (region == 1 && regionOneDone) {
-                        ArrayList<Integer> grid = TreeLocationGeneration.generateTree();
-                        nextTileLocations.addAll(grid);
-                        regionOneDone = false;
-
-                    } else if (region == 2 && regionTwoDone) {
-                        ArrayList<Integer> grid = EntranceLocationGeneration.generateEntrance();
-                        nextTileLocations.addAll(grid);
-                        regionTwoDone = false;
-
-                    } else if (region == 3 && regionThreeDone) {
-                        ArrayList<Integer> grid = BridgeLocationGeneration.generateBridge();
-                        nextTileLocations.addAll(grid);
-                        regionThreeDone = false;
-
-                    } else if (region == 4 && regionFourDone) {
-                        System.out.println("Pass save");
-                        ArrayList<Integer> grid = saveRegion.generateSaveRegion();
+                    } else {
+                        ArrayList<Integer> grid = new ArrayList<>();
+                        if (region == 1 && regionOneDone) {
+                            grid = TreeLocationGeneration.generateTree();
+                            regionOneDone = false;
+                        } else if (region == 2 && regionTwoDone) {
+                            grid = EntranceLocationGeneration.generateEntrance();
+                            regionTwoDone = false;
+                        } else if (region == 3 && regionThreeDone) {
+                            grid = BridgeLocationGeneration.generateBridge();
+                            regionThreeDone = false;
+                        } else if (region == 4 && regionFourDone) {
+                            System.out.println("Pass save");
+                            grid = saveRegion.generateSaveRegion();
+                            regionFourDone = false;
+                        }
                         nextTileLocations.addAll(grid);
                         regionFourDone = false;
                     }
