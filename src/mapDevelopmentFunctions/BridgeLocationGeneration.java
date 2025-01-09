@@ -2,7 +2,6 @@ package mapDevelopmentFunctions;
 
 import main.GamePanel;
 import mapGeneration.NextLineGeneration;
-import presetTileConfigs.*;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
