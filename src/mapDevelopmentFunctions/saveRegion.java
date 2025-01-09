@@ -5,6 +5,7 @@ import mapGeneration.NextLineGeneration;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class saveRegion {
     static GamePanel gp;
@@ -16,8 +17,28 @@ public class saveRegion {
 
     static SecureRandom secureRandom = new SecureRandom();
 
+    /*ArrayList<Integer> list = new ArrayList<>(Arrays.asList(
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 1, 1, 1, 0, 0, 0, 0, 7, 6, 6,
+            0, 1, 0, 2, 0, 0, 0, 0, 6, 5, 5,
+            0, 1, 1, 1, 0, 0, 0, 0, 6, 5, 5,
+            0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 5,
+            1, 1, 1, 1, 1, 0, 0, 0, 7, 5, 5,
+            1, x, x, 0, 8, 0, 0, 0, 0, 6, 5,
+            1, x, x, 0, 8, 0, 0, 0, 0, 6, 5,
+            1, x, x, 0, 8, 0, 0, 0, 0, 6, 7,
+            1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+            0, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, x, x, x, 0, 0, 0, 0, 0, 0, 0,
+            0, x, x, x, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    );*/
+
     public static void setup() {
-        rows = NextLineGeneration.getSaveRegionLength();
+        rows = NextLineGeneration.getSaveRegionLength()-1;
         cols = gp.screenWidth / gp.tileSize;
     }
 
