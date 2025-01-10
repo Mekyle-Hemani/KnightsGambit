@@ -47,6 +47,8 @@ public class Movement implements KeyListener {
     @Override
     //Every time a key is released...
     public void keyReleased(KeyEvent e) {
+        System.out.println(ChestAccess.chestContents);
+        System.out.println(GamePanel.tileLocations.size());
         if (!Inventory.isVisible) {
             int keyCode = e.getKeyCode(); //This is the most recent key pressed by the player
 

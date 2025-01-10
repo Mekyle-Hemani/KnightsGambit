@@ -36,6 +36,8 @@ public class ChestAccess {
         int chestItemRangeLocal = secureRandom.nextInt(1, chestItemRange);
         if (rarity == 1) {
             chestItemRangeLocal += 3;
+        } else if (rarity == 0) {
+            chestItemRangeLocal = 1;
         }
 
         List<String> itemsInChest = new ArrayList<>();

@@ -2,6 +2,7 @@ package mapDevelopmentFunctions;
 
 import main.GamePanel;
 import mapGeneration.NextLineGeneration;
+import collision.*;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class saveRegion {
     public static int rows;
     public static int cols;
 
-    public static int tileSaveInterval = 50;
+    public static int tileSaveInterval = 1;
     static SecureRandom secureRandom = new SecureRandom();
 
     public static ArrayList<Integer> saveMapArray = new ArrayList<>(Arrays.asList(
@@ -57,6 +58,8 @@ public class saveRegion {
                 returnArray.set(i, wallTileType);
             } else if (saveMapArray.get(i) == 5) {
                 returnArray.set(i, Integer.parseInt(Integer.toString(secureRandom.nextInt(3) + 1) + 5));
+            } else if (saveMapArray.get(i) == 110) {
+                //ChestAccess.logChest(i, 0);
             }
         }
 
