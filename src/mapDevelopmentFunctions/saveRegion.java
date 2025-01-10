@@ -59,7 +59,7 @@ public class saveRegion {
             } else if (saveMapArray.get(i) == 5) {
                 returnArray.set(i, Integer.parseInt(Integer.toString(secureRandom.nextInt(3) + 1) + 5));
             } else if (saveMapArray.get(i) == 110) {
-                //ChestAccess.logChest(i, 0);
+                //ChestAccess.logChest(saveMapArray.size()-i-(15*11), 0);
             }
         }
 
