@@ -14,26 +14,25 @@ public class saveRegion {
     public static int cols;
 
     public static int tileSaveInterval = 50;
-
     static SecureRandom secureRandom = new SecureRandom();
 
-    ArrayList<Integer> list = new ArrayList<>(Arrays.asList(
+    public static ArrayList<Integer> saveMapArray = new ArrayList<>(Arrays.asList(
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 1, 0, 0, 0, 0, 7, 6, 6,
-            0, 1, 0, 2, 0, 0, 0, 0, 6, 5, 5,
-            0, 1, 1, 1, 0, 0, 0, 0, 6, 5, 5,
-            0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 5,
-            1, 1, 1, 1, 1, 0, 0, 0, 7, 5, 5,
-            1, 0, 0, 0, 8, 0, 0, 0, 0, 6, 5,
-            1, 0, 0, 0, 8, 0, 0, 0, 0, 6, 5,
-            1, 0, 0, 0, 8, 0, 0, 0, 0, 6, 7,
+            0, 1, 1, 1, 0, 0, 0, 0, 47, 46, 46,
+            0, 1, 0, 12, 0, 0, 0, 0, 36, 5, 5,
+            0, 1, 1, 1, 0, 0, 0, 0, 36, 5, 5,
+            0, 0, 0, 0, 0, 0, 0, 0, 36, 5, 5,
+            1, 1, 1, 1, 1, 0, 0, 0, 37, 5, 5,
+            1, 0, 0, 0, 114, 0, 0, 0, 0, 36, 5,
+            1, 0, 0, 0, 114, 0, 0, 0, 0, 36, 5,
+            1, 0, 0, 0, 114, 0, 0, 0, 0, 37, 26,
             1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
-            0, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0,
+            0, 110, 110, 110, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 111, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0,
-            0, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0,
+            0, 113, 113, 113, 0, 0, 0, 0, 0, 0, 0,
+            0, 113, 113, 113, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     );
 
@@ -47,19 +46,20 @@ public class saveRegion {
     }
 
     public static ArrayList<Integer> generateSaveRegion() {
-        ArrayList<Integer> saveRegionLocations = new ArrayList<>();
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (j == 3 && i == 3) {
-                    saveRegionLocations.add(111);
-                } else {
-                    saveRegionLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0));
-                }
+        ArrayList<Integer> returnArray = new ArrayList<>(saveMapArray);
+
+        int wallTileType = Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 1);
+
+        for (int i = 0; i < saveMapArray.size(); i++) {
+            if (saveMapArray.get(i) == 0) {
+                returnArray.set(i, Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0));
+            } else if (saveMapArray.get(i) == 1) {
+                returnArray.set(i, wallTileType);
+            } else if (saveMapArray.get(i) == 5) {
+                returnArray.set(i, Integer.parseInt(Integer.toString(secureRandom.nextInt(3) + 1) + 5));
             }
         }
-        for (int i = 0; i < cols; i++){
-            saveRegionLocations.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0));
-        }
-        return saveRegionLocations;
+
+        return returnArray;
     }
 }
