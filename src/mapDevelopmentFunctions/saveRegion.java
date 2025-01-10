@@ -17,7 +17,7 @@ public class saveRegion {
 
     static SecureRandom secureRandom = new SecureRandom();
 
-    /*ArrayList<Integer> list = new ArrayList<>(Arrays.asList(
+    ArrayList<Integer> list = new ArrayList<>(Arrays.asList(
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 1, 1, 1, 0, 0, 0, 0, 7, 6, 6,
@@ -25,17 +25,17 @@ public class saveRegion {
             0, 1, 1, 1, 0, 0, 0, 0, 6, 5, 5,
             0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 5,
             1, 1, 1, 1, 1, 0, 0, 0, 7, 5, 5,
-            1, x, x, 0, 8, 0, 0, 0, 0, 6, 5,
-            1, x, x, 0, 8, 0, 0, 0, 0, 6, 5,
-            1, x, x, 0, 8, 0, 0, 0, 0, 6, 7,
+            1, 0, 0, 0, 8, 0, 0, 0, 0, 6, 5,
+            1, 0, 0, 0, 8, 0, 0, 0, 0, 6, 5,
+            1, 0, 0, 0, 8, 0, 0, 0, 0, 6, 7,
             1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
             0, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, x, x, x, 0, 0, 0, 0, 0, 0, 0,
-            0, x, x, x, 0, 0, 0, 0, 0, 0, 0,
+            0, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0,
+            0, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-    );*/
+    );
 
     public static void setup() {
         rows = NextLineGeneration.getSaveRegionLength()-1;

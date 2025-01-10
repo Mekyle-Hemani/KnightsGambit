@@ -70,6 +70,7 @@ public class Collision {
                 && (tileCheckCondition != 6)
                 && (tileCheckCondition != 7)
                 && (tileCheckCondition != 10)
-                && (tileCheckCondition != 11);
+                && (tileCheckCondition != 11)
+                && (tileCheckCondition != 13);
     }
 }
