@@ -14,7 +14,7 @@ public class saveRegion {
     public static int rows;
     public static int cols;
 
-    public static int tileSaveInterval = 1;
+    public static int tileSaveInterval = 250;
     static SecureRandom secureRandom = new SecureRandom();
 
     public static ArrayList<Integer> saveMapArray = new ArrayList<>(Arrays.asList(

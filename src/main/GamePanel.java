@@ -5,6 +5,7 @@ import inventory.*;
 import mapDevelopmentFunctions.*;
 import mapGeneration.*;
 import tileDrawing.*;
+import saveFunction.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -50,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    startup();
+                    startup(false);
                 } catch (IOException | FontFormatException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -67,7 +68,12 @@ public class GamePanel extends JPanel implements Runnable {
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(GamePanel.this, "Load button clicked!");
+                try {
+                    startup(true);
+                } catch (IOException | FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+                panel.setVisible(false);
             }
         });
 
@@ -84,7 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     //These are all the different functions the game will do before anything else starts
-    private void startup() throws IOException, FontFormatException {
+    private void startup(boolean loadSave) throws IOException, FontFormatException {
         FirstMapGeneration firstMapGeneration = new FirstMapGeneration(this); //Allows functions from this specific class to be called by initiating it
         firstMapGeneration.generateFirstMap(); //Runs a specified script to initiate certain parts of the game
 
@@ -113,6 +119,22 @@ public class GamePanel extends JPanel implements Runnable {
         tileDraw = new TileDraw(this);
         tileDistanceDraw = new TileDistanceDraw(this);
         player = new Player(this);
+
+        if (loadSave) {
+            System.out.println("Loading old save");
+            java.util.List<Integer> result = new ArrayList<>();
+            ArrayList<String> input = (ArrayList<String>) save.load("tiles.txt");
+
+            String[] parts = input.get(0).replace("[", "").replace("]", "").split(",\\s*");
+
+            ArrayList<Integer> integerList = new ArrayList<>();
+            for (String part : parts) {
+                integerList.add(Integer.parseInt(part));
+            }
+
+            System.out.println(integerList);
+            NextLineGeneration.nextTileLocations = integerList;
+        }
 
         //Starts the actual game
         thread = new Thread(this);
