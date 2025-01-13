@@ -36,15 +36,15 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.LIGHT_GRAY);
         this.setFocusable(true);
 
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JPanel spacer = new JPanel();
-        spacer.setPreferredSize(new Dimension(0, screenHeight / 4));
-        panel.add(spacer);
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setOpaque(false);
 
         JButton startButton = new JButton("Start");
         startButton.setFont(new Font("Arial", Font.BOLD, 32));
         startButton.setBackground(Color.DARK_GRAY);
         startButton.setForeground(Color.WHITE);
+        startButton.setBounds((screenWidth - 150) / 2, (screenHeight - 50) / 2, 150, 50);
 
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -58,13 +58,30 @@ public class GamePanel extends JPanel implements Runnable {
             }
         });
 
-        panel.add(startButton);
-        this.add(panel);
-        this.setVisible(true);
+        JButton loadButton = new JButton("Load");
+        loadButton.setFont(new Font("Arial", Font.BOLD, 32));
+        loadButton.setBackground(Color.DARK_GRAY);
+        loadButton.setForeground(Color.WHITE);
+        loadButton.setBounds((screenWidth - 150) / 2, (screenHeight - 50) / 2 + (screenHeight / 4), 150, 50);
 
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(GamePanel.this, "Load button clicked!");
+            }
+        });
+
+        panel.add(startButton);
+        panel.add(loadButton);
+
+        this.setLayout(new BorderLayout());
+        this.add(panel, BorderLayout.CENTER);
+
+        this.setVisible(true);
         panel.revalidate();
         panel.repaint();
     }
+
 
     //These are all the different functions the game will do before anything else starts
     private void startup() throws IOException, FontFormatException {
@@ -83,8 +100,8 @@ public class GamePanel extends JPanel implements Runnable {
         BridgeLocationGeneration bridgeLocationGeneration = new BridgeLocationGeneration(this); //Allows functions from this specific class to be called by initiating it
         BridgeLocationGeneration.setup(); //Runs a specified script to initiate certain parts of the game
 
-        saveRegion saveRegionGeneration = new saveRegion(this);
-        saveRegionGeneration.setup();
+        saveRegion saveRegionGeneration = new saveRegion(this); //Allows functions from this specific class to be called by initiating it
+        saveRegionGeneration.setup(); //Runs a specified script to initiate certain parts of the game
 
         ChestAccess chestAccess = new ChestAccess(this); //Allows functions from this specific class to be called by initiating it
         chestAccess.setup(); //Runs a specified script to initiate certain parts of the game
