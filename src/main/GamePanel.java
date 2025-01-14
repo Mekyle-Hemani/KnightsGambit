@@ -4,6 +4,7 @@ import entity.*;
 import inventory.*;
 import mapDevelopmentFunctions.*;
 import mapGeneration.*;
+import movement.Movement;
 import tileDrawing.*;
 import saveFunction.*;
 
@@ -122,18 +123,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (loadSave) {
             System.out.println("Loading old save");
-            java.util.List<Integer> result = new ArrayList<>();
-            ArrayList<String> input = (ArrayList<String>) save.load("tiles.txt");
+            NextLineGeneration.nextTileLocations = convertSaveToArray("tiles.txt");
 
-            String[] parts = input.get(0).replace("[", "").replace("]", "").split(",\\s*");
-
-            ArrayList<Integer> integerList = new ArrayList<>();
-            for (String part : parts) {
-                integerList.add(Integer.parseInt(part));
-            }
-
-            System.out.println(integerList);
-            NextLineGeneration.nextTileLocations = integerList;
+            spacesCrossed = (convertSaveToArray("spaces.txt")).getFirst();
+            Movement.spacesCrossed = spacesCrossed;
         }
 
         //Starts the actual game
@@ -164,6 +157,19 @@ public class GamePanel extends JPanel implements Runnable {
 
     private void update() {
 
+    }
+
+    public ArrayList<Integer> convertSaveToArray(String filename) throws IOException {
+        ArrayList<String> input = (ArrayList<String>) save.load(filename);
+        ArrayList<Integer> result = new ArrayList<>();
+        String[] parts = input.getFirst().replace("[", "").replace("]", "").split(",\\s*");
+
+        for (int i = parts.length - 1; i >= 0; i--) {
+            String part = parts[i];
+            result.add(Integer.parseInt(part));
+        }
+
+        return result;
     }
 
     //This draws every new frame

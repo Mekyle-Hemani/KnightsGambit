@@ -20,7 +20,7 @@ public class Movement implements KeyListener {
     private final mapGeneration.NextLineGeneration nextLineGeneration; //This is a class that generates a new line of the map
 
     public int verticalSquaresBackwards = 0; //This is how many squares that the player has gone back. This is used to make sure that player doesn't go back anymore than 5 squares.
-    public int spacesCrossed = 0; //This is how many total squares the player has crossed
+    public static int spacesCrossed = 0; //This is how many total squares the player has crossed
 
     public int locationX = (Player.posX / Player.size); //This is the current X location in terms of tiles of the player
     public int locationY = (Player.posY / Player.size); //This is the current Y location in terms of tiles of the player

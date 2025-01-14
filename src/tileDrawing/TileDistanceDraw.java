@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 
 public class TileDistanceDraw {
     private final GamePanel gamePanel;
@@ -31,7 +30,7 @@ public class TileDistanceDraw {
     public void draw(Graphics2D g2) {
         g2.setFont(customFont);
         g2.setColor(Color.WHITE);
-        String distanceText = Integer.toString(gamePanel.spacesCrossed);
+        String distanceText = Integer.toString(GamePanel.spacesCrossed);
         g2.drawString(distanceText, (gamePanel.getWidth() - g2.getFontMetrics().stringWidth(distanceText)) / 2, gamePanel.tileSize);
     }
 }
