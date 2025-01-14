@@ -11,6 +11,7 @@ public class midGameSave {
     public static void save() throws IOException {
         java.util.List<String> savingValuesTiles = new ArrayList<>();
         java.util.List<String> savingValuesCrossed = new ArrayList<>();
+        java.util.List<String> savingValuesInventory = new ArrayList<>();
 
         List<Integer> totalTileLocations = new ArrayList<>(NextLineGeneration.nextTileLocations);
         totalTileLocations.addAll(GamePanel.tileLocations);

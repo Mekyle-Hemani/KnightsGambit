@@ -33,6 +33,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * 11; //Keep these the same as before
     public final int screenHeight = tileSize * 17;
 
+    public static boolean gameStarted = false;
+
     public GamePanel() throws IOException, FontFormatException {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.LIGHT_GRAY);
@@ -92,6 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     //These are all the different functions the game will do before anything else starts
     private void startup(boolean loadSave) throws IOException, FontFormatException {
+        gameStarted = true;
         FirstMapGeneration firstMapGeneration = new FirstMapGeneration(this); //Allows functions from this specific class to be called by initiating it
         firstMapGeneration.generateFirstMap(); //Runs a specified script to initiate certain parts of the game
 
@@ -175,16 +178,18 @@ public class GamePanel extends JPanel implements Runnable {
     //This draws every new frame
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        //This is in a try catch as the script needs to have some sort of fail-safe if the wanted pngs are not present
-        try {
-            tileDraw.draw((Graphics2D) g); //Draw every tile that is supposed to be shown onscreen
-        } catch (IOException e) {
-            throw new RuntimeException(e); //Throw possible errors
-        }
+        if (gameStarted) {
+            super.paintComponent(g);
+            //This is in a try catch as the script needs to have some sort of fail-safe if the wanted pngs are not present
+            try {
+                tileDraw.draw((Graphics2D) g); //Draw every tile that is supposed to be shown onscreen
+            } catch (IOException e) {
+                throw new RuntimeException(e); //Throw possible errors
+            }
 
-        player.draw((Graphics2D) g); //Draw the player
-        tileDistanceDraw.draw((Graphics2D) g); //Draw the score
-        inventory.draw((Graphics2D) g); //Draw the hidden inventory
+            player.draw((Graphics2D) g); //Draw the player
+            tileDistanceDraw.draw((Graphics2D) g); //Draw the score
+            inventory.draw((Graphics2D) g); //Draw the hidden inventory
+        }
     }
 }
