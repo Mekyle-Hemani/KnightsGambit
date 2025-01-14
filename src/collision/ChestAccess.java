@@ -1,6 +1,6 @@
 package collision;
 
-import inventory.Inventory;
+import dialog.DialogBox;
 import main.GamePanel;
 
 import java.security.SecureRandom;
@@ -70,6 +70,9 @@ public class ChestAccess {
         //Run the inventory code with these specific items
         System.out.println("Chest at "+position+" being accessed");
         System.out.println("Chest contents: " + chestContents.get(position));
+
+        DialogBox.dialogText = "Chest at "+position+" being accessed";
+        DialogBox.isVisible = true;
 
         //Inventory.Inventory.add();
     }
