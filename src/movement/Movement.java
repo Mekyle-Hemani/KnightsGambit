@@ -1,5 +1,6 @@
 package movement; //Add to entity package
 
+import dialog.DialogBox;
 import inventory.*;
 import tileDrawing.*;
 import entity.*;
@@ -49,6 +50,9 @@ public class Movement implements KeyListener {
     public void keyReleased(KeyEvent e) {
         System.out.println(ChestAccess.chestContents);
         System.out.println(GamePanel.tileLocations.size());
+        if (DialogBox.isVisible){
+            DialogBox.isVisible = false;
+        }
         if (!Inventory.isVisible) {
             int keyCode = e.getKeyCode(); //This is the most recent key pressed by the player
 

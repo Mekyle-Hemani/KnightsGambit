@@ -7,6 +7,7 @@ import mapGeneration.*;
 import movement.Movement;
 import tileDrawing.*;
 import saveFunction.*;
+import dialog.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
     private TileDistanceDraw tileDistanceDraw;
     private ChestAccess chestAccess;
     private CoinDraw coinDraw;
+    private DialogBox dialogBox;
 
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed
     private final int originalTileSize = 23;
@@ -120,6 +122,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         //Starts to draw the rest of the visual items after necessary initialization
         inventory = new Inventory(this);
+        dialogBox = new DialogBox(this);
         tileDraw = new TileDraw(this);
         tileDistanceDraw = new TileDistanceDraw(this);
         player = new Player(this);
@@ -190,6 +193,7 @@ public class GamePanel extends JPanel implements Runnable {
             player.draw((Graphics2D) g); //Draw the player
             tileDistanceDraw.draw((Graphics2D) g); //Draw the score
             inventory.draw((Graphics2D) g); //Draw the hidden inventory
+            dialogBox.draw((Graphics2D) g);
         }
     }
 }
