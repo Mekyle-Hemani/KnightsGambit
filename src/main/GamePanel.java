@@ -126,11 +126,12 @@ public class GamePanel extends JPanel implements Runnable {
         player = new Player(this);
 
         if (loadSave) {
-            System.out.println("Loading old save");
             NextLineGeneration.nextTileLocations = convertSaveToArray("tiles.txt");
-
             spacesCrossed = (convertSaveToArray("spaces.txt")).getFirst();
             Movement.spacesCrossed = spacesCrossed;
+
+            DialogBox.dialogText = "Game Loaded";
+            DialogBox.isVisible = true;
         }
 
         //Starts the actual game
