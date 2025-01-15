@@ -24,8 +24,8 @@ public class GamePanel extends JPanel implements Runnable {
     private Inventory inventory;
     private TileDraw tileDraw;
     private TileDistanceDraw tileDistanceDraw;
-    private ChestAccess chestAccess;
-    private CoinDraw coinDraw;
+    //private ChestAccess chestAccess;
+    //private CoinDraw coinDraw;
     private DialogBox dialogBox;
 
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed

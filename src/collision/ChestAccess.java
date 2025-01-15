@@ -1,6 +1,7 @@
 package collision;
 
 import dialog.DialogBox;
+import inventory.Inventory;
 import main.GamePanel;
 
 import java.security.SecureRandom;
@@ -71,9 +72,14 @@ public class ChestAccess {
         System.out.println("Chest at "+position+" being accessed");
         System.out.println("Chest contents: " + chestContents.get(position));
 
-        DialogBox.dialogText = "Chest at "+position+" being accessed";
+        if (chestContents.get(position) == null) {
+            DialogBox.dialogText = "Chest is empty";
+        } else {
+            DialogBox.dialogText = "Chest contents: " + chestContents.get(position);
+            for (String item : chestContents.get(position)) {
+                Inventory.Inventory.add(item);
+            }
+        }
         DialogBox.isVisible = true;
-
-        //Inventory.Inventory.add();
     }
 }
