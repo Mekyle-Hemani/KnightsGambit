@@ -14,7 +14,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 public class GamePanel extends JPanel implements Runnable {
     public static java.util.List<Integer> tileLocations = new ArrayList<>();
@@ -32,23 +35,27 @@ public class GamePanel extends JPanel implements Runnable {
     public final int tileSize = (int) (originalTileSize * scale);
     public final int screenWidth = tileSize * 11; //Keep these the same as before
     public final int screenHeight = tileSize * 17;
+    public final Color uiColour = Color.GREEN;
+
+    private final BufferedImage UiImage =  ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/coin/coin.png")));
 
     public static boolean gameStarted = false;
 
     public GamePanel() throws IOException, FontFormatException {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.LIGHT_GRAY);
+        this.setBackground(uiColour);
         this.setFocusable(true);
 
         JLabel titleLabel = new JLabel("Knight's Gambit", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 48));
         titleLabel.setForeground(Color.BLACK);
         titleLabel.setOpaque(true);
-        titleLabel.setBackground(this.getBackground());
+        titleLabel.setBackground(uiColour);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setOpaque(false);
+        panel.setOpaque(true);
+        panel.setBackground(uiColour);
 
         JButton startButton = new JButton("Start");
         startButton.setFont(new Font("Arial", Font.BOLD, 32));
@@ -188,6 +195,7 @@ public class GamePanel extends JPanel implements Runnable {
     //This draws every new frame
     @Override
     protected void paintComponent(Graphics g) {
+        g.drawImage(UiImage, 0, 0, getWidth(), getHeight(), this);
         if (gameStarted) {
             super.paintComponent(g);
             //This is in a try catch as the script needs to have some sort of fail-safe if the wanted pngs are not present
