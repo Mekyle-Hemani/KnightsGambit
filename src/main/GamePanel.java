@@ -40,6 +40,12 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.LIGHT_GRAY);
         this.setFocusable(true);
 
+        JLabel titleLabel = new JLabel("Knight's Gambit", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 48));
+        titleLabel.setForeground(Color.BLACK);
+        titleLabel.setOpaque(true);
+        titleLabel.setBackground(this.getBackground());
+
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setOpaque(false);
@@ -48,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
         startButton.setFont(new Font("Arial", Font.BOLD, 32));
         startButton.setBackground(Color.DARK_GRAY);
         startButton.setForeground(Color.WHITE);
-        startButton.setBounds((screenWidth - 150) / 2, (screenHeight - 50) / 2, 150, 50);
+        startButton.setBounds((screenWidth - 150) / 2, (screenHeight/2)-75, 150, 50);
 
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -59,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
                     throw new RuntimeException(ex);
                 }
                 panel.setVisible(false);
+                titleLabel.setVisible(false);
             }
         });
 
@@ -66,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
         loadButton.setFont(new Font("Arial", Font.BOLD, 32));
         loadButton.setBackground(Color.DARK_GRAY);
         loadButton.setForeground(Color.WHITE);
-        loadButton.setBounds((screenWidth - 150) / 2, (screenHeight - 50) / 2 + (screenHeight / 4), 150, 50);
+        loadButton.setBounds((screenWidth - 150) / 2, (screenHeight/2)+130, 150, 50);
 
         loadButton.addActionListener(new ActionListener() {
             @Override
@@ -77,6 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
                     throw new RuntimeException(ex);
                 }
                 panel.setVisible(false);
+                titleLabel.setVisible(false);
             }
         });
 
@@ -84,13 +92,13 @@ public class GamePanel extends JPanel implements Runnable {
         panel.add(loadButton);
 
         this.setLayout(new BorderLayout());
+        this.add(titleLabel, BorderLayout.NORTH);
         this.add(panel, BorderLayout.CENTER);
 
         this.setVisible(true);
         panel.revalidate();
         panel.repaint();
     }
-
 
     //These are all the different functions the game will do before anything else starts
     private void startup(boolean loadSave) throws IOException, FontFormatException {
