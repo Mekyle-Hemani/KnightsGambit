@@ -24,8 +24,6 @@ public class GamePanel extends JPanel implements Runnable {
     private Inventory inventory;
     private TileDraw tileDraw;
     private TileDistanceDraw tileDistanceDraw;
-    //private ChestAccess chestAccess;
-    //private CoinDraw coinDraw;
     private DialogBox dialogBox;
 
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed
@@ -166,16 +164,16 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public ArrayList<Integer> convertSaveToArray(String filename) throws IOException {
-        ArrayList<String> input = (ArrayList<String>) save.load(filename);
-        ArrayList<Integer> result = new ArrayList<>();
-        String[] parts = input.getFirst().replace("[", "").replace("]", "").split(",\\s*");
+        ArrayList<String> input = (ArrayList<String>) save.load(filename); //Gets the save and assigns it to an arraylist
+        ArrayList<Integer> result = new ArrayList<>(); //Creates a result arraylist
+        String[] parts = input.getFirst().replace("[", "").replace("]", "").split(",\\s*"); //This removes all the special characters from the input array
 
-        for (int i = parts.length - 1; i >= 0; i--) {
-            String part = parts[i];
-            result.add(Integer.parseInt(part));
+        for (int i = parts.length - 1; i >= 0; i--) { //Counting backwards...
+            String part = parts[i]; //Get each item of the input array
+            result.add(Integer.parseInt(part)); //Convert it to a string and add it to the output array
         }
 
-        return result;
+        return result; //Return the output array
     }
 
     //This draws every new frame
@@ -193,7 +191,7 @@ public class GamePanel extends JPanel implements Runnable {
             player.draw((Graphics2D) g); //Draw the player
             tileDistanceDraw.draw((Graphics2D) g); //Draw the score
             inventory.draw((Graphics2D) g); //Draw the hidden inventory
-            dialogBox.draw((Graphics2D) g);
+            dialogBox.draw((Graphics2D) g); //Draw the dialog box
         }
     }
 }

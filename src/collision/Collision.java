@@ -1,5 +1,6 @@
 package collision;
 
+import dialog.DialogBox;
 import main.GamePanel;
 import saveFunction.*;
 
@@ -61,6 +62,8 @@ public class Collision {
 
         if (tileCheckCondition == 11) {
             midGameSave.save();
+            DialogBox.dialogText = "Game saved";
+            DialogBox.isVisible = true;
         }
 
         //This is the full list of the tiles that the player can't walk into using a full boolean returning value
