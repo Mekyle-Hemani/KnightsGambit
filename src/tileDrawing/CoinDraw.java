@@ -18,10 +18,6 @@ public class CoinDraw {
         this.gp = gamePanel;
     }
 
-    private void initialize() {
-
-    }
-
     public static void developCoin(int index) {
         if (!coinLocations.contains(index) && secureRandom.nextInt(12) == 3) {
         //if (!coinLocations.contains(index)) {

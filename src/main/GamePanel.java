@@ -116,7 +116,7 @@ public class GamePanel extends JPanel implements Runnable {
         ChestAccess chestAccess = new ChestAccess(this); //Allows functions from this specific class to be called by initiating it
         chestAccess.setup(); //Runs a specified script to initiate certain parts of the game
 
-        CoinDraw coinDraw = new CoinDraw(this);
+        new CoinDraw(this);
 
         //Starts to draw the rest of the visual items after necessary initialization
         inventory = new Inventory(this);
