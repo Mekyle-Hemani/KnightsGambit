@@ -146,8 +146,10 @@ public class GamePanel extends JPanel implements Runnable {
             Movement.spacesCrossed = spacesCrossed;
 
             DialogBox.dialogText = "Game Loaded";
-            DialogBox.isVisible = true;
+        } else {
+            DialogBox.dialogText = "Game Started";
         }
+        DialogBox.isVisible = true;
 
         //Starts the actual game
         thread = new Thread(this);
@@ -195,9 +197,8 @@ public class GamePanel extends JPanel implements Runnable {
     //This draws every new frame
     @Override
     protected void paintComponent(Graphics g) {
-        g.drawImage(UiImage, 0, 0, getWidth(), getHeight(), this);
+        super.paintComponent(g);
         if (gameStarted) {
-            super.paintComponent(g);
             //This is in a try catch as the script needs to have some sort of fail-safe if the wanted pngs are not present
             try {
                 tileDraw.draw((Graphics2D) g); //Draw every tile that is supposed to be shown onscreen
