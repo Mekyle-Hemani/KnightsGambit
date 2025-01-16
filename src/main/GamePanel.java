@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenHeight = tileSize * 17;
     public final Color uiColour = Color.GREEN;
 
-    private final BufferedImage UiImage =  ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/coin/coin.png")));
+    private final BufferedImage UiImage =  ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/docks/1.png")));
 
     public static boolean gameStarted = false;
 
@@ -49,12 +49,12 @@ public class GamePanel extends JPanel implements Runnable {
         JLabel titleLabel = new JLabel("Knight's Gambit", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 48));
         titleLabel.setForeground(Color.BLACK);
-        titleLabel.setOpaque(true);
+        titleLabel.setOpaque(false);
         titleLabel.setBackground(uiColour);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setOpaque(true);
+        panel.setOpaque(false);
         panel.setBackground(uiColour);
 
         JButton startButton = new JButton("Start");
@@ -198,6 +198,7 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(UiImage, 0, 0, screenWidth, screenHeight, this);
         if (gameStarted) {
             //This is in a try catch as the script needs to have some sort of fail-safe if the wanted pngs are not present
             try {
