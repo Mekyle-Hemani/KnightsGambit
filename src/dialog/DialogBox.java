@@ -12,7 +12,7 @@ public class DialogBox extends Entity {
 
     public static String dialogText = "Default dialog message.";
 
-    public static boolean isVisible = true;
+    public static boolean isVisible = false;
 
     private static final int dialogWidth = 400;
     private static final int dialogHeight = 200;

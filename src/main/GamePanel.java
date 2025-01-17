@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -37,18 +38,21 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenHeight = tileSize * 17;
     public final Color uiColour = Color.GREEN;
 
-    private final BufferedImage UiImage =  ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/docks/1.png")));
+    private final BufferedImage UiImage =  ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/ui/uiBackground.png")));
 
     public static boolean gameStarted = false;
 
+    private Font titleFont;
+
     public GamePanel() throws IOException, FontFormatException {
+        loadCustomFont();
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(uiColour);
         this.setFocusable(true);
 
         JLabel titleLabel = new JLabel("Knight's Gambit", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 48));
-        titleLabel.setForeground(Color.BLACK);
+        titleLabel.setFont(titleFont);
+        titleLabel.setForeground(Color.WHITE);
         titleLabel.setOpaque(false);
         titleLabel.setBackground(uiColour);
 
@@ -105,6 +109,15 @@ public class GamePanel extends JPanel implements Runnable {
         this.setVisible(true);
         panel.revalidate();
         panel.repaint();
+    }
+
+    private void loadCustomFont() throws IOException, FontFormatException {
+        InputStream fontStream = getClass().getResourceAsStream("/assets/font/scoreFont.ttf");
+        if (fontStream != null) {
+            titleFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.BOLD, 48);
+        } else {
+            titleFont = new Font("Arial", Font.BOLD, 48);
+        }
     }
 
     //These are all the different functions the game will do before anything else starts
