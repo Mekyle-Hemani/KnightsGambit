@@ -34,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final int originalTileSize = 23;
     private final double scale = 2.0; //Adjust scale from 3 to 2.0 for 1.5x smaller tiles
     public final int tileSize = (int) (originalTileSize * scale);
-    public final int screenWidth = tileSize * 11; //Keep these the same as before
+    public final int screenWidth = tileSize * 11;
     public final int screenHeight = tileSize * 17;
     public final Color uiColour = Color.GREEN;
 
@@ -55,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setOpaque(false);
         titleLabel.setBackground(uiColour);
+        titleLabel.setBounds((screenWidth-600) / 2, 100, 600, 100);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -65,7 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
         startButton.setFont(new Font("Arial", Font.BOLD, 32));
         startButton.setBackground(Color.DARK_GRAY);
         startButton.setForeground(Color.WHITE);
-        startButton.setBounds((screenWidth - 150) / 2, (screenHeight/2)-75, 150, 50);
+        startButton.setBounds((screenWidth - 150) / 2, (screenHeight / 2) - 75, 150, 50);
 
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -84,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
         loadButton.setFont(new Font("Arial", Font.BOLD, 32));
         loadButton.setBackground(Color.DARK_GRAY);
         loadButton.setForeground(Color.WHITE);
-        loadButton.setBounds((screenWidth - 150) / 2, (screenHeight/2)+130, 150, 50);
+        loadButton.setBounds((screenWidth - 150) / 2, (screenHeight / 2) + 130, 150, 50);
 
         loadButton.addActionListener(new ActionListener() {
             @Override
@@ -102,14 +103,16 @@ public class GamePanel extends JPanel implements Runnable {
         panel.add(startButton);
         panel.add(loadButton);
 
-        this.setLayout(new BorderLayout());
-        this.add(titleLabel, BorderLayout.NORTH);
-        this.add(panel, BorderLayout.CENTER);
+        this.setLayout(null);
+        this.add(titleLabel);
+        this.add(panel);
 
+        panel.setBounds(0, 0, screenWidth, screenHeight);
         this.setVisible(true);
         panel.revalidate();
         panel.repaint();
     }
+
 
     private void loadCustomFont() throws IOException, FontFormatException {
         InputStream fontStream = getClass().getResourceAsStream("/assets/font/scoreFont.ttf");
