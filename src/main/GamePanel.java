@@ -158,9 +158,9 @@ public class GamePanel extends JPanel implements Runnable {
         tileDistanceDraw = new TileDistanceDraw(this);
         player = new Player(this);
 
-        convertSaveToArray("tiles.txt"); //This trys to load a save to see if it's not present
         //If the player wants to load a save
         if (loadSave) {
+            convertSaveToArray("tiles.txt"); //This trys to load a save to see if it's not present
             if (corruptSave) { //If the save is not present
                 DialogBox.dialogText = "Game Save Not Present. Starting New Save"; //Start a new save
             } else { //If the save is present

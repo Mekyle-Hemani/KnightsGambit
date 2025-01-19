@@ -12,6 +12,18 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Enemy {
+    public static BufferedImage boxEnemyImg;
+    public static BufferedImage squidEnemyImg;
+
+    static {
+        try {
+            boxEnemyImg = ImageIO.read(Objects.requireNonNull(Enemy.class.getResourceAsStream("/assets/enemy/1.png")));
+            squidEnemyImg = ImageIO.read(Objects.requireNonNull(Enemy.class.getResourceAsStream("/assets/enemy/2.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     static GamePanel gp;
 
     private static SecureRandom secureRandom = new SecureRandom();
