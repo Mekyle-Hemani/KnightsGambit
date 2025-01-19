@@ -32,10 +32,10 @@ public class GamePanel extends JPanel implements Runnable {
     private DialogBox dialogBox;
 
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed
-    private final int originalTileSize = 23;
-    private final double scale = 2.0; //Adjust scale from 3 to 2.0 for 1.5x smaller tiles
-    public final int tileSize = (int) (originalTileSize * scale); //This is the size of each tile that will be drawn
-    public final int screenWidth = tileSize * 11; //This is the width of the screen drawn
+    private static final int originalTileSize = 23;
+    private static final double scale = 2.0; //Adjust scale from 3 to 2.0 for 1.5x smaller tiles
+    public static final int tileSize = (int) (originalTileSize * scale); //This is the size of each tile that will be drawn
+    public static final int screenWidth = tileSize * 11; //This is the width of the screen drawn
     public final int screenHeight = tileSize * 17; //This is the height of the screen drawn
 
     private final BufferedImage UiImage =  ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/ui/uiBackground.png"))); //This is the background image for the UI

@@ -45,7 +45,7 @@ public class Enemy {
         Map<Integer, Integer> updatedLocations = new HashMap<>();
 
         for (Map.Entry<Integer, Integer> entry : enemyLocations.entrySet()) {
-            int updatedKey = entry.getKey() + (gp.screenWidth / gp.tileSize);
+            int updatedKey = entry.getKey() + (GamePanel.screenWidth / GamePanel.tileSize);
             if (updatedKey <= 187) {
                 updatedLocations.put(updatedKey, entry.getValue());
             }
