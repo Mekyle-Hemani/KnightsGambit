@@ -21,7 +21,7 @@ public class midGameSave {
         savingValuesCrossed.add(String.valueOf(GamePanel.spacesCrossed));
         save.save((savingValuesCrossed), "spaces.txt");
 
-        System.out.println(save.load("tiles.txt"));
-        System.out.println(save.load("spaces.txt"));
+        System.out.println(save.load("tiles.txt", true));
+        System.out.println(save.load("spaces.txt", true));
     }
 }

@@ -42,6 +42,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public static boolean gameStarted = false;
 
+    private static boolean corruptSave = false;
+
     private Font titleFont;
 
     public GamePanel() throws IOException, FontFormatException {
@@ -156,12 +158,17 @@ public class GamePanel extends JPanel implements Runnable {
         tileDistanceDraw = new TileDistanceDraw(this);
         player = new Player(this);
 
+        convertSaveToArray("tiles.txt");
+        System.out.println(corruptSave);
         if (loadSave) {
-            NextLineGeneration.nextTileLocations = convertSaveToArray("tiles.txt");
-            spacesCrossed = (convertSaveToArray("spaces.txt")).getFirst();
-            Movement.spacesCrossed = spacesCrossed;
+            if (corruptSave) {
+                DialogBox.dialogText = "Game Save Not Present. Starting New Save";
+            } else {
+                NextLineGeneration.nextTileLocations = convertSaveToArray("tiles.txt");
+                Movement.spacesCrossed = (convertSaveToArray("spaces.txt")).getFirst();
 
-            DialogBox.dialogText = "Game Loaded";
+                DialogBox.dialogText = "Game Loaded";
+            }
         } else {
             DialogBox.dialogText = "Game Started";
         }
@@ -198,12 +205,17 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public ArrayList<Integer> convertSaveToArray(String filename) throws IOException {
-        ArrayList<String> input = (ArrayList<String>) save.load(filename); //Gets the save and assigns it to an arraylist
+        ArrayList<String> input = (ArrayList<String>) save.load(filename, false); //Gets the save and assigns it to an arraylist
         ArrayList<Integer> result = new ArrayList<>(); //Creates a result arraylist
         String[] parts = input.getFirst().replace("[", "").replace("]", "").split(",\\s*"); //This removes all the special characters from the input array
 
         for (int i = parts.length - 1; i >= 0; i--) { //Counting backwards...
             String part = parts[i]; //Get each item of the input array
+            if (Objects.equals(part, "Error loading file") || corruptSave){
+                result.clear();
+                corruptSave = true;
+                return result;
+            }
             result.add(Integer.parseInt(part)); //Convert it to a string and add it to the output array
         }
 
