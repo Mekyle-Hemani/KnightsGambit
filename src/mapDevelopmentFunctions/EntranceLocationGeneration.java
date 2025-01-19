@@ -38,7 +38,7 @@ public class EntranceLocationGeneration {
                 grid.add(14);
             }
             for (int i = 0; i < middle; i++) {
-                grid.add(10);
+                grid.add(Integer.parseInt(Integer.toString(secureRandom.nextInt(5) + 1) + 0));
             }
             for (int i = 0; i < eachside; i++) {
                 grid.add(14);
