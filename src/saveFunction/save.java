@@ -42,7 +42,7 @@ public class save {
         String filepath = path + "/save/" +filename; //This is the locations it is trying to load from
         File filecheck = new File(filepath); //This creates the object that will be checked for existence
         if (!filecheck.exists() && !filecheck.isFile()) { //If the file doesn't exist
-            if (createFiles) {
+            if (createFiles) { //If we want to create new saves if the files are not present...
                 try {
                     filecheck.getParentFile().mkdirs(); //Make the file
                     if (!filecheck.createNewFile()) { //If the file doesn't exist
@@ -51,10 +51,10 @@ public class save {
                 } catch (IOException e) { //If an error is found...
                     e.printStackTrace(); //Display the error
                 }
-            } else {
-                output.add("Error loading file");
-                System.out.println("Error loading file");
-                return output;
+            } else { //Say the file didn't exist
+                output.add("Error loading file"); //Add the error to the output
+                System.out.println("Error loading file"); //Give a visual error for debugging
+                return output; //Return the error
             }
         }
         BufferedReader reader = new BufferedReader(new FileReader(filepath)); //Creates an object of the data in the file
