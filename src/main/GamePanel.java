@@ -23,6 +23,7 @@ import java.util.Objects;
 public class GamePanel extends JPanel implements Runnable {
     public static java.util.List<Integer> tileLocations = new ArrayList<>();
 
+    //These are all required to mention the setup script from their respective files
     private Thread thread;
     private Player player;
     private Inventory inventory;
@@ -33,36 +34,31 @@ public class GamePanel extends JPanel implements Runnable {
     public static int spacesCrossed = 0; //This is how many spaces the player has crossed
     private final int originalTileSize = 23;
     private final double scale = 2.0; //Adjust scale from 3 to 2.0 for 1.5x smaller tiles
-    public final int tileSize = (int) (originalTileSize * scale);
-    public final int screenWidth = tileSize * 11;
-    public final int screenHeight = tileSize * 17;
-    public final Color uiColour = Color.GREEN;
+    public final int tileSize = (int) (originalTileSize * scale); //This is the size of each tile that will be drawn
+    public final int screenWidth = tileSize * 11; //This is the width of the screen drawn
+    public final int screenHeight = tileSize * 17; //This is the height of the screen drawn
 
-    private final BufferedImage UiImage =  ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/ui/uiBackground.png")));
+    private final BufferedImage UiImage =  ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/ui/uiBackground.png"))); //This is the background image for the UI
 
-    public static boolean gameStarted = false;
+    public static boolean gameStarted = false; //This will change if the game is supposed to start
 
-    private static boolean corruptSave = false;
-
-    private Font titleFont;
+    private static boolean corruptSave = false; //This will change if there is something wrong with the save
 
     public GamePanel() throws IOException, FontFormatException {
-        loadCustomFont();
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(uiColour);
-        this.setFocusable(true);
+        //This is the font of the title
+        Font titleFont = loadCustomFont(48, Font.BOLD); //This sets up the custom font
+        this.setPreferredSize(new Dimension(screenWidth, screenHeight)); //This sets up a UI with the exact screen dimensions
+        this.setFocusable(true); //This allows the user to select it
 
-        JLabel titleLabel = new JLabel("Knight's Gambit", SwingConstants.CENTER);
-        titleLabel.setFont(titleFont);
+        JLabel titleLabel = new JLabel("Knight's Gambit", SwingConstants.CENTER); //This is the label of the title
+        titleLabel.setFont(titleFont); //This sets the font up
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setOpaque(false);
-        titleLabel.setBackground(uiColour);
         titleLabel.setBounds((screenWidth-600) / 2, 100, 600, 100);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setOpaque(false);
-        panel.setBackground(uiColour);
 
         JButton startButton = new JButton("Start");
         startButton.setFont(new Font("Arial", Font.BOLD, 32));
@@ -116,12 +112,12 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 
-    private void loadCustomFont() throws IOException, FontFormatException {
-        InputStream fontStream = getClass().getResourceAsStream("/assets/font/scoreFont.ttf");
-        if (fontStream != null) {
-            titleFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.BOLD, 48);
-        } else {
-            titleFont = new Font("Arial", Font.BOLD, 48);
+    public static Font loadCustomFont(int size, int type) throws IOException, FontFormatException {
+        InputStream fontStream = GamePanel.class.getResourceAsStream("/assets/font/scoreFont.ttf"); //Find the font file
+        if (fontStream != null) { //If the file exists...
+            return Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(type, size); //Set the font settings to be the parameters
+        } else { //If not...
+            return new Font("Arial", type, size); //Set the same settings but to Arial
         }
     }
 

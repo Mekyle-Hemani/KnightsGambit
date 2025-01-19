@@ -76,9 +76,7 @@ public class ChestAccess {
             DialogBox.dialogText = "Chest is empty";
         } else {
             DialogBox.dialogText = "Chest contents: " + chestContents.get(position);
-            for (String item : chestContents.get(position)) {
-                Inventory.Inventory.add(item);
-            }
+            Inventory.Inventory.addAll(chestContents.get(position));
         }
         DialogBox.isVisible = true;
     }

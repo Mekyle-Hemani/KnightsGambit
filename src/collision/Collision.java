@@ -66,7 +66,7 @@ public class Collision {
             DialogBox.isVisible = true;
         }
 
-        //This is the full list of the tiles that the player can't walk into using a full boolean returning value
+        //This is the full list of the tiles that the player can't walk into using a full boolean returning value by id
         return (tileCheckCondition != 1)
                 && (tileCheckCondition != 4)
                 && (tileCheckCondition != 5)
