@@ -82,6 +82,7 @@ public class Movement implements KeyListener {
                             if (verticalSquaresBackwards == 0) {
                                 spacesCrossed++; //Increase the spaces crossed
                                 ChestAccess.iterateChests();
+                                Enemy.iterateEnemy();
                                 CoinDraw.iterateCoins();
                                 nextLineGeneration.generateNextLine(); //Draw the next section of the map
                             } else {

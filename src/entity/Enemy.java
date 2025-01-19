@@ -6,10 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Enemy {
     public static BufferedImage boxEnemyImg;
@@ -39,9 +36,24 @@ public class Enemy {
     }
 
     public static void developEnemy(int index) {
-        if (!enemyLocations.containsKey(index) && secureRandom.nextInt(12) == 3) {
+        if (!enemyLocations.containsKey(index) && secureRandom.nextInt(24) == 3) {
             enemyLocations.put(index, developEnemyAsset());
         }
+    }
+
+    public static void iterateEnemy() {
+        Map<Integer, Integer> updatedLocations = new HashMap<>();
+
+        for (Map.Entry<Integer, Integer> entry : enemyLocations.entrySet()) {
+            int updatedKey = entry.getKey() + (gp.screenWidth / gp.tileSize);
+            if (updatedKey <= 187) {
+                updatedLocations.put(updatedKey, entry.getValue());
+            }
+        }
+        enemyLocations.clear();
+        enemyLocations.putAll(updatedLocations);
+
+        System.out.println(enemyLocations);
     }
 
     public static int developEnemyAsset(){
